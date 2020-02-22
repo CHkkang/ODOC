@@ -311,18 +311,32 @@ h1, h2, h3, h4, h5,
   font-size: 1.3rem;
   text-transform: uppercase; }
   .site-logo a {
-    color: #fff; }
+    color: #fff;
+    
+     }
     .site-logo a span {
+      color: #f23a2e; }
+      
+.site-logo2 {
+  position: relative;
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-transform: uppercase; }
+  .site-logo2 a {
+    color: #fff; }
+    .site-logo2 a span {
       color: #f23a2e; }
 
 .site-navbar {
   margin-bottom: 0px;
   z-index: 1999;
   position: absolute;
-  width: 100%; }
+  width: 100%; 
+  }
   .site-navbar .container-fluid {
     padding-left: 7rem;
-    padding-right: 7rem; }
+    padding-right: 7rem; 
+    }
     @media (max-width: 991.98px) {
       .site-navbar .container-fluid {
         padding-left: 15px;

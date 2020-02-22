@@ -4,40 +4,22 @@
 <html lang="ko">
 <head>
   <title>Object Detecting on CCTV &mdash;</title>
+  <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/paper-bootstrap-wizard"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- CSS -->
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/icomoon/style.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css.jquery-ui.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/flaticon/font/flaticon.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
   <link href="${pageContext.request.contextPath}/resources/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
   <!-- CSS 끝 -->
-
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
   <div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
       <div class="container-fluid">
@@ -58,7 +40,7 @@
             <h1 class="mb-3">Object Detecting on <span>CCTV</span> </a></h1>
             <p class="lead mx-auto desc mb-5">We find people, abandoned dogs, and lost items easily on CCTV through the characteristics of objects.</p>
             <p class="text-center">
-              <a href="test2" class="btn btn-outline-white py-3 px-5">Get Started</a>
+              <a href="test4" class="btn btn-outline-white py-3 px-5">Get Started</a>
             </p>
           </div>
         </div>
@@ -68,7 +50,7 @@
     
     <!-- .site-wrap -->
     
-      <!-- js 파일들 -->
+  <!-- js 파일들 -->
   <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
@@ -77,7 +59,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>  
   <script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
@@ -85,6 +67,11 @@
   <script src="${pageContext.request.contextPath}/resources/js/jquery.mb.YTPlayer.min.js"></script>
   
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+  
+  <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/resources/assets/js/demo.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/resources/assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+  <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.validate.min.js" type="text/javascript"></script>
   <!-- js 파일 끝 -->
 
   </body>

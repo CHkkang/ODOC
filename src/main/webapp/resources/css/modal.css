@@ -1,0 +1,12 @@
+.modal-dialog.modal-mysize {
+  width: auto;
+  height: 100%;
+  margin-left:30%;
+  display:table;
+  padding: 0;
+}
+.modal-content.modal-mysize {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0; 
+}

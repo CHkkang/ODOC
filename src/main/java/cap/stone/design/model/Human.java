@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Human {
-	private String clothes;
-	private String color;
+	private String topColor;
+	private String bottomColor;
+	private String onepeiceColor;
 }

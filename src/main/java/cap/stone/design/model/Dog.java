@@ -6,6 +6,5 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Dog {
-	private String kind;
 	private String color;
 }

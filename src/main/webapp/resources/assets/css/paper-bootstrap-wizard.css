@@ -1178,6 +1178,11 @@ input[type="button"]:focus {
   box-shadow: none;
   color: rgba(0, 0, 0, 0.3);
 }
+.card .card-radios {
+  background-color: #F3F2EE;
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.3);
+}
 .card .card-hover-effect {
   -webkit-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
   -moz-transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
@@ -1257,6 +1262,9 @@ input[type="button"]:focus {
 .wizard-card[data-color="azure"] .choice.active .card-checkboxes {
   color: #7A9E9F;
 }
+.wizard-card[data-color="azure"] .choice.active .card-radios {
+  color: #7A9E9F;
+}
 .wizard-card[data-color="azure"] .wizard-navigation .progress-bar {
   background-color: #7A9E9F;
 }
@@ -1273,6 +1281,9 @@ input[type="button"]:focus {
   border-color: #7AC29A;
 }
 .wizard-card[data-color="green"] .choice.active .card-checkboxes {
+  color: #7AC29A;
+}
+.wizard-card[data-color="green"] .choice.active .card-radios {
   color: #7AC29A;
 }
 .wizard-card[data-color="green"] .wizard-navigation .progress-bar {
@@ -1293,6 +1304,9 @@ input[type="button"]:focus {
 .wizard-card[data-color="blue"] .choice.active .card-checkboxes {
   color: #68B3C8;
 }
+.wizard-card[data-color="blue"] .choice.active .card-radios {
+  color: #68B3C8;
+}
 .wizard-card[data-color="blue"] .wizard-navigation .progress-bar {
   background-color: #68B3C8;
 }
@@ -1311,6 +1325,9 @@ input[type="button"]:focus {
 .wizard-card[data-color="orange"] .choice.active .card-checkboxes {
   color: #F3BB45;
 }
+.wizard-card[data-color="orange"] .choice.active .card-radios {
+  color: #F3BB45;
+}
 .wizard-card[data-color="orange"] .wizard-navigation .progress-bar {
   background-color: #F3BB45;
 }
@@ -1327,6 +1344,9 @@ input[type="button"]:focus {
   border-color: #EB5E28;
 }
 .wizard-card[data-color="red"] .choice.active .card-checkboxes {
+  color: #EB5E28;
+}
+.wizard-card[data-color="red"] .choice.active .card-radios {
   color: #EB5E28;
 }
 .wizard-card[data-color="red"] .wizard-navigation .progress-bar {

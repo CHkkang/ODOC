@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Thing {
-	private String kind;
-	private String color;
+	private String walletColor;
+	private String backpackColor;
+	private String phoneColor;
 }

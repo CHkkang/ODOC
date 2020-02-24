@@ -25,9 +25,9 @@ public class HomeController {
 	public String cctv() {
 		return "cctv";
 	}
-	@RequestMapping(value = "/test4")
+	@RequestMapping(value = "/test")
 	public String test4() {
-		return "test4";
+		return "test";
 	}
 	
 }

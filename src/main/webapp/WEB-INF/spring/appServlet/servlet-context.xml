@@ -29,5 +29,4 @@
 
 	<context:component-scan
 		base-package="cap.stone.design" />
-
 </beans:beans>

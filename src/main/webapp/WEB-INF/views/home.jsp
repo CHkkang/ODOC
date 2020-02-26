@@ -21,7 +21,6 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <div class="site-wrap">
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-
       <div class="container-fluid">
         <div class="d-flex align-items-center">
           <div class="site-logo"><a href="home"><span>F</span>irst<span>P</span>enguin </a></div>

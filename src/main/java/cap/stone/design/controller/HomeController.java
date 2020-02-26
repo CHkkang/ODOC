@@ -29,5 +29,8 @@ public class HomeController {
 	public String test4() {
 		return "test";
 	}
-	
+	@RequestMapping(value = "/sibal")
+	public String sibal() {
+		return "sibal";
+	}
 }

@@ -15,21 +15,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cap.stone.design.model.Dog;
 import cap.stone.design.model.Human;
+import cap.stone.design.model.ObjectDTO;
 import cap.stone.design.model.Thing;
 
 @Controller
 public class CCTVController {
 	
-	@RequestMapping("/cctvv")
-	public String HumanRequest(HttpServletRequest request){ 
+	@RequestMapping("/cctv")
+	public String HumanRequest(@ModelAttribute ObjectDTO dto, Model model){ 
 		System.out.println("Áö³ª³Ä?");
-		String [] arr = request.getParameterValues("human");
-		System.out.println(arr[0] + arr[1] + arr[2]);
+		String kind = dto.getKind();
+		if(kind.equals("human")) {
+			String top = dto.getTopColor();
+			String bottom = dto.getBottomColor();
+			String suit = dto.getSuitColor();
+		}
+		else if(kind.equals("thing")) {
+			
+		}
+		else if(kind.equals("pet")) {
+			
+		}
+		else {
+			
+		}
+		
 		return "cctv";
 
    }
-	@RequestMapping("sibal2")
-	public String submit(Human human) {
-		return "sibal";
-	}
 }

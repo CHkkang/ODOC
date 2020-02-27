@@ -2482,3 +2482,11 @@ footer .pull-center {
     width: 100%;
   }
 }
+
+.zIndex{
+	z-index: 1 !important;
+}
+#nClick div{
+	pointer-events : none;
+}
+

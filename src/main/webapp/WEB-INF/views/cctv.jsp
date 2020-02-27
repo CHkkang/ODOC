@@ -45,6 +45,67 @@
 	href="${pageContext.request.contextPath}/resources/css/wizard-op.css"
 	rel="stylesheet">
 <!-- CSS 끝 -->
+<!-- script function -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+window.onload = function() { 
+	document.getElementById('finishBtn').onclick = function() {
+		document.getElementById('find').submit(); 
+		console.log("submit");
+		return false; 
+		}; 
+	};
+
+// $(document).ready(function(){
+// 	var a = $('input:radio[name=kind]').is(":checked");
+// 	console.log(a);
+// 	if(a){
+// 		var value = $('input:radio[name=kind]:checked').val();
+// 		console.log(value);
+// 		$("#colorLink").attr("href", "#"+value);
+// 	}
+// });
+
+
+// $(document).ready(function()
+// {
+// 	$("input:radio[name=kind]").on("click", function(){
+// 		console.log(value);
+// 		changeURL(value);
+// 	});
+// });
+// function changeURL(url){
+	
+// 	var value = $('input:radio[name=kind]:checked').val();
+// 	$("#colorLink").attr("href", "#"+url);
+// }	
+$(function(){
+	var v = $('input:radio[name=kind]').prop("checked");	// check == true
+	console.log(v);
+});
+function test(){
+	var value = $('input:radio[name=kind]:checked').val();
+	console.log(value);
+// 	$("#colorLink").attr("href", "#"+value);
+	$("#colorLink").css("href", "#"+value);
+	
+}
+
+function test2(event){
+	/* console.log(event.target.children[0]);
+	var t = event.target.children[0];
+	var v = t[0]
+	console.log(v); */
+    var v = $('input:radio[name=kind]').is(":checked");	// check == true
+ 	var value = $('input:radio[name=kind]:checked').val();
+	
+ 	if(v){
+ 		$("#colorLink").attr("href", "#"+value);
+ 	 	console.log(value);
+ 	}
+ 	console.log(v);
+}
+</script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300" style="background-color: #66666;">
@@ -93,19 +154,18 @@
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<form action="" method="">
+										<form id="find" action="cctv" method="">
 											<!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
 
 											<div class="wizard-header">
-												<h3 class="wizard-title">Book a Room</h3>
-												<h5>This information will let us know more about you.</h5>
+												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
+												<h5>찾고 싶은 것의 특징을 체크 해주세요</h5>
 											</div>
 											<div class="wizard-navigation">
 												<ul>
-													<li><a href="#kind" data-toggle="tab">Kind</a></li>
-													<li><a id="colorLink" href="#color" data-toggle="tab">Color</a></li>
-													<li><a href="#description" data-toggle="tab">Extra
-															Details</a></li>
+													<li><a href="#kind" data-toggle="tab" style="pointer-events:none;">Kind</a></li>
+													<li><a id="colorLink" href="#color" data-toggle="tab" style="pointer-events:none;">Color</a></li>
+													<li><a href="#description" data-toggle="tab" style="pointer-events:none;">Extra Details</a></li>
 												</ul>
 											</div>
 
@@ -116,10 +176,9 @@
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-radio"
-																	rel="tooltip" title="This is good if you travel alone.">
-																	<input type="radio" name="job" value="human"
-																		onclick="gotoURL(this.value)">
+																<div id="nClick" class="choice" data-toggle="wizard-radio"
+																	rel="tooltip" title="사람"  onclick="test2(event)">
+																	<input type="radio" name="kind" value="human">
 																	<div class="icon">
 																		<i class="material-icons">accessibility</i>
 																	</div>
@@ -127,11 +186,10 @@
 																</div>
 															</div>
 															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-radio"
+																<div id="nClick" class="choice" data-toggle="wizard-radio"
 																	rel="tooltip"
-																	title="Select this room if you're traveling with your family.">
-																	<input type="radio" name="job" value="thing"
-																		onclick="gotoURL(this.value)">
+																	title="핸드폰, 지갑, 가방"  onclick="test2(event)">
+																	<input type="radio" name="kind" value="thing">
 																	<div class="icon">
 																		<i class="material-icons">card_travel</i>
 																	</div>
@@ -139,11 +197,105 @@
 																</div>
 															</div>
 															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-radio"
+																<div id="nClick" class="choice" data-toggle="wizard-radio"
 																	rel="tooltip"
-																	title="Select this option if you are coming with your team.">
-																	<input type="radio" name="job" value="dogs"
-																		onclick="gotoURL(this.value)">
+																	title="유기견"  onclick="test2(event)">
+																	<input type="radio" name="kind" value="pets">
+																	<div class="icon">
+																		<i class="material-icons">pets</i>
+																	</div>
+																	<h6>Pets</h6>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane" id="human">
+													<h4 class="info-text">What color is the person's clothes?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip" title="Top">
+																	<input type="checkbox" name="humanColor" value="topColor">
+																	<div class="icon">
+																		<i class="material-icons">panorama_fish_eye</i>
+																	</div>
+																	<h6>상의</h6>
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip"
+																	title="Bottom">
+																	<input type="checkbox" name="humanColor" value="bottomColor">
+																	<div class="icon">
+																		<i class="material-icons">panorama_fish_eye</i>
+																	</div>
+																	<h6>하의</h6>
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip"
+																	title="A suit of clothes">
+																	<input type="checkbox" name="humanColor" value="suitColor">
+																	<div class="icon">
+																		<i class="material-icons">panorama_fish_eye</i>
+																	</div>
+																	<h6>한벌옷</h6>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane" id="thing">
+													<h4 class="info-text">What color are you looking for?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip" title="지갑">
+																	<input type="checkbox" name="thing" value="wallet">
+																	<div class="icon">
+																		<i class="material-icons">payment</i>
+																	</div>
+																	<h6>Wallet</h6>
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip"
+																	title="휴대폰">
+																	<input type="checkbox" name="thing" value="phone">
+																	<div class="icon">
+																		<i class="material-icons">phone_iphone</i>
+																	</div>
+																	<h6>Phone</h6>
+																</div>
+															</div>
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip"
+																	title="백팩">
+																	<input type="checkbox" name="thing" value="bag">
+																	<div class="icon">
+																		<i class="material-icons">work</i>
+																	</div>
+																	<h6>Backpack</h6>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane" id="pets">
+													<h4 class="info-text">What color is the dog?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-4">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip" title="강아지">
+																	<input type="radio" name="pet" value="dog">
 																	<div class="icon">
 																		<i class="material-icons">pets</i>
 																	</div>
@@ -152,122 +304,16 @@
 															</div>
 														</div>
 													</div>
-												</div>
-												<div class="tab-pane" id="human">
-													<h4 class="info-text">What type of room would you
-														want?</h4>
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-4">
 																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip" title="This is good if you travel alone.">
-																	<input type="radio" name="job" value="Design">
+																	rel="tooltip" title="고양이">
+																	<input type="radio" name="pet" value="cat">
 																	<div class="icon">
-																		<i class="material-icons">weekend</i>
+																		<i class="material-icons">pets</i>
 																	</div>
-																	<h6>제발</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this room if you're traveling with your family.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">home</i>
-																	</div>
-																	<h6>나와줘</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this option if you are coming with your team.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">business</i>
-																	</div>
-																	<h6>흑흑</h6>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane" id="thing">
-													<h4 class="info-text">What type of room would you
-														want?</h4>
-													<div class="row">
-														<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip" title="This is good if you travel alone.">
-																	<input type="radio" name="job" value="Design">
-																	<div class="icon">
-																		<i class="material-icons">weekend</i>
-																	</div>
-																	<h6>Single</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this room if you're traveling with your family.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">home</i>
-																	</div>
-																	<h6>Family</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this option if you are coming with your team.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">business</i>
-																	</div>
-																	<h6>Business</h6>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane" id="dog">
-													<h4 class="info-text">What type of room would you
-														want?</h4>
-													<div class="row">
-														<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip" title="This is good if you travel alone.">
-																	<input type="radio" name="job" value="Design">
-																	<div class="icon">
-																		<i class="material-icons">weekend</i>
-																	</div>
-																	<h6>Single</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this room if you're traveling with your family.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">home</i>
-																	</div>
-																	<h6>Family</h6>
-																</div>
-															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Select this option if you are coming with your team.">
-																	<input type="checkbox" name="job" value="Code">
-																	<div class="icon">
-																		<i class="material-icons">business</i>
-																	</div>
-																	<h6>Business</h6>
+																	<h6>Cat</h6>
 																</div>
 															</div>
 														</div>
@@ -275,7 +321,7 @@
 												</div>
 												<div class="tab-pane" id="description">
 													<div class="row">
-														<h4 class="info-text">Drop us a small description.</h4>
+														<h4 class="info-text">Detail</h4>
 														<div class="col-sm-6 col-sm-offset-1">
 															<div class="form-group">
 																<label>Room description</label>
@@ -284,11 +330,8 @@
 														</div>
 														<div class="col-sm-4">
 															<div class="form-group">
-																<label class="control-label">Example</label>
-																<p class="description">"The room really nice name is
-																	recognized as being a really awesome room. We use it
-																	every sunday when we go fishing and we catch a lot. It
-																	has some kind of magic shield around it."</p>
+																<label class="control-label">뭐넣지</label>
+																<p class="description">여기 뭐넣을지 구상중...</p>
 															</div>
 														</div>
 													</div>
@@ -300,7 +343,9 @@
 														class='btn btn-next btn-fill btn-danger btn-wd'
 														name='next' value='Next' /> <input type='button'
 														class='btn btn-finish btn-fill btn-danger btn-wd'
-														name='finish' value='Finish' />
+														id='finishBtn'
+														name='finish' value='Finish' 		
+														/>
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -433,12 +478,5 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
 	<!-- js 파일 끝 -->
-	
-	<script>
-		function gotoURL(url) {
-			var realUrl = '#' + url;
-			$('.colorLink').attr('href', realUrl);
-		}
-	</script>
 </body>
 </html>

@@ -39,7 +39,7 @@
             <h1 class="mb-3">Object Detecting on <span>CCTV</span> </a></h1>
             <p class="lead mx-auto desc mb-5">We find people, abandoned dogs, and lost items easily on CCTV through the characteristics of objects.</p>
             <p class="text-center">
-              <a href="cctv" class="btn btn-outline-white py-3 px-5">Get Started</a>
+              <a href="movecctv" class="btn btn-outline-white py-3 px-5">Get Started</a>
             </p>
           </div>
         </div>

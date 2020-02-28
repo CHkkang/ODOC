@@ -46,65 +46,145 @@
 	rel="stylesheet">
 <!-- CSS 끝 -->
 <!-- script function -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-window.onload = function() { 
-	document.getElementById('finishBtn').onclick = function() {
-		document.getElementById('find').submit(); 
-		console.log("submit");
-		return false; 
-		}; 
+	window.onload = function() {
+		document.getElementById('finishBtn').onclick = function() {
+			document.getElementById('find').submit();
+			console.log("submit");
+			return false;
+		};
 	};
-
-// $(document).ready(function(){
-// 	var a = $('input:radio[name=kind]').is(":checked");
-// 	console.log(a);
-// 	if(a){
-// 		var value = $('input:radio[name=kind]:checked').val();
-// 		console.log(value);
-// 		$("#colorLink").attr("href", "#"+value);
-// 	}
-// });
-
-
-// $(document).ready(function()
-// {
-// 	$("input:radio[name=kind]").on("click", function(){
-// 		console.log(value);
-// 		changeURL(value);
-// 	});
-// });
-// function changeURL(url){
-	
-// 	var value = $('input:radio[name=kind]:checked').val();
-// 	$("#colorLink").attr("href", "#"+url);
-// }	
-$(function(){
-	var v = $('input:radio[name=kind]').prop("checked");	// check == true
-	console.log(v);
-});
-function test(){
-	var value = $('input:radio[name=kind]:checked').val();
-	console.log(value);
-// 	$("#colorLink").attr("href", "#"+value);
-	$("#colorLink").css("href", "#"+value);
-	
-}
-
-function test2(event){
-	/* console.log(event.target.children[0]);
-	var t = event.target.children[0];
-	var v = t[0]
-	console.log(v); */
-    var v = $('input:radio[name=kind]').is(":checked");	// check == true
- 	var value = $('input:radio[name=kind]:checked').val();
-	
- 	if(v){
- 		$("#colorLink").attr("href", "#"+value);
- 	 	console.log(value);
- 	}
- 	console.log(v);
-}
+	function isChecked(inputid) {
+		var c = $('#' + inputid).attr('class')
+		console.log(inputid + "   " + c);
+		if (c == "choice") {
+			if (inputid == "shortTop") {
+				console.log(inputid);
+				$("#longTop").attr("class", "choice");
+			}
+			if (inputid == "longTop") {
+				console.log(inputid);
+				$("#shortTop").attr("class", "choice");
+			}
+			if (inputid == "shortBottom") {
+				console.log(inputid);
+				$("#longBottom").attr("class", "choice");
+			}
+			if (inputid == "longBottom") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+			}
+			if (inputid == "longTopOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#shortShortOne").attr("class", "choice");
+			}
+			if (inputid == "shortTopOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#longShortOne").attr("class", "choice");
+			}
+			if (inputid == "longBottomOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#shortBottomOne").attr("class", "choice");
+			}
+			if (inputid == "shortBottomOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#longBottomOne").attr("class", "choice");
+			}
+		} else {
+			if (inputid == "shortTop") {
+				console.log(inputid);
+				$("#longTop").attr("class", "choice");
+			}
+			if (inputid == "longTop") {
+				console.log(inputid);
+				$("#shortTop").attr("class", "choice");
+			}
+			if (inputid == "shortBottom") {
+				console.log(inputid);
+				$("#longBottom").attr("class", "choice");
+			}
+			if (inputid == "longBottom") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+			}
+			if (inputid == "longTopOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#shortShortOne").attr("class", "choice");
+			}
+			if (inputid == "shortTopOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#longShortOne").attr("class", "choice");
+			}
+			if (inputid == "longBottomOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#shortBottomOne").attr("class", "choice");
+			}
+			if (inputid == "shortBottomOne") {
+				console.log(inputid);
+				$("#shortBottom").attr("class", "choice");
+				$("#longBottom").attr("class", "choice");
+				$("#shortTop").attr("class", "choice");
+				$("#longTop").attr("class", "choice");
+				$("#longBottomOne").attr("class", "choice");
+			}
+		}
+	}
+	var page = 0;
+	function pageCtrl(vvalue) {
+		console.log("뭐냐  : " + vvalue);
+		if (vvalue == "Finish")
+			page = 1;
+		if (vvalue == "Previous")
+			page--;
+		if (vvalue == "Next")
+			page++;
+	}
+	function pageMove(vvalue) {
+		console.log(page + "페이지");
+		pageCtrl(vvalue);
+		if (page == 1) {
+			console.log("1페이지");
+			var v = $('input:radio[name=kind]').is(":checked"); // check == true
+			if (v) {
+				value = $('input:radio[name=kind]:checked').val();
+				console.log(value);
+				$("#detailLink").attr("href", "#" + value);
+			}
+		}
+		if (page == 2) {
+		}
+	}
+	$('[data-toggle="tooltip"]').tooltip();
 </script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
@@ -122,7 +202,7 @@ function test2(event){
 				<div class="d-flex justify-content-center">
 					<div class="site-logo"
 						style="text-align: center; display: inline-block;">
-						<a href="home" data-toggle="modal" data-target="#myCenterModal"
+						<a href="" data-toggle="modal" data-target="#myCenterModal"
 							style="margin-top: 2px"> What object do you want to find? <span>Click
 								here</span>
 						</a>
@@ -147,7 +227,6 @@ function test2(event){
 					</button>
 				</div>
 				<div class="modal-body">
-					<!--   Big container   -->
 					<div class="container">
 						<div class="row">
 							<div class="col">
@@ -155,20 +234,19 @@ function test2(event){
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
 										<form id="find" action="cctv" method="">
-											<!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
-
+											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
 												<h5>찾고 싶은 것의 특징을 체크 해주세요</h5>
 											</div>
 											<div class="wizard-navigation">
 												<ul>
-													<li><a href="#kind" data-toggle="tab" style="pointer-events:none;">Kind</a></li>
-													<li><a id="colorLink" href="#color" data-toggle="tab" style="pointer-events:none;">Color</a></li>
-													<li><a href="#description" data-toggle="tab" style="pointer-events:none;">Extra Details</a></li>
+													<li><a href="#kind" data-toggle="tab"
+														style="pointer-events: none;">Kind</a></li>
+													<li><a id="detailLink" href="" data-toggle="tab"
+														style="pointer-events: none;">Details</a></li>
 												</ul>
 											</div>
-
 											<div class="tab-content">
 												<div class="tab-pane" id="kind">
 													<h4 class="info-text">What type of object would you
@@ -176,8 +254,8 @@ function test2(event){
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-4">
-																<div id="nClick" class="choice" data-toggle="wizard-radio"
-																	rel="tooltip" title="사람"  onclick="test2(event)">
+																<div id="nClick" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="사람">
 																	<input type="radio" name="kind" value="human">
 																	<div class="icon">
 																		<i class="material-icons">accessibility</i>
@@ -186,9 +264,9 @@ function test2(event){
 																</div>
 															</div>
 															<div class="col-sm-4">
-																<div id="nClick" class="choice" data-toggle="wizard-radio"
-																	rel="tooltip"
-																	title="핸드폰, 지갑, 가방"  onclick="test2(event)">
+																<div id="nClick" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip"
+																	title="핸드폰, 지갑, 가방">
 																	<input type="radio" name="kind" value="thing">
 																	<div class="icon">
 																		<i class="material-icons">card_travel</i>
@@ -197,9 +275,8 @@ function test2(event){
 																</div>
 															</div>
 															<div class="col-sm-4">
-																<div id="nClick" class="choice" data-toggle="wizard-radio"
-																	rel="tooltip"
-																	title="유기견"  onclick="test2(event)">
+																<div id="nClick" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="유기견">
 																	<input type="radio" name="kind" value="pets">
 																	<div class="icon">
 																		<i class="material-icons">pets</i>
@@ -211,52 +288,129 @@ function test2(event){
 													</div>
 												</div>
 												<div class="tab-pane" id="human">
-													<h4 class="info-text">What color is the person's clothes?</h4>
+													<h4 class="info-text">What color is the person's
+														clothes?</h4>
 													<div class="row">
-														<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip" title="Top">
-																	<input type="checkbox" name="humanColor" value="topColor">
-																	<div class="icon">
-																		<i class="material-icons">panorama_fish_eye</i>
-																	</div>
-																	<h6>상의</h6>
+														<div class="col-xs-6 col-sm-2"
+															style="text-align: center; margin-top: 28px;">
+															<h2 style="font-weight: bold;">TOP</h2>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="topKind" value="longTop"
+																	id="longTopC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
 																</div>
+																<h6>긴팔</h6>
 															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="Bottom">
-																	<input type="checkbox" name="humanColor" value="bottomColor">
-																	<div class="icon">
-																		<i class="material-icons">panorama_fish_eye</i>
-																	</div>
-																	<h6>하의</h6>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="shortTop"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="topKind" value="shortTop"
+																	id="shortTopC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
 																</div>
+																<h6>반팔</h6>
 															</div>
-															<div class="col-sm-4">
-																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="A suit of clothes">
-																	<input type="checkbox" name="humanColor" value="suitColor">
-																	<div class="icon">
-																		<i class="material-icons">panorama_fish_eye</i>
-																	</div>
-																	<h6>한벌옷</h6>
+														</div>
+														<div class="col-xs-6 col-sm-2"
+															style="text-align: center; margin-top: 28px;">
+															<h2 style="font-weight: bold;">BOTTOM</h2>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Bottom" id="longBottom"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="bottomKind"
+																	value="longBottom">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
 																</div>
+																<h6>긴바지</h6>
+															</div>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice " data-toggle="wizard-checkbox"
+																rel="tooltip" title="Bottom" id="shortBotoom"
+																onclick="isChecked(this.id)">
+																<input class = "choice" data-toggle="wizard-checkbox" type="checkbox" name="bottomKind"
+																	value="shortBottom">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
+																</div>
+																<h6>반바지</h6>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-6 col-sm-2"
+															style="text-align: center; margin-top: 10px;">
+															<h2 style="font-weight: bold;">One Piece</h2>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTopOne"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="onepieceKind"
+																	value="longTopOne" id="longTopC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
+																</div>
+																<h6>한벌 긴팔</h6>
+															</div>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="shortTopOne"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="onepieceKind"
+																	value="shortTopOne" id="shortTopC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
+																</div>
+																<h6>한벌 반팔</h6>
+															</div>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longBottomOne"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="onepieceKind"
+																	value="longBottomOne" id="longBottomC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
+																</div>
+																<h6>한벌 긴바지</h6>
+															</div>
+														</div>
+														<div class="col-xs-6 col-sm-2">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="shortBottomOne"
+																onclick="isChecked(this.id)">
+																<input type="checkbox" name="onepieceKind"
+																	value="shortBottomOne" id="shortBottomC">
+																<div class="icon">
+																	<i class="material-icons">panorama_fish_eye</i>
+																</div>
+																<h6>한벌 반바지</h6>
 															</div>
 														</div>
 													</div>
 												</div>
 												<div class="tab-pane" id="thing">
-													<h4 class="info-text">What color are you looking for?</h4>
+													<h4 class="info-text">What thing?</h4>
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-4">
 																<div class="choice" data-toggle="wizard-checkbox"
 																	rel="tooltip" title="지갑">
-																	<input type="checkbox" name="thing" value="wallet">
+																	<input type="checkbox" name="thingKind" value="wallet">
 																	<div class="icon">
 																		<i class="material-icons">payment</i>
 																	</div>
@@ -265,9 +419,8 @@ function test2(event){
 															</div>
 															<div class="col-sm-4">
 																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="휴대폰">
-																	<input type="checkbox" name="thing" value="phone">
+																	rel="tooltip" title="휴대폰">
+																	<input type="checkbox" name="thingKind" value="phone">
 																	<div class="icon">
 																		<i class="material-icons">phone_iphone</i>
 																	</div>
@@ -276,9 +429,8 @@ function test2(event){
 															</div>
 															<div class="col-sm-4">
 																<div class="choice" data-toggle="wizard-checkbox"
-																	rel="tooltip"
-																	title="백팩">
-																	<input type="checkbox" name="thing" value="bag">
+																	rel="tooltip" title="백팩">
+																	<input type="checkbox" name="thingKind" value="bag">
 																	<div class="icon">
 																		<i class="material-icons">work</i>
 																	</div>
@@ -289,27 +441,23 @@ function test2(event){
 													</div>
 												</div>
 												<div class="tab-pane" id="pets">
-													<h4 class="info-text">What color is the dog?</h4>
+													<h4 class="info-text">What pet?</h4>
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-4">
+															<div class="col-sm-6">
 																<div class="choice" data-toggle="wizard-checkbox"
 																	rel="tooltip" title="강아지">
-																	<input type="radio" name="pet" value="dog">
+																	<input type="checkbox" name="petKind" value="dog">
 																	<div class="icon">
 																		<i class="material-icons">pets</i>
 																	</div>
 																	<h6>Dog</h6>
 																</div>
 															</div>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-sm-10 col-sm-offset-1">
-															<div class="col-sm-4">
+															<div class="col-sm-6">
 																<div class="choice" data-toggle="wizard-checkbox"
 																	rel="tooltip" title="고양이">
-																	<input type="radio" name="pet" value="cat">
+																	<input type="checkbox" name="petKind" value="cat">
 																	<div class="icon">
 																		<i class="material-icons">pets</i>
 																	</div>
@@ -319,62 +467,40 @@ function test2(event){
 														</div>
 													</div>
 												</div>
-												<div class="tab-pane" id="description">
-													<div class="row">
-														<h4 class="info-text">Detail</h4>
-														<div class="col-sm-6 col-sm-offset-1">
-															<div class="form-group">
-																<label>Room description</label>
-																<textarea class="form-control" placeholder="" rows="6"></textarea>
-															</div>
-														</div>
-														<div class="col-sm-4">
-															<div class="form-group">
-																<label class="control-label">뭐넣지</label>
-																<p class="description">여기 뭐넣을지 구상중...</p>
-															</div>
-														</div>
-													</div>
-												</div>
 											</div>
+											<!-- tab content end -->
 											<div class="wizard-footer">
 												<div class="pull-right">
 													<input type='button'
 														class='btn btn-next btn-fill btn-danger btn-wd'
-														name='next' value='Next' /> <input type='button'
+														name='next' id="nextBtn" value='Next'
+														onclick="pageMove(this.value)" /> <input type='button'
 														class='btn btn-finish btn-fill btn-danger btn-wd'
-														id='finishBtn'
-														name='finish' value='Finish' 		
-														/>
+														id='finishBtn' name='finish' value='Finish'
+														onclick="pageMove(this.value)" />
 												</div>
 												<div class="pull-left">
 													<input type='button'
 														class='btn btn-previous btn-fill btn-default btn-wd'
-														name='previous' value='Previous' />
-
-													<div class="footer-checkbox">
-														<div class="col-sm-12">
-															<div class="checkbox">
-																<label> <input type="checkbox"
-																	name="optionsCheckboxes">
-																</label> Subscribe to our newsletter
-															</div>
-														</div>
-													</div>
+														name='previous' value='Previous'
+														onclick="pageMove(this.value)" />
 												</div>
 												<div class="clearfix"></div>
 											</div>
 										</form>
+										<!-- form end -->
 									</div>
+									<!-- wizard card end -->
 								</div>
-								<!-- wizard container -->
+								<!-- wizard container end -->
 							</div>
+							<!-- col end -->
 						</div>
-						<!-- row -->
+						<!-- row end -->
 					</div>
-					<!--  big container -->
+					<!-- container end  -->
 				</div>
-				<!--  modal body -->
+				<!--  modal body end -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>

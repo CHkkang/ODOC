@@ -17,20 +17,6 @@
 	href="https://www.creative-tim.com/product/paper-bootstrap-wizard" />
 <!-- CSS -->
 <link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css.jquery-ui.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/aos.css">
-<link
-	href="${pageContext.request.contextPath}/resources/css/jquery.mb.YTPlayer.min.css"
-	media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-<link
 	href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
 	rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
@@ -44,6 +30,13 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/wizard-op.css"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css.jquery-ui.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
+<link href="${pageContext.request.contextPath}/resources/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 <!-- CSS 끝 -->
 <!-- script function -->
 <script
@@ -187,8 +180,8 @@
 	$('[data-toggle="tooltip"]').tooltip();
 </script>
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300" style="background-color: #66666;">
+<body ata-spy="scroll" data-target=".site-navbar-target"
+	data-offset="300">
 	<!-- Google Tag Manager (noscript) -->
 	<noscript>
 		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
@@ -199,18 +192,19 @@
 		<header class="site-navbar py-4 js-sticky-header site-navbar-target"
 			role="banner">
 			<div class="container-fluid">
-				<div class="d-flex justify-content-center">
-					<div class="site-logo"
-						style="text-align: center; display: inline-block;">
+				<div class="d-flex align-items-center">
+					<div class="site-logo">
 						<a href="" data-toggle="modal" data-target="#myCenterModal"
-							style="margin-top: 2px"> What object do you want to find? <span>Click
+							style="margin-top: 2px; text-align: center; display: inline-block;"> What object do you want to find? <span>Click
 								here</span>
 						</a>
 					</div>
 				</div>
 			</div>
-		</header>
-	</div>
+		</div>
+	</header>
+
+
 	<!--팝업-->
 	<div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
 		aria-labelledby="myCenterModalLabel">
@@ -339,8 +333,8 @@
 															<div class="choice " data-toggle="wizard-checkbox"
 																rel="tooltip" title="Bottom" id="shortBotoom"
 																onclick="isChecked(this.id)">
-																<input class = "choice" data-toggle="wizard-checkbox" type="checkbox" name="bottomKind"
-																	value="shortBottom">
+																<input class="choice" data-toggle="wizard-checkbox"
+																	type="checkbox" name="bottomKind" value="shortBottom">
 																<div class="icon">
 																	<i class="material-icons">panorama_fish_eye</i>
 																</div>
@@ -591,8 +585,6 @@
 		src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
-	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery.mb.YTPlayer.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
@@ -603,6 +595,8 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
 	<!-- js 파일 끝 -->
 </body>
 </html>

@@ -66,11 +66,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/jquery.mb.YTPlayer.min.js"></script>
   
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-  
-  <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-  <script src="${pageContext.request.contextPath}/resources/assets/js/demo.js" type="text/javascript"></script>
-  <script src="${pageContext.request.contextPath}/resources/assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
-  <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.validate.min.js" type="text/javascript"></script>
+
   <!-- js 파일 끝 -->
 
   </body>

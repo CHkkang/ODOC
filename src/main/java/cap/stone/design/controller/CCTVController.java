@@ -55,7 +55,7 @@ public class CCTVController {
                byte[] buf = ex.getBytes();
                
                DatagramPacket packet = new DatagramPacket(
-                       buf,buf.length,ip,35000);
+                       buf,buf.length,ip,5801);
                
                socket.send(packet);
                System.out.println("success");

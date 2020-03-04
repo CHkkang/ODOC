@@ -55,7 +55,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>  
   <script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>  

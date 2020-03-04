@@ -19,24 +19,36 @@ public class CCTVController {
          @RequestParam(value="kind",required=true) String kind,
          @RequestParam(value="topKind",required=false, defaultValue = "n") List<String> topkind,
          @RequestParam(value="bottomKind",required=false, defaultValue = "n") List<String> bottomkind,
-         @RequestParam(value="topOnepieceKind",required=false, defaultValue = "n") List<String> toponepiecekind,
-         @RequestParam(value="bottomOnepieceKind",required=false, defaultValue = "n") List<String> bottomonepiecekind,
+         @RequestParam(value="onepieceKind",required=false, defaultValue = "n") List<String> toponepiecekind,
          @RequestParam(value="thingKind",required=false, defaultValue = "n") List<String> thingkind,
-         @RequestParam(value="petKind",required=false, defaultValue = "n") List<String> petkind){ 
+         @RequestParam(value="petKind",required=false, defaultValue = "n") List<String> petkind,
+         @RequestParam(value="topColor", required=false, defaultValue = "n") String topcolor,
+         @RequestParam(value="bottomColor", required=false, defaultValue = "n") String bottomcolor,
+         @RequestParam(value="onepieceColor", required=false, defaultValue = "n") String onepiececolor){ 
       transferData.add(kind);
       if(kind.equals("human")) {   
          if(topkind.get(0).equals("n") && bottomkind.get(0).equals("n")) {
             transferData.add(toponepiecekind.get(0));
-            transferData.add(bottomonepiecekind.get(0));
          }else {
             transferData.add(topkind.get(0));
             transferData.add(bottomkind.get(0));
+         }
+         if(topcolor.equals("n") && bottomcolor.equals("n")) {
+        	 System.out.println("onepiececolor : "+onepiececolor);
+       	  transferData.add(onepiececolor);
+         }
+         else {
+        	 System.out.println("topcolor : "+topcolor + " bottomcolor : " + bottomcolor);
+       	  transferData.add(topcolor);
+       	  transferData.add(bottomcolor);
          }
       }else if(kind.equals("thing")) {
          transferData.add(thingkind.get(0));
       }else if(kind.equals("pets")) {
          transferData.add(petkind.get(0));
       }
+      
+     
       for(int i=0;i<transferData.size();i++) {
          System.out.println(transferData.get(i));
       }

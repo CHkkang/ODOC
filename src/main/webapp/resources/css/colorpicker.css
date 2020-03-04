@@ -1,10 +1,5 @@
-body{
-  background-color: #f6f8fa;
-  font-family: 'Open Sans', sans-serif;
-  padding-top: 30px;
-}
 .container2{
-  position: relative;
+  position: absolute;
   margin-left: auto;
   margin-right: auto;
   padding-right: 15px;
@@ -17,47 +12,89 @@ body{
    margin: 0 auto;
 }
 .color-picker{
-  width: 300px;
-  min-height: 150px;
+  height : 140px;
+  width: 130px;
+  min-height: 140px;
   background-color: #ffffff;
   border-radius: 3px;
   border: 1px solid #dfe2e5;
-  padding: 5px 20px 5px 15px;
+  padding: 3px 3px 3px 3px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
 }
-.color-list{
+.color-list1{
   list-style: none;
   padding: 0;
 }
-.color-list li{
+.color-list1 li{
   display: inline-block;
   margin: 3px;
+  border: 1px solid gray;
 }
-.color{
-  height: 40px;
-  width: 40px;
+.color1{
+  height: 22px;
+  width: 22px;
   border-radius: 100px;
-  background-color: attr(data-color);
+  background-color : attr(data-color);
   transition: transform 0.3s;
 }
-.color:not(.active):hover{
+.color1:not(.live):hover{
   cursor: pointer;
   transform: scale(1.2);
 }
-.color.active {
-  border: 5px solid #ddd;
-  width: 32px;
-  height: 32px;
+.color1.live {
+  border: 3px solid lightgray;
+  width: 22px;
+  height: 22px;
 }
 
-.form-control{
-  display: block;
-  width: 100%;
-  border-radius: 3px;
-  border: 1px solid #D7D1D5;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  padding: 5px 0px 10px 5px;
-  font-size: 18px;
-   line-height: 1.75;
+.color-list2{
+  list-style: none;
+  padding: 0;
+}
+.color-list2 li{
+  display: inline-block;
+  margin: 3px;
+  border: 1px solid gray;
+}
+.color2{
+  height: 22px;
+  width: 22px;
+  border-radius: 100px;
+  background-color : attr(data-color);
+  transition: transform 0.3s;
+}
+.color2:not(.live):hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.color2.live {
+  border: 3px solid lightgray;
+  width: 22px;
+  height: 22px;
+}
+
+.color-list3{
+  list-style: none;
+  padding: 0;
+}
+.color-list3 li{
+  display: inline-block;
+  margin: 3px;
+  border: 1px solid gray;
+}
+.color3{
+  height: 22px;
+  width: 22px;
+  border-radius: 100px;
+  background-color : attr(data-color);
+  transition: transform 0.3s;
+}
+.color3:not(.live):hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.color3.live {
+  border: 3px solid lightgray;
+  width: 22px;
+  height: 22px;
 }

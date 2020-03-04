@@ -1,490 +1,633 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <html lang="ko">
 <head>
-<title>Object Detecting on CCTV &mdash;</title>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<link rel="apple-touch-icon" sizes="76x76"
-	href="assets/img/apple-icon.png" />
-<link rel="icon" type="image/png" href="assets/img/favicon.png" />
-<title>Material Bootstrap Wizard by Creative Tim | Free Boostrap
-	Wizard</title>
+  <title>Object Detecting on CCTV &mdash;</title>
+  <!-- Canonical SEO -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/paper-bootstrap-wizard"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/material-boot-strap-wizard.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css.jquery-ui.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/aos.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/material-bootstrap-wizard.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
+  <!-- CSS 끝 -->
+<script type="text/javascript">
+	window.onload = function() {
+		document.getElementById('finishBtn').onclick = function() {
+			document.getElementById('find').submit();
+			console.log("submit");
+			return false;
+		};
+	};
+	function isChecked(inputid) {
+		var c = $('#' + inputid).attr('class');
 
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-	name='viewport' />
-<meta name="viewport" content="width=device-width" />
+		var id = "";
+		// console.log($("#longBottomC").is(":checked"));
+		// console.log($("#longTopC").is(":checked"));
+		// .prop("checked", true);
+		if (c == "choice") {
+			if (inputid.includes("OnePiece")) {
+				if (inputid.includes("Top")) {
+					$("#" + inputid + "C").prop("checked", true);
 
-<!-- Canonical SEO -->
-<link rel="canonical"
-	href="https://www.creative-tim.com/product/paper-bootstrap-wizard" />
+					id = inputid.includes("short") ? "longTopOnePiece"
+							: "shortTopOnePiece";
+					$("#" + id).attr("class", "choice");
 
-<meta name="keywords"
-	content="wizard, bootstrap wizard, creative tim, long forms, 3 step wizard, sign up wizard, beautiful wizard, long forms wizard, wizard with validation, paper design, paper wizard bootstrap, bootstrap paper wizard">
-<meta name="description"
-	content="Paper Bootstrap Wizard is a fully responsive wizard that is inspired by our famous Paper Kit  and comes with 3 useful examples and 5 colors.">
+					$("#" + id + "C").prop("checked", false);
+				}
+				if (inputid.includes("Bottom")) {
+					$("#" + inputid + "C").prop("checked", true);
 
-<!-- Schema.org markup for Google+ -->
-<meta itemprop="name" content="Paper Bootstrap Wizard by Creative Tim">
-<meta itemprop="description"
-	content="Paper Bootstrap Wizard is a fully responsive wizard that is inspired by our famous Paper Kit  and comes with 3 useful examples and 5 colors.">
-<meta itemprop="image"
-	content="https://s3.amazonaws.com/creativetim_bucket/products/49/opt_pbw_thumbnail.jpg">
+					id = inputid.includes("short") ? "longBottomOnePiece"
+							: "shortBottomOnePiece";
+					$("#" + id).attr("class", "choice");
 
-<!-- Twitter Card data -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@creativetim">
-<meta name="twitter:title"
-	content="Paper Bootstrap Wizard by Creative Tim">
-<meta name="twitter:description"
-	content="Paper Bootstrap Wizard is a fully responsive wizard that is inspired by our famous Paper Kit  and comes with 3 useful examples and 5 colors.">
-<meta name="twitter:creator" content="@creativetim">
-<meta name="twitter:image"
-	content="https://s3.amazonaws.com/creativetim_bucket/products/49/opt_pbw_thumbnail.jpg">
+					$("#" + id + "C").prop("checked", false);
+				}
 
-<!-- Open Graph data -->
-<meta property="og:title"
-	content="Paper Bootstrap Wizard by Creative Tim | Free Boostrap Wizard" />
-<meta property="og:type" content="article" />
-<meta property="og:url"
-	content="https://demos.creative-tim.com/paper-bootstrap-wizard/wizard-list-place.html" />
-<meta property="og:image"
-	content="https://s3.amazonaws.com/creativetim_bucket/products/49/opt_pbw_thumbnail.jpg" />
-<meta property="og:description"
-	content="Paper Bootstrap Wizard is a fully responsive wizard that is inspired by our famous Paper Kit  and comes with 3 useful examples and 5 colors." />
-<meta property="og:site_name" content="Creative Tim" />
+				$("div[id$='Top']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("div[id$='Bottom']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("input[id$='TopC']").each(function() {
+					$(this).prop("checked", false);
+				});
+				$("input[id$='BottomC']").each(function() {
+					$(this).prop("checked", false);
+				});
+			} else {
+				if (inputid.includes("Top")) {
+					$("#" + inputid + "C").prop("checked", true);
 
-<!-- CSS Files -->
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/paper-bootstrap-wizard.css"
-	rel="stylesheet" />
+					id = inputid.includes("short") ? "longTop" : "shortTop";
+					$("#" + id).attr("class", "choice");
 
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/demo.css"
-	rel="stylesheet" />
+					$("#" + id + "C").prop("checked", false);
+				}
+				if (inputid.includes("Bottom")) {
+					$("#" + inputid + "C").prop("checked", true);
 
-<!-- Fonts and Icons -->
-<link
-	href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
-	rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Muli:400,300'
-	rel='stylesheet' type='text/css'>
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/themify-icons.css"
-	rel="stylesheet">
-<!-- Google Tag Manager -->
-<script>
-	(function(w, d, s, l, i) {
-		w[l] = w[l] || [];
-		w[l].push({
-			'gtm.start' : new Date().getTime(),
-			event : 'gtm.js'
-		});
-		var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l='
-				+ l
-				: '';
-		j.async = true;
-		j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-		f.parentNode.insertBefore(j, f);
-	})(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
-</script>
-<!-- End Google Tag Manager -->
-<!-- CSS -->
-<link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css.jquery-ui.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/jquery.fancybox.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/aos.css">
-<link
-	href="${pageContext.request.contextPath}/resources/css/jquery.mb.YTPlayer.min.css"
-	media="all" rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/paper-bootstrap-wizard.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/demo.css"
-	rel="stylesheet" />
-<link
-	href="https://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css"
-	rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Muli:400,300'
-	rel='stylesheet' type='text/css'>
-<link
-	href="${pageContext.request.contextPath}/resources/assets/css/themify-icons.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/modal.css">
-<!-- CSS 끝 -->
-</head>
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300" style="background-color: #66666;">
-	<div class="site-wrap">
-		<header class="site-navbar py-4 js-sticky-header site-navbar-target"
-			role="banner">
-			<div class="container-fluid">
-				<div class="d-flex justify-content-center">
-					<div class="site-logo"
-						style="text-align: center; display: inline-block;">
-						<a href="home" data-toggle="modal" data-target="#myCenterModal"
-							style="margin-top: 2px"> What object do you want to find? <span>Click
-								here</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</header>
-	</div>
+					id = inputid.includes("short") ? "longBottom"
+							: "shortBottom";
+					$("#" + id).attr("class", "choice");
 
-	<script type="text/javascript">
-		function callFunction(newprogress) {
-			console.log("불렸다.1");
-			$('#theprogressbar').width(newprogress + "%").attr('aria-valuenow',
-					newprogress);
-			console.log("불렸다." + newprogress);
+					$("#" + id + "C").prop("checked", false);
+				}
+				$("div[id$='OnePiece']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("input[id$='OnePieceC']").each(function() {
+					$(this).prop("checked", false);
+				});
+				//$("[id$='OnePiece']").attr("class","choice");
+			}
+		} else {
+			if (inputid.includes("OnePiece")) {
+				if (inputid.includes("Top")) {
+					$("#" + inputid + "C").prop("checked", true);
+
+					id = inputid.includes("short") ? "longTopOnePiece"
+							: "shortTopOnePiece";
+					$("#" + id).attr("class", "choice");
+
+					$("#" + id + "C").prop("checked", false);
+				}
+				if (inputid.includes("Bottom")) {
+					$("#" + inputid + "C").prop("checked", true);
+
+					id = inputid.includes("short") ? "longBottomOnePiece"
+							: "shortBottomOnePiece";
+					$("#" + id).attr("class", "choice");
+
+					$("#" + id + "C").prop("checked", false);
+				}
+				$("div[id$='Top']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("div[id$='Bottom']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("input[id$='TopC']").each(function() {
+					$(this).prop("checked", false);
+				});
+				$("input[id$='BottomC']").each(function() {
+					$(this).prop("checked", false);
+				});
+			} else {
+				if (inputid.includes("Top")) {
+					$("#" + inputid + "C").prop("checked", true);
+
+					id = inputid.includes("short") ? "longTop" : "shortTop";
+					$("#" + id).attr("class", "choice");
+
+					$("#" + id + "C").prop("checked", false);
+				}
+				if (inputid.includes("Bottom")) {
+					$("#" + inputid + "C").prop("checked", true);
+
+					id = inputid.includes("short") ? "longBottom"
+							: "shortBottom";
+					$("#" + id).attr("class", "choice");
+
+					$("#" + id + "C").prop("checked", false);
+				}
+
+				$("div[id$='OnePiece']").each(function() {
+					$(this).attr("class", "choice");
+				});
+				$("input[id$='OnePieceC']").each(function() {
+					$(this).prop("checked", false);
+				});
+			}
 		}
-	</script>
-
-	<!--팝업-->
-	<div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
+	}
+	var page = 1;
+	function pageCtrl(vvalue) {
+		if (vvalue == "Finish")
+			page = 1;
+		if (vvalue == "Previous")
+			--page;
+		if (vvalue == "Next")
+			++page;
+	}
+	function pageMove(vvalue) {
+		console.log($('.wari .gari').length);
+		console.log($('.wari .gari:nth-child(2) a'));
+		console.log($('.wari .gari:first').html());
+		console.log($('.color-list .color').parent().parent().children());
+		console.log(page + "페이지");
+		
+		if (page == 1) {
+			console.log("1페이지");
+			var v = $('input:radio[name=kind]').is(":checked"); // check == true
+			console.log($('input:radio[name=kind]').val());
+			console.log(v);
+			if (v) {
+				value = $('input:radio[name=kind]:checked').val();
+				console.log(value);
+				$("#detailLink").attr("href", "#" + value);
+			}
+		}
+		if (page == 2) {
+		}
+		pageCtrl(vvalue);
+	}
+</script>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: rgba(0, 0, 0, 0.5)">
+  <div class="site-wrap">
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+           <div class="site-logo" style="margin:0 auto;">
+          		<a href="" data-toggle="modal" 
+          				   data-target="#myCenterModal">
+							What object do you want to find? <span>Click here</span>
+				</a>
+			</div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
 		aria-labelledby="myCenterModalLabel">
 		<div class="modal-dialog"
 			style="max-width: 100%; width: 70%; display: table;">
 			<div class="modal-content">
 				<div class="modal-header">
+					<h4
+						style="margin-block-start: 0em; margin-block-end: 0em; margin-inline-start: 0px; margin-inline-end: 0px;">
+						Pick Features</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Pick Features</h4>
 				</div>
 				<div class="modal-body">
-					<!--   Big container   -->
 					<div class="container">
 						<div class="row">
 							<div class="col">
-
-								<!--      Wizard container        -->
-								<div class="wizard-container">
-
-									<div class="card wizard-card" data-color="orange"
-										id="wizardProfile">
-										<form action="" method="">
-											<!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
-
-											<div class="wizard-header text-center">
-												<h3 class="wizard-title">Create your profile</h3>
-												<p class="category">This information will let us know
-													more about you.</p>
+								<!-- Wizard container -->
+								<div class="wizard-container" style="padding-top: 20px">
+									<div class="card wizard-card" data-color="red" id="wizard">
+										<form id="find" action="cctv" method="">
+											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
+											<div class="wizard-header">
+												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
+												<h5>찾고 싶은 것의 특징을 체크 해주세요</h5>
 											</div>
-
-											<div class="wizard-navigation">
-												<div class="progress-with-circle">
-													<div class="progress-bar" role="progressbar"
-														aria-valuenow="1" aria-valuemin="1" aria-valuemax="3"
-														style="width: 21%;"></div>
-												</div>
-												<ul>
-													<li><a href="#about" data-toggle="tab">
-															<div class="icon-circle">
-																<i class="ti-user"></i>
-															</div> About
-													</a></li>
-													<li><a href="#account" data-toggle="tab">
-															<div class="icon-circle">
-																<i class="ti-settings"></i>
-															</div> Work
-													</a></li>
-													<li><a href="#address" data-toggle="tab">
-															<div class="icon-circle">
-																<i class="ti-map"></i>
-															</div> Address
-													</a></li>
+											<div class="wizard-navigaton">
+												<ul class="wari">
+													<li class="gari"><a href="#kind" data-toggle="tab"
+														style="pointer-events: none;">Kind</a></li>
+													<li class="gari"><a id="detailLink" href=""
+														data-toggle="tab" style="pointer-events: none;">Details</a></li>
 												</ul>
 											</div>
 											<div class="tab-content">
-												<div class="tab-pane" id="about">
+												<div class="tab-pane" id="kind">
+													<h4 class="info-text">What type of object would you
+														want?</h4>
 													<div class="row">
-														<h5 class="info-text">Please tell us more about
-															yourself.</h5>
-														<div class="col-xs-4 col-sm-offset-1">
-															<div class="picture-container">
-																<div class="picture">
-																	<img src="assets/img/default-avatar.jpg"
-																		class="picture-src" id="wizardPicturePreview" title="" />
-																	<input type="file" id="wizard-picture">
+															<div class="col-sm-4">
+																<div class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="사람">
+																	<input type="radio" name="kind" value="human">
+																	<div class="icon">
+																		<i class="material-icons">accessibility</i>
+																	</div>
+																	<h6>Human</h6>
 																</div>
-																<h6>Choose Picture</h6>
 															</div>
-														</div>
-														<div class="col-xs-6">
-															<div class="form-group">
-																<label>First Name <small>(required)</small></label> <input
-																	name="firstname" type="text" class="form-control"
-																	placeholder="Andrew...">
+															<div class="col-sm-4">
+																<div class="choice"
+																	data-toggle="wizard-radio" rel="tooltip"
+																	title="핸드폰, 지갑, 가방">
+																	<input type="radio" name="kind" value="thing">
+																	<div class="icon">
+																		<i class="material-icons">card_travel</i>
+																	</div>
+																	<h6>Thing</h6>
+																</div>
 															</div>
-															<div class="form-group">
-																<label>Last Name <small>(required)</small></label> <input
-																	name="lastname" type="text" class="form-control"
-																	placeholder="Smith...">
+															<div class="col-sm-4">
+																<div class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="유기견">
+																	<input type="radio" name="kind" value="pets">
+																	<div class="icon">
+																		<i class="material-icons">pets</i>
+																	</div>
+																	<h6>Pets</h6>
+																</div>
 															</div>
-														</div>
-														<div class="col-xs-10 col-xs-offset-1">
-															<div class="form-group">
-																<label>Email <small>(required)</small></label> <input
-																	name="email" type="email" class="form-control"
-																	placeholder="andrew@creative-tim.com">
-															</div>
-														</div>
 													</div>
 												</div>
-												<div class="tab-pane" id="account">
-													<h5 class="info-text">What are you doing? (checkboxes)
-													</h5>
+												<div class="tab-pane" id="human">
 													<div class="row">
-														<div class="col-sm-8 col-sm-offset-2">
-															<div class="col-xs-4">
-																<div class="choice" data-toggle="wizard-checkbox">
-																	<input type="checkbox" name="jobb" value="Design">
-																	<div class="card card-checkboxes card-hover-effect">
-																		<i class="ti-paint-roller"></i>
-																		<p>Design</p>
-																	</div>
+														<div class="col">
+															<div class="container2">
+																<div class="color-picker block-center">
+																	<ul class="color-list">
+																		<li class="color" data-color="#ff0000"></li>
+																		<!-- 빨 -->
+																		<li class="color" data-color="#ff69b4"></li>
+																		<!-- 핑 -->
+																		<li class="color" data-color="#ff8400"></li>
+																		<!-- 주 -->
+																		<li class="color" data-color="#ffe600"></li>
+																		<!-- 노 -->
+																		<li class="color" data-color="#26ff00"></li>
+																		<!-- 초 -->
+																		<li class="color" data-color="#0022ff"></li>
+																		<!-- 파 -->
+																		<li class="color" data-color="#252069"></li>
+																		<!-- 남 -->
+																		<li class="color" data-color="#00eeff"></li>
+																		<!-- 하늘  -->
+																		<li class="color" data-color="#a805fa"></li>
+																		<!-- 보-->
+																		<li class="color" data-color="#f1b0ff"></li>
+																		<!-- 연보 -->
+																		<li class="color" data-color="#ffffff"></li>
+																		<!-- 흰 -->
+																		<li class="color" data-color="#000000"></li>
+																		<!-- 검 -->
+																		<li class="color" data-color="#6e4129"></li>
+																		<!-- 갈 -->
+																		<li class="color" data-color="#828282"></li>
+																		<!-- 회 -->
+																		<li class="color" data-color="#2a5c35"></li>
+																		<!-- 카키  -->
+																		<li class="color" data-color="#c9b56b"></li>
+																		<!-- 베이지 -->
+																	</ul>
+																	<input type="text" class="form-control" id="topColor"
+																		style="margin-bottom: 0px;" />
 																</div>
 															</div>
-															<div class="col-xs-4">
-																<div class="choice" data-toggle="wizard-checkbox">
-																	<input type="checkbox" name="jobb" value="Code">
-																	<div class="card card-checkboxes card-hover-effect">
-																		<i class="ti-pencil-alt"></i>
-																		<p>Code</p>
-																	</div>
+														</div>
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
 																</div>
-															</div>
-															<div class="col-xs-4">
-																<div class="choice" data-toggle="wizard-checkbox">
-																	<input type="checkbox" name="jobb" value="Develop">
-																	<div class="card card-checkboxes card-hover-effect">
-																		<i class="ti-star"></i>
-																		<p>Develop</p>
-																	</div>
+																<h6>긴팔</h6>
+															</div>														
+														</div>
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
 																</div>
-															</div>
+																<h6>긴팔</h6>
+															</div>														
 														</div>
 													</div>
-												</div>
-												<div class="tab-pane" id="address">
 													<div class="row">
-														<div class="col-xs-12">
-															<h5 class="info-text">Are you living in a nice area?
-															</h5>
-														</div>
-														<div class="col-xs-7 col-xs-offset-1">
-															<div class="form-group">
-																<label>Street Name</label> <input type="text"
-																	class="form-control" placeholder="5h Avenue">
+														<div class="col">
+															<div class="container2">
+																<div class="color-picker block-center">
+																	<ul class="color-list">
+																		<li class="color" data-color="#ff0000"></li>
+																		<!-- 빨 -->
+																		<li class="color" data-color="#ff69b4"></li>
+																		<!-- 핑 -->
+																		<li class="color" data-color="#ff8400"></li>
+																		<!-- 주 -->
+																		<li class="color" data-color="#ffe600"></li>
+																		<!-- 노 -->
+																		<li class="color" data-color="#26ff00"></li>
+																		<!-- 초 -->
+																		<li class="color" data-color="#0022ff"></li>
+																		<!-- 파 -->
+																		<li class="color" data-color="#252069"></li>
+																		<!-- 남 -->
+																		<li class="color" data-color="#00eeff"></li>
+																		<!-- 하늘  -->
+																		<li class="color" data-color="#a805fa"></li>
+																		<!-- 보-->
+																		<li class="color" data-color="#f1b0ff"></li>
+																		<!-- 연보 -->
+																		<li class="color" data-color="#ffffff"></li>
+																		<!-- 흰 -->
+																		<li class="color" data-color="#000000"></li>
+																		<!-- 검 -->
+																		<li class="color" data-color="#6e4129"></li>
+																		<!-- 갈 -->
+																		<li class="color" data-color="#828282"></li>
+																		<!-- 회 -->
+																		<li class="color" data-color="#2a5c35"></li>
+																		<!-- 카키  -->
+																		<li class="color" data-color="#c9b56b"></li>
+																		<!-- 베이지 -->
+																	</ul>
+																	<input type="text" class="form-control" id="topColor"
+																		style="margin-bottom: 0px;" />
+																</div>
 															</div>
 														</div>
-														<div class="col-xs-3">
-															<div class="form-group">
-																<label>Street Number</label> <input type="text"
-																	class="form-control" placeholder="242">
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
+																</div>
+																<h6>긴팔</h6>
+															</div>												
+														</div>
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
+																</div>
+																<h6>긴팔</h6>
+															</div>														
+														</div>														
+													</div>
+													<div class="row">
+														<div class="col">
+															<div class="container2">
+																<div class="color-picker block-center">
+																	<ul class="color-list">
+																		<li class="color" data-color="#ff0000"></li>
+																		<!-- 빨 -->
+																		<li class="color" data-color="#ff69b4"></li>
+																		<!-- 핑 -->
+																		<li class="color" data-color="#ff8400"></li>
+																		<!-- 주 -->
+																		<li class="color" data-color="#ffe600"></li>
+																		<!-- 노 -->
+																		<li class="color" data-color="#26ff00"></li>
+																		<!-- 초 -->
+																		<li class="color" data-color="#0022ff"></li>
+																		<!-- 파 -->
+																		<li class="color" data-color="#252069"></li>
+																		<!-- 남 -->
+																		<li class="color" data-color="#00eeff"></li>
+																		<!-- 하늘  -->
+																		<li class="color" data-color="#a805fa"></li>
+																		<!-- 보-->
+																		<li class="color" data-color="#f1b0ff"></li>
+																		<!-- 연보 -->
+																		<li class="color" data-color="#ffffff"></li>
+																		<!-- 흰 -->
+																		<li class="color" data-color="#000000"></li>
+																		<!-- 검 -->
+																		<li class="color" data-color="#6e4129"></li>
+																		<!-- 갈 -->
+																		<li class="color" data-color="#828282"></li>
+																		<!-- 회 -->
+																		<li class="color" data-color="#2a5c35"></li>
+																		<!-- 카키  -->
+																		<li class="color" data-color="#c9b56b"></li>
+																		<!-- 베이지 -->
+																	</ul>
+																	<input type="text" class="form-control" id="topColor"
+																		style="margin-bottom: 0px;" />
+																</div>
 															</div>
 														</div>
-														<div class="col-xs-5 col-xs-offset-1">
-															<div class="form-group">
-																<label>City</label> <input type="text"
-																	class="form-control" placeholder="New York...">
-															</div>
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
+																</div>
+																<h6>긴팔</h6>
+															</div>														
 														</div>
-														<div class="col-xs-5">
-															<div class="form-group">
-																<label>Country</label><br> <select name="country"
-																	class="form-control">
-																	<option value="Afghanistan">Afghanistan</option>
-																	<option value="Albania">Albania</option>
-																	<option value="Algeria">Algeria</option>
-																	<option value="American Samoa">American Samoa
-																	</option>
-																	<option value="Andorra">Andorra</option>
-																	<option value="Angola">Angola</option>
-																	<option value="Anguilla">Anguilla</option>
-																	<option value="Antarctica">Antarctica</option>
-																	<option value="...">...</option>
-																</select>
+														<div class="col">
+															<div class="choice" data-toggle="wizard-checkbox"
+																rel="tooltip" title="Top" id="longTop"
+																onclick="isChecked(this.id);">
+																<input type="checkbox" name="topKind" value="longTopC"
+																	id="longTopC">
+																<div class="icon">
+																	<img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
+																</div>
+																<h6>긴팔</h6>
+															</div>														
+														</div>									
+													</div>
+												</div>
+												<div class="tab-pane" id="pets">
+													<h4 class="info-text">What pet?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-6">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip" title="강아지">
+																	<input type="checkbox" name="petKind" value="dog">
+																	<div class="icon">
+																		<i class="material-icons">pets</i>
+																	</div>
+																	<h6>Dog</h6>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="choice" data-toggle="wizard-checkbox"
+																	rel="tooltip" title="고양이">
+																	<input type="checkbox" name="petKind" value="cat">
+																	<div class="icon">
+																		<i class="material-icons">pets</i>
+																	</div>
+																	<h6>Cat</h6>
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
+											<!-- tab content end -->
 											<div class="wizard-footer">
 												<div class="pull-right">
 													<input type='button'
-														class='btn btn-next btn-fill btn-warning btn-wd'
-														name='next' value='Next' /> <input type='button'
-														class='btn btn-finish btn-fill btn-warning btn-wd'
-														name='finish' value='Finish' />
+														class='btn btn-next btn-fill btn-danger btn-wd'
+														name='next' id="nextBtn" value='Next'
+														onclick="pageMove(this.value)" /> <input type='button'
+														class='btn btn-finish btn-fill btn-danger btn-wd'
+														id='finishBtn' name='finish' value='Finish'
+														onclick="pageMove(this.value)" />
 												</div>
-
 												<div class="pull-left">
 													<input type='button'
-														class='btn btn-previous btn-default btn-wd'
-														name='previous' value='Previous' />
+														class='btn btn-previous btn-fill btn-default btn-wd'
+														name='previous' value='Previous'
+														onclick="pageMove(this.value)" />
 												</div>
 												<div class="clearfix"></div>
 											</div>
 										</form>
+										<!-- form end -->
 									</div>
+									<!-- wizard card end -->
 								</div>
-								<!-- wizard container -->
+								<!-- wizard container end -->
 							</div>
+							<!-- col end -->
 						</div>
-						<!-- end row -->
+						<!-- row end -->
 					</div>
-					<!--  big container -->
-					<!--  modal body -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					</div>
+					<!-- container end  -->			
+				</div>
+				<!--  modal body end -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
-		<!-- 영상 나오는 부분 -->
-		<!-- Page Heading -->
-		<div class="row">
-			<video id="humanVideo" class="player" controls autoplay loop muted
-				preload="none" width="50%" height="50%" data-setup="{}">
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
-					type='video/mp4' />
-				<track kind="captions" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-				<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-			</video>
-			<video id="humanVideo" class="video-js vjs-default-skin" controls
-				autoplay loop muted preload="none" width="50%" height="50%"
-				data-setup="{}">
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
-					type='video/mp4' />
-				<track kind="captions" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-				<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-			</video>
-		</div>
-		<div class="row">
-			<video id="humanVideo" class="video-js vjs-default-skin" controls
-				autoplay loop muted preload="none" width="50%" height="50%"
-				data-setup="{}">
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
-					type='video/mp4' />
-				<track kind="captions" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-				<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-			</video>
-			<video id="humanVideo" class="video-js vjs-default-skin" controls
-				autoplay loop muted preload="none" width="50%" height="50%"
-				data-setup="{}">
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
-					type='video/mp4' />
-				<track kind="captions" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-				<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-					srclang="en" label="English"></track>
-				<!-- Tracks need an ending tag thanks to IE9 -->
-			</video>
-		</div>
-		<!-- 영상 나오는 부분 끝-->
-		<!--   Big container   -->
-		<script>
-			function setTextColor(picker) {
-				document.getElementsByTagName('checkbox')[0].style.color = '#'
-						+ picker.toString()
-			}
-		</script>
-		<!-- js 파일들 -->
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jquery.mb.YTPlayer.min.js"></script>
+	</div>
+	<!-- 영상 나오는 부분 -->
+	<!-- Page Heading -->
+	<div class="row">
+		<video id="humanVideo" class="player" controls autoplay loop muted
+			preload="none" width="50%" height="50%" data-setup="{}">
+			<source src="${pageContext.request.contextPath}/resources/11.mp4"
+				type='video/mp4' />
+			<track kind="captions" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+			<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+		</video>
+		<video id="humanVideo" class="video-js vjs-default-skin" controls
+			autoplay loop muted preload="none" width="50%" height="50%"
+			data-setup="{}">
+			<source src="${pageContext.request.contextPath}/resources/11.mp4"
+				type='video/mp4' />
+			<track kind="captions" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+			<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+		</video>
+	</div>
+	<div class="row">
+		<video id="humanVideo" class="video-js vjs-default-skin" controls
+			autoplay loop muted preload="none" width="50%" height="50%"
+			data-setup="{}">
+			<source src="${pageContext.request.contextPath}/resources/11.mp4"
+				type='video/mp4' />
+			<track kind="captions" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+			<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+		</video>
+		<video id="humanVideo" class="video-js vjs-default-skin" controls
+			autoplay loop muted preload="none" width="50%" height="50%"
+			data-setup="{}">
+			<source src="${pageContext.request.contextPath}/resources/11.mp4"
+				type='video/mp4' />
+			<track kind="captions" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+			<track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
+				srclang="en" label="English"></track>
+			<!-- Tracks need an ending tag thanks to IE9 -->
+		</video>
+	</div>
+	<!-- 영상 나오는 부분 끝-->
+    <!-- .site-wrap -->
+    
+<!-- js 파일들 -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>  
+<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>  
+<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<!-- modal form js -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.bootstrap.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/material-bootstrap-wizard.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.min.js"></script>
+<!-- js 파일 끝 -->
 
-		<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/jquery.bootstrap.wizard.js"
-			type="text/javascript"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/demo.js"
-			type="text/javascript"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/paper-bootstrap-wizard.js"
-			type="text/javascript"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/jquery.validate.min.js"
-			type="text/javascript"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/js/jscolor.js"
-			type="text/javascript"></script>
-
-		<!-- js 파일 끝 -->
-</body>
-
-<!--   Core JS Files   -->
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.bootstrap.wizard.js"
-	type="text/javascript"></script>
-
-<!--  Plugin for the Wizard -->
-<script src="${pageContext.request.contextPath}/resources/assets/js/demo.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
-
-<!--  More information about jquery.validate here: https://jqueryvalidation.org/	 -->
-<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.validate.min.js" type="text/javascript"></script>
-</html>
+  </body>
+  </html>
+    

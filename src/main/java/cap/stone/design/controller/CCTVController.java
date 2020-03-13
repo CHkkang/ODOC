@@ -11,9 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cap.stone.design.service.Server;
+
 @Controller
 public class CCTVController {
    private List <String> transferData = new ArrayList<String>();
+   private Server server = new Server("192.168.219.101", 5803);
    @RequestMapping("/cctv")
    public String HumanRequest(
          @RequestParam(value="kind",required=true) String kind,
@@ -48,17 +51,22 @@ public class CCTVController {
          transferData.add(petkind.get(0));
       }
       
-     
+      
       for(int i=0;i<transferData.size();i++) {
          System.out.println(transferData.get(i));
       }
-      socketCommunication(transferData);
+      try {
+		server.run(transferData);
+      } catch (InterruptedException e) {
+		e.printStackTrace();
+      }
+      //socketCommunication(transferData);
       transferData = new ArrayList<String>();
       
       return "cctv";
 
    }
-   public void socketCommunication(List<String> transferData) {
+   /*public void socketCommunication(List<String> transferData) {
        try{   
                InetAddress ip = InetAddress.getByName("192.168.219.101");
                DatagramSocket socket = new DatagramSocket(5801);
@@ -77,4 +85,5 @@ public class CCTVController {
                System.out.println("fail");
            }
    }
+   */
 }

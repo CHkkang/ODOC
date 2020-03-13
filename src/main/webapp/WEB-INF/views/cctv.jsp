@@ -294,7 +294,7 @@
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-4">
-																<div id="nClick" class="choice"
+																<div class="choice"
 																	data-toggle="wizard-radio" rel="tooltip" title="사람">
 																	<input type="radio" name="kind" value="human">
 																	<div class="icon">
@@ -528,7 +528,7 @@
 																<input type="checkbox" name="onepieceKind"
 																	value="longTopOnePieceC" id="longTopOnePieceC">
 																<div class="icon">
-																	<img src="${pageContext.request.contextPath}/resources/icon/longdress.svg"/>
+																	<img src="${pageContext.request.contextPath}/resources/icon/llongdress.svg"/>
 																</div>
 															</div>													
 														</div>
@@ -539,7 +539,7 @@
 																<input type="checkbox" name="onepieceKind"
 																	value="shortTopOnePieceC" id="shortTopOnePieceC">
 																<div class="icon">
-																	<img src="${pageContext.request.contextPath}/resources/icon/shortdress.svg" width="108" height="108"/>
+																	<img src="${pageContext.request.contextPath}/resources/icon/sshortdress.svg" width="108" height="108"/>
 																</div>
 															</div>													
 														</div>									

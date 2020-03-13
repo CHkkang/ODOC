@@ -54,6 +54,7 @@ public class CCTVController {
       }
       socketCommunication(transferData);
       transferData = new ArrayList<String>();
+      
       return "cctv";
 
    }

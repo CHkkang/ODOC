@@ -64,7 +64,6 @@
   <script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/jquery.mb.YTPlayer.min.js"></script>
-  
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
   <!-- js 파일 끝 -->

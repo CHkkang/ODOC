@@ -48,6 +48,8 @@
 	href="${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/colorpicker.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/rightclick.css">
 <!-- CSS 끝 -->
 <!-- script function -->
 <script
@@ -233,6 +235,12 @@
 		}
 		if (page == 2) {
 		}
+	}
+	function zoomin(){
+		
+	}
+	function deletemarker(){
+		
 	}
 </script>
 </head>
@@ -654,7 +662,7 @@
 	<!-- 영상 나오는 부분 -->
 	<!-- Page Heading -->
 	<div class="row">
-		<video id="humanVideo" class="player" controls autoplay loop muted
+		<video id="video1" class="video-js vjs-default-skin" controls autoplay loop muted
 			preload="none" width="50%" height="50%" data-setup="{}">
 			<source src="${pageContext.request.contextPath}/resources/11.mp4"
 				type='video/mp4' />
@@ -665,7 +673,7 @@
 				srclang="en" label="English"></track>
 			<!-- Tracks need an ending tag thanks to IE9 -->
 		</video>
-		<video id="humanVideo" class="video-js vjs-default-skin" controls
+		<video id="video2" class="video-js vjs-default-skin" controls
 			autoplay loop muted preload="none" width="50%" height="50%"
 			data-setup="{}">
 			<source src="${pageContext.request.contextPath}/resources/11.mp4"
@@ -679,7 +687,7 @@
 		</video>
 	</div>
 	<div class="row">
-		<video id="humanVideo" class="video-js vjs-default-skin" controls
+		<video id="video3" class="video-js vjs-default-skin" controls
 			autoplay loop muted preload="none" width="50%" height="50%"
 			data-setup="{}">
 			<source src="${pageContext.request.contextPath}/resources/11.mp4"
@@ -691,7 +699,7 @@
 				srclang="en" label="English"></track>
 			<!-- Tracks need an ending tag thanks to IE9 -->
 		</video>
-		<video id="humanVideo" class="video-js vjs-default-skin" controls
+		<video id="video4" class="video-js vjs-default-skin" controls
 			autoplay loop muted preload="none" width="50%" height="50%"
 			data-setup="{}">
 			<source src="${pageContext.request.contextPath}/resources/11.mp4"
@@ -705,13 +713,13 @@
 		</video>
 	</div>
 	<!-- 영상 나오는 부분 끝-->
+	<!-- right click popup -->
+	<ul class="rightclick">
+	  <li><a onclick="zoomin()">인물 확대</a></li>
+	  <li><a onclick="deletemarker()">마크다운 삭제</a></li>
+	</ul>
+	<!-- right click popup -->
 	<!--   Big container   -->
-	<script>
-		function setTextColor(picker) {
-			document.getElementsByTagName('checkbox')[0].style.color = '#'
-					+ picker.toString()
-		}
-	</script>
 	<!-- js 파일들 -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
@@ -727,16 +735,11 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
-	type="text/javascript"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
-	type="text/javascript"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
 	<!-- js 파일 끝 -->
 </body>
 </html>

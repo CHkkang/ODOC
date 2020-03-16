@@ -23,7 +23,7 @@
 .rightclick li a {
   display: block;
   padding: 10px;
-  color: white;
+  color: white !important;
   text-decoration: none;
   transition: ease .2s;
 }

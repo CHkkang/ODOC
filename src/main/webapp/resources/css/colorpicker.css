@@ -42,7 +42,7 @@
   transform: scale(1.2);
 }
 .color1.live {
-  border: 3px solid lightgray;
+  border: 3.5px solid lightgray;
   width: 22px;
   height: 22px;
 }
@@ -68,7 +68,7 @@
   transform: scale(1.2);
 }
 .color2.live {
-  border: 3px solid lightgray;
+  border: 3.5px solid lightgray;
   width: 22px;
   height: 22px;
 }
@@ -94,7 +94,7 @@
   transform: scale(1.2);
 }
 .color3.live {
-  border: 3px solid lightgray;
+  border: 3.5px solid lightgray;
   width: 22px;
   height: 22px;
 }

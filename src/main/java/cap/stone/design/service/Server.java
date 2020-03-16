@@ -65,7 +65,7 @@ public class Server {
             str = new String(buf).trim();
             filesize += read;
             
-            // 전송받은 문자열이 strat 라면 받을 준비
+            // 전송받은 문자열이 start 라면 받을 준비
             if (str.contains("start")) {
                System.out.println(" 전송 시작  " + str);
                if(isFirst==1) {
@@ -112,7 +112,7 @@ public class Server {
                continue;
 
             } else {
-               // dos에 연결된 파일에 str의 바이ㅌ 배열은 0부터 부ㅜ터 길이많큼 기록
+               // dos에 연결된 파일에 str의 바이트 배열은 0부터 부ㅜ터 길이많큼 기록
                bos.write(buf, 0, read);
                bos.flush();
             }

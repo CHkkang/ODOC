@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,24 +28,39 @@ public class CCTVController {
          @RequestParam(value="petKind",required=false, defaultValue = "n") List<String> petkind,
          @RequestParam(value="topColor", required=false, defaultValue = "n") String topcolor,
          @RequestParam(value="bottomColor", required=false, defaultValue = "n") String bottomcolor,
-         @RequestParam(value="onepieceColor", required=false, defaultValue = "n") String onepiececolor){ 
+         @RequestParam(value="onepieceColor", required=false, defaultValue = "n") String onepiececolor,
+         Model model){ 
       transferData.add(kind);
       if(kind.equals("human")) {   
          if(topkind.get(0).equals("n") && bottomkind.get(0).equals("n")) {
             transferData.add(toponepiecekind.get(0));
+            transferData.add(onepiececolor);
          }else {
             transferData.add(topkind.get(0));
             transferData.add(bottomkind.get(0));
+      	    transferData.add(topcolor);
+      	    transferData.add(bottomcolor);
          }
-         if(topcolor.equals("n") && bottomcolor.equals("n")) {
+         /*if(topcolor.equals("n") && bottomcolor.equals("n")) {
         	 System.out.println("onepiececolor : "+onepiececolor);
-       	  transferData.add(onepiececolor);
+       	     transferData.add(onepiececolor);
+         }
+         else if(topcolor.equals("n") && !bottomcolor.equals("n")){
+        	 System.out.println("에러");
+        	 model.addAttribute("msg", "탑 바텀 둘다 선택해주세요");
+        	 model.addAttribute("url", "movecctv");
+         }
+         else if(!topcolor.equals("n") && bottomcolor.equals("n")){
+        	 System.out.println("에러");
+        	 model.addAttribute("msg", "탑 바텀 둘다 선택해주세요");
+        	 model.addAttribute("url", "movecctv");
          }
          else {
         	 System.out.println("topcolor : "+topcolor + " bottomcolor : " + bottomcolor);
-       	  transferData.add(topcolor);
-       	  transferData.add(bottomcolor);
+       	     transferData.add(topcolor);
+       	     transferData.add(bottomcolor);
          }
+         */
       }else if(kind.equals("thing")) {
          transferData.add(thingkind.get(0));
       }else if(kind.equals("pets")) {

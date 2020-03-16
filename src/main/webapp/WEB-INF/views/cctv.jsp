@@ -56,6 +56,7 @@
    src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
+   // submit 이벤트
    window.onload = function() {
       document.getElementById('finishBtn').onclick = function() {
          document.getElementById('find').submit();
@@ -63,6 +64,7 @@
          console.log(document.getElementById('find'));
       };
    };
+   // checkbox 제대로 하기 위한 함수
    function isChecked(inputid) {
          var c = $('#' + inputid).attr('class');
          var icon = $('#' + inputid).children('.icon');
@@ -217,6 +219,7 @@
       }
 
    var page = 0;
+   //페이지 이동 함수
    function pageCtrl(vvalue) {
       if (vvalue == "Finish")
          page = 1;
@@ -240,26 +243,36 @@
       if (page == 2) {
       }
    }
+   // 색깔 정한것에 따라서 top icon 색 변경
    function topChangeColor(){
 	  var lticon = $('#longtopIcon');
 	  var sticon = $('#shorttopIcon');
+	  var olicon = $('#longdressIcon');
+	  var osicon = $('#shortdressIcon');
 	  var lc = $('#longTopC').is(":checked");
 	  var sc = $('#shortTopC').is(":checked");
   	  if(lc){
   		    console.log("longtop checked");
-  			lticon.css('border-color',$('#topColor').val());
+  		    lticon.css('border-color',$('#topColor').val());
   			sticon.css('border-color','#cccccc');
+  		    olicon.css('border-color','#cccccc');
+  			osicon.css('border-color','#cccccc');
 	  }
   	  if(sc){
   		    console.log("shorttop checked");
-  			lticon.css('border-color','#cccccc');
-			sticon.css('border-color',$('#topColor').val());
+  		    sticon.css('border-color',$('#topColor').val());
+  			lticon.css('border-color','#cccccc');		
+  		    olicon.css('border-color','#cccccc');
+  			osicon.css('border-color','#cccccc');
   	  }
    }
+   // 색깔 정한것에 따라서 bottom icon 색 변경
    function bottomChangeColor(){
 		  var lbicon = $('#longbottomIcon');
 		  var sbicon = $('#shortbottomIcon');
 		  var kbicon = $('#skirtbottomIcon');
+		  var olicon = $('#longdressIcon');
+		  var osicon = $('#shortdressIcon');
 		  var lc = $('#longBottomC').is(":checked");
 		  var sc = $('#shortBottomC').is(":checked");
 		  var kc = $('#skirtBottomC').is(":checked");
@@ -268,20 +281,27 @@
 	  		  lbicon.css('border-color',$('#bottomColor').val());
 	  		  kbicon.css('border-color','#cccccc');
 	  		  sbicon.css('border-color','#cccccc');
+	  		  olicon.css('border-color','#cccccc');
+	  	      osicon.css('border-color','#cccccc');
 		  }
 	  	  if(sc){
 	  		  console.log("shortbottom checked");
 	  		  sbicon.css('border-color',$('#bottomColor').val());
 	  		  lbicon.css('border-color','#cccccc');
-	  		  kbicon.css('border-color','#cccccc');  		  
+	  		  kbicon.css('border-color','#cccccc');
+	  		  olicon.css('border-color','#cccccc');
+	  	      osicon.css('border-color','#cccccc');
 	  	  }
 	  	  if(kc){
 	  		 console.log("skirtbottom checked");
 	  		 kbicon.css('border-color',$('#bottomColor').val());
   			 lbicon.css('border-color','#cccccc');
   			 sbicon.css('border-color','#cccccc');
+   		     olicon.css('border-color','#cccccc');
+  			 osicon.css('border-color','#cccccc');
 	  	  }
    }
+   // 색깔 정한것에 따라서 onepiece icon 색 변경
    function onepieceChangeColor(){
 		  var lticon = $('#longtopIcon');
 		  var sticon = $('#shorttopIcon');
@@ -324,6 +344,7 @@
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: rgba(0, 0, 0, 0.5)">
   <div class="site-wrap">
+    <!-- 네비게이션 바 (팝업 호출 용) -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       <div class="container-fluid">
         <div class="d-flex align-items-center" style="padding:10px">
@@ -338,6 +359,7 @@
         </div>
       </div>
     </header>
+    <!-- 네비게이션 바 (팝업 호출 용) -->
     <!--팝업-->
    <div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
       aria-labelledby="myCenterModalLabel">
@@ -737,8 +759,9 @@
          </div>
       </div>
    </div>
+   <!-- 팝업 끝 -->
    <!-- 영상 나오는 부분 -->
-   <!-- Page Heading -->
+   <!-- 영상 처리 부분 -->
    <div class="row">
       <video id="video1" class="video-js vjs-default-skin" controls autoplay loop muted
          preload="none" width="50%" height="50%" data-setup="{}">
@@ -790,13 +813,13 @@
          <!-- Tracks need an ending tag thanks to IE9 -->
       </video>
    </div>
-   <!-- 영상 나오는 부분 끝-->
-   <!-- right click popup -->
+   <!-- 영상 처리 부분 끝-->
+   <!-- right click 팝업 구현중 -->
    <ul class="rightclick">
      <li><a onclick="zoomin()">인물 확대</a></li>
      <li><a onclick="deletemarker()">마크다운 삭제</a></li>
    </ul>
-   <!-- right click popup -->
+   <!-- right click 팝업 끝 -->
    <!--   Big container   -->
    <!-- js 파일들 -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>

@@ -31,39 +31,33 @@ public class CCTVController {
          @RequestParam(value="onepieceColor", required=false, defaultValue = "n") String onepiececolor,
          Model model){ 
       transferData.add(kind);
+      
+      //사람일 때 데이터 정리
       if(kind.equals("human")) {   
          if(topkind.get(0).equals("n") && bottomkind.get(0).equals("n")) {
             transferData.add(toponepiecekind.get(0));
             transferData.add(onepiececolor);
-         }else {
+         }
+         else if(bottomkind.get(0).equals("n") && !topkind.get(0).equals("n")){
+        	 transferData.add(topkind.get(0));
+        	 transferData.add(topcolor);
+         }
+         else if(!bottomkind.get(0).equals("n") && topkind.get(0).equals("n")) {
+        	 transferData.add(bottomkind.get(0));
+        	 transferData.add(bottomcolor);
+         }
+         else {
             transferData.add(topkind.get(0));
             transferData.add(bottomkind.get(0));
       	    transferData.add(topcolor);
       	    transferData.add(bottomcolor);
          }
-         /*if(topcolor.equals("n") && bottomcolor.equals("n")) {
-        	 System.out.println("onepiececolor : "+onepiececolor);
-       	     transferData.add(onepiececolor);
-         }
-         else if(topcolor.equals("n") && !bottomcolor.equals("n")){
-        	 System.out.println("에러");
-        	 model.addAttribute("msg", "탑 바텀 둘다 선택해주세요");
-        	 model.addAttribute("url", "movecctv");
-         }
-         else if(!topcolor.equals("n") && bottomcolor.equals("n")){
-        	 System.out.println("에러");
-        	 model.addAttribute("msg", "탑 바텀 둘다 선택해주세요");
-        	 model.addAttribute("url", "movecctv");
-         }
-         else {
-        	 System.out.println("topcolor : "+topcolor + " bottomcolor : " + bottomcolor);
-       	     transferData.add(topcolor);
-       	     transferData.add(bottomcolor);
-         }
-         */
+      // 사물일때
       }else if(kind.equals("thing")) {
          transferData.add(thingkind.get(0));
-      }else if(kind.equals("pets")) {
+      }
+      // 동물일때
+      else if(kind.equals("pets")) {
          transferData.add(petkind.get(0));
       }
       
@@ -71,35 +65,15 @@ public class CCTVController {
       for(int i=0;i<transferData.size();i++) {
          System.out.println(transferData.get(i));
       }
+      // python 서버로 송신/수신
       try {
 		server.run(transferData);
       } catch (InterruptedException e) {
 		e.printStackTrace();
       }
-      //socketCommunication(transferData);
       transferData = new ArrayList<String>();
       
       return "cctv";
 
    }
-   /*public void socketCommunication(List<String> transferData) {
-       try{   
-               InetAddress ip = InetAddress.getByName("192.168.219.101");
-               DatagramSocket socket = new DatagramSocket(5801);
-               System.out.print("message : ");
-               
-               String ex = "Hello, World!";
-               byte[] buf = ex.getBytes();
-               
-               DatagramPacket packet = new DatagramPacket(
-                       buf,buf.length,ip,5801);
-               
-               socket.send(packet);
-               System.out.println("success");
-           }catch(IOException i){
-               i.printStackTrace();
-               System.out.println("fail");
-           }
-   }
-   */
 }

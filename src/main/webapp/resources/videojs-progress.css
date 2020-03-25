@@ -1,33 +1,38 @@
-.vjs-progress-timepoint{
-	position:absolute;
-	top:0;
-	bottom:0;
-	width:2px;
-	margin-left:-3px;
-	background-color:yellow;
-	cursor:pointer
+.vjs-progress-timepoint {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 6px;
+	margin-left: -3px;
+	border-radius: 1px;
+	background-color: yellow;
+	cursor: pointer
 }
-.vjs-progress-tooltip{
-	display:none;
-	position:absolute;
-	bottom:100%;
-	max-width:150px;
-	padding:.3em 1em;
-	margin-bottom:15px;
-	background-color:#000;
-	color:#FFF
+
+.vjs-progress-tooltip {
+	display: none;
+	position: absolute;
+	bottom: 100%;
+	max-width: 150px;
+	padding: .3em 1em;
+	margin-bottom: 15px;
+	background-color: #000;
+	color: #FFF
 }
-.vjs-progress-tooltip:after{
-	content:"\0020";
-	position:absolute;
-	top:100%;
-	left:50%;
-	margin-left:-10px;
-	width:0;
-	height:0;
-	font:0/0 a;
-	border:10px solid transparent;
-	border-top-color:#000;
-	border-bottom-width:0
+
+.vjs-progress-tooltip:after {
+	content: "\0020";
+	top: 100%;
+	left: 50%;
+	margin-left: -10px;
+	width: 0;
+	height: 0;
+	font: 0/0 a;
+	border: 10px solid transparent;
+	border-top-color: #000;
+	border-bottom-width: 0
 }
-.vjs-progress-tooltip span{margin-left:1em}
+
+.vjs-progress-tooltip span {
+	margin-left: 1em
+}

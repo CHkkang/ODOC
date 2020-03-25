@@ -50,10 +50,23 @@
    href="${pageContext.request.contextPath}/resources/css/colorpicker.css">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/rightclick.css">
+
+
+
 <!-- CSS 끝 -->
-<!-- script function -->
-<script
-   src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+
+<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/video-js/video-js.css">
+<script src="${pageContext.request.contextPath}/resources/video-js/video.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/videojs-progress.css">
+<script src="${pageContext.request.contextPath}/resources/videojs-progress.js"></script>
+<script>videojs.options.flash.swf = "${pageContext.request.contextPath}/resources/video-js.swf";</script>
+-->
+<link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/videojs.markers.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.2/video.js"></script>
+<script src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/ch-custombar.css">
 
 <script type="text/javascript">
    // submit 이벤트
@@ -68,12 +81,7 @@
    function isChecked(inputid) {
          var c = $('#' + inputid).attr('class');
          var icon = $('#' + inputid).children('.icon');
-         // icon.css('border-color','#cccccc'); <- 회색으로
-         // icon.css('border-color',$('#topColor').val()); <- 선택한 색깔로
          var id = "";
-         // console.log($("#longBottomC").is(":checked"));
-         // console.log($("#longTopC").is(":checked"));
-         // .prop("checked", true);
          if (c == "choice") {
             if (inputid.includes("OnePiece")) {
                if (inputid.includes("Top")) {
@@ -340,6 +348,57 @@
    function deletemarker(){
       
    }
+   
+   var player = videojs('test_video');
+
+   //load the marker plugin
+   player.markers({
+      markerTip:{
+         display: true,
+         text: function(marker) {
+            return "This is a break: " + marker.text;
+         }
+      },
+      breakOverlay:{
+         display: true,
+         displayTime: 3,
+         text: function(marker) {
+            return "This is an break overlay: " + marker.text;
+         }
+      },
+      onMarkerReached: function(marker) {
+         $('.event-list').append("<div>marker reached: " + marker.text + "</div>");
+
+      },
+      onMarkerClick: function(marker){
+         $('.event-list').append("<div>marker clicked: " + marker.text + "</div>");
+
+      },
+      markers: [
+         {
+            time: 9.5,
+            text: "this"
+         },
+         {
+            time: 16,
+            text: "is"
+         },
+         {
+            time: 23.6,
+            text: "so",
+            duration: 4,
+         },
+         {
+            time: 28,
+            text: "cool"
+         },
+         {
+            time: 36,
+            text: ":)"
+         }
+      ]
+   });
+   
 </script>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: rgba(0, 0, 0, 0.5)">
@@ -701,7 +760,7 @@
                                                    rel="tooltip" title="강아지">
                                                    <input type="checkbox" name="petKind" value="dog">
                                                    <div class="icon">
-                                                      <i class="material-icons">pets</i>
+                                                      <img src="${pageContext.request.contextPath}/resources/icon/dog1.svg" style="width:70px; height:100px;"/ >
                                                    </div>
                                                    <h6>Dog</h6>
                                                 </div>
@@ -711,7 +770,7 @@
                                                    rel="tooltip" title="고양이">
                                                    <input type="checkbox" name="petKind" value="cat">
                                                    <div class="icon">
-                                                      <i class="material-icons">pets</i>
+                                                      <img src="${pageContext.request.contextPath}/resources/icon/cat2.svg" style="width:70px; height:100px;"/>
                                                    </div>
                                                    <h6>Cat</h6>
                                                 </div>
@@ -760,68 +819,154 @@
       </div>
    </div>
    <!-- 팝업 끝 -->
-   <!-- 영상 나오는 부분 -->
-   <!-- 영상 처리 부분 -->
-   <div class="row">
-      <video id="video1" class="video-js vjs-default-skin" controls autoplay loop muted
-         preload="none" width="50%" height="50%" data-setup="{}">
-         <source src="${pageContext.request.contextPath}/resources/11.mp4"
-            type='video/mp4' />
-         <track kind="captions" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-         <track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-      </video>
-      <video id="video2" class="video-js vjs-default-skin" controls
-         autoplay loop muted preload="none" width="50%" height="50%"
-         data-setup="{}">
-         <source src="${pageContext.request.contextPath}/resources/11.mp4"
-            type='video/mp4' />
-         <track kind="captions" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-         <track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-      </video>
-   </div>
-   <div class="row">
-      <video id="video3" class="video-js vjs-default-skin" controls
-         autoplay loop muted preload="none" width="50%" height="50%"
-         data-setup="{}">
-         <source src="${pageContext.request.contextPath}/resources/11.mp4"
-            type='video/mp4' />
-         <track kind="captions" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-         <track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-      </video>
-      <video id="video4" class="video-js vjs-default-skin" controls
-         autoplay loop muted preload="none" width="50%" height="50%"
-         data-setup="{}">
-         <source src="${pageContext.request.contextPath}/resources/11.mp4"
-            type='video/mp4' />
-         <track kind="captions" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-         <track kind="subtitles" src="video-/resources/js/demo.captions.vtt"
-            srclang="en" label="English"></track>
-         <!-- Tracks need an ending tag thanks to IE9 -->
-      </video>
-   </div>
-   <!-- 영상 처리 부분 끝-->
-   <!-- right click 팝업 구현중 -->
+<!-- 영상 처리 부분 -->
+<div class="video-container" id="video1">
+        <div class="c-video">
+            <video class="video" src="${pageContext.request.contextPath}/resources/11.mp4"></video>
+            <div class="video-controls">
+                <div class="orange-bar">
+                    <div class="orange-juice">
+                       	<div id="current-time">
+                       	
+                       	</div>
+                    </div>
+                </div>
+                <div class="bttns">
+                    <button id="play-pause"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+/*       (function() {
+        var player = videojs("fuck");
+
+        player.progress({
+          timepoints: [
+              {
+                time: 9.5,
+                text: "Video.js"
+              },
+              {
+                time: 16,
+                text: "progress bar"
+              },
+              {
+                time: 23.6,
+                text: "http://video-js.zencoder.com/oceans-clip.ogv"
+              },
+              {
+                time: 28,
+                text: "already"
+              },
+              {
+                time: 47,
+                text: "evolution"
+              }
+            ]
+        });
+      })();*/
+</script>	
+<script>
+/*
+   // initialize video.js
+   var player = videojs('test_video');
+
+   //load the marker plugin
+   player.markers({
+      markerTip:{
+         display: true,
+         text: function(marker) {
+            return "This is a break: " + marker.text;
+         }
+      },
+      breakOverlay:{
+         display: true,
+         displayTime: 3,
+         text: function(marker) {
+            return "This is an break overlay: " + marker.text;
+         }
+      },
+      onMarkerReached: function(marker) {
+         $('.event-list').append("<div>marker reached: " + marker.text + "</div>");
+
+      },
+      onMarkerClick: function(marker){
+         $('.event-list').append("<div>marker clicked: " + marker.text + "</div>");
+
+      },
+      markers: [
+         {
+            time: 9.5,
+            text: "this"
+         },
+         {
+            time: 16,
+            text: "is"
+         },
+         {
+            time: 23.6,
+            text: "so",
+            duration: 4,
+         },
+         {
+            time: 28,
+            text: "cool"
+         },
+         {
+            time: 36,
+            text: ":)"
+         }
+      ]
+   });
+
+   $(".next").click(function(){
+      player.markers.next();
+   });
+   $(".prev").click(function(){
+      player.markers.prev();
+   });
+   $(".remove").click(function(){
+      player.markers.remove([0,1]);
+   })
+   $(".add").click(function(){
+      player.markers.add([{
+            time: 25,
+            text: "I'm NEW"
+         }]);
+   });
+   $(".updateTime").click(function(){
+      var markers = player.markers.getMarkers();
+      for (var i = 0; i < markers.length; i++) {
+         markers[i].time += 1;
+      }
+      player.markers.updateTime();
+   });
+
+   $(".reset").click(function(){
+      player.markers.reset([{
+            time: 40,
+            text: "I'm NEW"
+         },
+         {
+            time:20,
+            text: "Brand new"
+         }]);
+   });
+   $(".destroy").click(function(){
+      player.markers.destroy();
+   })
+   */
+</script>
+<!-- 영상 처리 부분 끝-->
+<!-- right click 팝업 구현중 -->
    <ul class="rightclick">
      <li><a onclick="zoomin()">인물 확대</a></li>
      <li><a onclick="deletemarker()">마크다운 삭제</a></li>
    </ul>
-   <!-- right click 팝업 끝 -->
+<!-- right click 팝업 끝 -->
    <!--   Big container   -->
-   <!-- js 파일들 -->
+<!-- js 파일들 -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
@@ -841,6 +986,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
-   <!-- js 파일 끝 -->
+<script src="${pageContext.request.contextPath}/resources/ch-custombar.js"></script>
+
+<!-- js 파일 끝 -->
 </body>
 </html>

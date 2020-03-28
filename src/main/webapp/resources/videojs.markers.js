@@ -5,7 +5,7 @@
 
 'use strict';
 
-import videojs from 'video.js';
+import videojs from '../video-js/video.js';
 
 type Marker = {
   time: number,

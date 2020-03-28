@@ -52,7 +52,6 @@
    href="${pageContext.request.contextPath}/resources/css/rightclick.css">
 
 
-
 <!-- CSS 끝 -->
 
 <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/video-js/video-js.css">
@@ -61,170 +60,224 @@
 <script src="${pageContext.request.contextPath}/resources/videojs-progress.js"></script>
 <script>videojs.options.flash.swf = "${pageContext.request.contextPath}/resources/video-js.swf";</script>
 -->
-<link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/videojs.markers.css" rel="stylesheet">
+
+<!-- <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+<link
+   href="${pageContext.request.contextPath}/resources/videojs-marker/videojs.markers.css"
+   rel="stylesheet">
 <script src="http://vjs.zencdn.net/4.2/video.js"></script>
-<script src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
+<script
+   src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
+ -->
+
+<!-- <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+<link
+   href="${pageContext.request.contextPath}/resources/videojs.markers.css"
+   rel="stylesheet">
+<script src="http://vjs.zencdn.net/4.2/video.js"></script>
+<script
+   src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
+ -->
+
+<!-- Video.js base CSS -->
+<link href="https://unpkg.com/video.js@7/dist/video-js.min.css"
+   rel="stylesheet" />
+
+<!-- Sea 
+<link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css"
+   rel="stylesheet">-->
+   
+
+<!-- video.markers.css -->
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/ch-custombar.css">
+   href="https://cdnjs.cloudflare.com/ajax/libs/videojs-markers/0.7.0/videojs.markers.css"
+   integrity="sha256-ihdPR+vBnIKpjgXeIeCTtJkxWfFykpKmPttcCB9YrZc="
+   crossorigin="anonymous" />
+<link
+   href="${pageContext.request.contextPath}/resources/css/time-marker.css"
+   rel="stylesheet">
+
+<!-- <link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/ch-custombar.css"> -->
 
 <script type="text/javascript">
    // submit 이벤트
    window.onload = function() {
+	  var txt = "객체 인식";
+	  var txtArr = new Array(1,5,7,9,10);
+	  var txtArray = new Array();
+	  for(var i=0; i<txtArr.length;i++){
+		   txtArray[i] = {time : txtArr[i], text : txt};
+	  }
+	  
+	  console.log(txtArray);
+      var player = videojs('demo');
+      console.log(player);
+      //load the marker plugin
+      
+      player.markers({
+         markers : txtArray
+      });
+      
+      // marker 추가
+      //player.markers.add([{ time: 40, text: "I'm added"}]);
+   
       document.getElementById('finishBtn').onclick = function() {
          document.getElementById('find').submit();
          console.log("submit");
          console.log(document.getElementById('find'));
+
       };
    };
+   
    // checkbox 제대로 하기 위한 함수
    function isChecked(inputid) {
-         var c = $('#' + inputid).attr('class');
-         var icon = $('#' + inputid).children('.icon');
-         var id = "";
-         if (c == "choice") {
-            if (inputid.includes("OnePiece")) {
-               if (inputid.includes("Top")) {
-                  $("#" + inputid + "C").prop("checked", true);
+      var c = $('#' + inputid).attr('class');
+      var icon = $('#' + inputid).children('.icon');
+      var id = "";
+      if (c == "choice") {
+         if (inputid.includes("OnePiece")) {
+            if (inputid.includes("Top")) {
+               $("#" + inputid + "C").prop("checked", true);
 
-                  id = inputid.includes("short") ? "longTopOnePiece"
-                        : "shortTopOnePiece";
-                  $("#" + id).attr("class", "choice");
+               id = inputid.includes("short") ? "longTopOnePiece"
+                     : "shortTopOnePiece";
+               $("#" + id).attr("class", "choice");
 
-                  $("#" + id + "C").prop("checked", false);
-               }
-
-               $("div[id$='Top']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("div[id$='Bottom']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("input[id$='TopC']").each(function() {
-                  $(this).prop("checked", false);
-               });
-               $("input[id$='BottomC']").each(function() {
-                  $(this).prop("checked", false);
-               });
-            } else {
-               if (inputid.includes("Top")) {
-                  $("#" + inputid + "C").prop("checked", true);
-
-                  id = inputid.includes("short") ? "longTop" : "shortTop";
-                  $("#" + id).attr("class", "choice");
-
-                  $("#" + id + "C").prop("checked", false);
-               }
-               if (inputid.includes("Bottom")) {
-                  $("#" + inputid + "C").prop("checked", true);
-                  
-                  if(inputid.includes("short")){
-                       id = "longBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "skirtBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }
-                  if(inputid.includes("long")){
-                       id = "shortBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "skirtBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }     
-                  if(inputid.includes("skirt")){
-                       id = "longBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "shortBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }
-                  
-               }
-               $("div[id$='OnePiece']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("input[id$='OnePieceC']").each(function() {
-                  $(this).prop("checked", false);
-               });
-               //$("[id$='OnePiece']").attr("class","choice");
+               $("#" + id + "C").prop("checked", false);
             }
+
+            $("div[id$='Top']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("div[id$='Bottom']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("input[id$='TopC']").each(function() {
+               $(this).prop("checked", false);
+            });
+            $("input[id$='BottomC']").each(function() {
+               $(this).prop("checked", false);
+            });
          } else {
-            if (inputid.includes("OnePiece")) {
-               if (inputid.includes("Top")) {
-                  $("#" + inputid + "C").prop("checked", true);
+            if (inputid.includes("Top")) {
+               $("#" + inputid + "C").prop("checked", true);
 
-                  id = inputid.includes("short") ? "longTopOnePiece"
-                        : "shortTopOnePiece";
-                  $("#" + id).attr("class", "choice");
+               id = inputid.includes("short") ? "longTop" : "shortTop";
+               $("#" + id).attr("class", "choice");
 
-                  $("#" + id + "C").prop("checked", false);
-               }
-               $("div[id$='Top']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("div[id$='Bottom']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("input[id$='TopC']").each(function() {
-                  $(this).prop("checked", false);
-               });
-               $("input[id$='BottomC']").each(function() {
-                  $(this).prop("checked", false);
-               });
-            } else {
-               if (inputid.includes("Top")) {
-                  $("#" + inputid + "C").prop("checked", true);
-
-                  id = inputid.includes("short") ? "longTop" : "shortTop";
-                  $("#" + id).attr("class", "choice");
-
-                  $("#" + id + "C").prop("checked", false);
-               }
-               if (inputid.includes("Bottom")) {
-                  $("#" + inputid + "C").prop("checked", true);
-
-                  //id = inputid.includes("short") ? "longBottom"
-                  //      : "shortBottom";
-                  if(inputid.includes("short")){
-                       id = "longBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "skirtBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }
-                  if(inputid.includes("long")){
-                       id = "shortBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "skirtBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }     
-                  if(inputid.includes("skirt")){
-                       id = "longBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                       id = "shortBottom";
-                       $("#" + id).attr("class", "choice");
-                       $("#" + id + "C").prop("checked", false);
-                  }
-                  
-               }
-
-               $("div[id$='OnePiece']").each(function() {
-                  $(this).attr("class", "choice");
-               });
-               $("input[id$='OnePieceC']").each(function() {
-                  $(this).prop("checked", false);
-               });
+               $("#" + id + "C").prop("checked", false);
             }
+            if (inputid.includes("Bottom")) {
+               $("#" + inputid + "C").prop("checked", true);
+
+               if (inputid.includes("short")) {
+                  id = "longBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "skirtBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+               if (inputid.includes("long")) {
+                  id = "shortBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "skirtBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+               if (inputid.includes("skirt")) {
+                  id = "longBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "shortBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+
+            }
+            $("div[id$='OnePiece']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("input[id$='OnePieceC']").each(function() {
+               $(this).prop("checked", false);
+            });
+            //$("[id$='OnePiece']").attr("class","choice");
+         }
+      } else {
+         if (inputid.includes("OnePiece")) {
+            if (inputid.includes("Top")) {
+               $("#" + inputid + "C").prop("checked", true);
+
+               id = inputid.includes("short") ? "longTopOnePiece"
+                     : "shortTopOnePiece";
+               $("#" + id).attr("class", "choice");
+
+               $("#" + id + "C").prop("checked", false);
+            }
+            $("div[id$='Top']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("div[id$='Bottom']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("input[id$='TopC']").each(function() {
+               $(this).prop("checked", false);
+            });
+            $("input[id$='BottomC']").each(function() {
+               $(this).prop("checked", false);
+            });
+         } else {
+            if (inputid.includes("Top")) {
+               $("#" + inputid + "C").prop("checked", true);
+
+               id = inputid.includes("short") ? "longTop" : "shortTop";
+               $("#" + id).attr("class", "choice");
+
+               $("#" + id + "C").prop("checked", false);
+            }
+            if (inputid.includes("Bottom")) {
+               $("#" + inputid + "C").prop("checked", true);
+
+               //id = inputid.includes("short") ? "longBottom"
+               //      : "shortBottom";
+               if (inputid.includes("short")) {
+                  id = "longBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "skirtBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+               if (inputid.includes("long")) {
+                  id = "shortBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "skirtBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+               if (inputid.includes("skirt")) {
+                  id = "longBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+                  id = "shortBottom";
+                  $("#" + id).attr("class", "choice");
+                  $("#" + id + "C").prop("checked", false);
+               }
+
+            }
+
+            $("div[id$='OnePiece']").each(function() {
+               $(this).attr("class", "choice");
+            });
+            $("input[id$='OnePieceC']").each(function() {
+               $(this).prop("checked", false);
+            });
          }
       }
+   }
 
    var page = 0;
    //페이지 이동 함수
@@ -252,174 +305,123 @@
       }
    }
    // 색깔 정한것에 따라서 top icon 색 변경
-   function topChangeColor(){
-	  var lticon = $('#longtopIcon');
-	  var sticon = $('#shorttopIcon');
-	  var olicon = $('#longdressIcon');
-	  var osicon = $('#shortdressIcon');
-	  var lc = $('#longTopC').is(":checked");
-	  var sc = $('#shortTopC').is(":checked");
-  	  if(lc){
-  		    console.log("longtop checked");
-  		    lticon.css('border-color',$('#topColor').val());
-  			sticon.css('border-color','#cccccc');
-  		    olicon.css('border-color','#cccccc');
-  			osicon.css('border-color','#cccccc');
-	  }
-  	  if(sc){
-  		    console.log("shorttop checked");
-  		    sticon.css('border-color',$('#topColor').val());
-  			lticon.css('border-color','#cccccc');		
-  		    olicon.css('border-color','#cccccc');
-  			osicon.css('border-color','#cccccc');
-  	  }
+   function topChangeColor() {
+      var lticon = $('#longtopIcon');
+      var sticon = $('#shorttopIcon');
+      var olicon = $('#longdressIcon');
+      var osicon = $('#shortdressIcon');
+      var lc = $('#longTopC').is(":checked");
+      var sc = $('#shortTopC').is(":checked");
+      if (lc) {
+         console.log("longtop checked");
+         lticon.css('border-color', $('#topColor').val());
+         sticon.css('border-color', '#cccccc');
+         olicon.css('border-color', '#cccccc');
+         osicon.css('border-color', '#cccccc');
+      }
+      if (sc) {
+         console.log("shorttop checked");
+         sticon.css('border-color', $('#topColor').val());
+         lticon.css('border-color', '#cccccc');
+         olicon.css('border-color', '#cccccc');
+         osicon.css('border-color', '#cccccc');
+      }
    }
    // 색깔 정한것에 따라서 bottom icon 색 변경
-   function bottomChangeColor(){
-		  var lbicon = $('#longbottomIcon');
-		  var sbicon = $('#shortbottomIcon');
-		  var kbicon = $('#skirtbottomIcon');
-		  var olicon = $('#longdressIcon');
-		  var osicon = $('#shortdressIcon');
-		  var lc = $('#longBottomC').is(":checked");
-		  var sc = $('#shortBottomC').is(":checked");
-		  var kc = $('#skirtBottomC').is(":checked");
-	  	  if(lc){
-	  		  console.log("longbottom checked");
-	  		  lbicon.css('border-color',$('#bottomColor').val());
-	  		  kbicon.css('border-color','#cccccc');
-	  		  sbicon.css('border-color','#cccccc');
-	  		  olicon.css('border-color','#cccccc');
-	  	      osicon.css('border-color','#cccccc');
-		  }
-	  	  if(sc){
-	  		  console.log("shortbottom checked");
-	  		  sbicon.css('border-color',$('#bottomColor').val());
-	  		  lbicon.css('border-color','#cccccc');
-	  		  kbicon.css('border-color','#cccccc');
-	  		  olicon.css('border-color','#cccccc');
-	  	      osicon.css('border-color','#cccccc');
-	  	  }
-	  	  if(kc){
-	  		 console.log("skirtbottom checked");
-	  		 kbicon.css('border-color',$('#bottomColor').val());
-  			 lbicon.css('border-color','#cccccc');
-  			 sbicon.css('border-color','#cccccc');
-   		     olicon.css('border-color','#cccccc');
-  			 osicon.css('border-color','#cccccc');
-	  	  }
+   function bottomChangeColor() {
+      var lbicon = $('#longbottomIcon');
+      var sbicon = $('#shortbottomIcon');
+      var kbicon = $('#skirtbottomIcon');
+      var olicon = $('#longdressIcon');
+      var osicon = $('#shortdressIcon');
+      var lc = $('#longBottomC').is(":checked");
+      var sc = $('#shortBottomC').is(":checked");
+      var kc = $('#skirtBottomC').is(":checked");
+      if (lc) {
+         console.log("longbottom checked");
+         lbicon.css('border-color', $('#bottomColor').val());
+         kbicon.css('border-color', '#cccccc');
+         sbicon.css('border-color', '#cccccc');
+         olicon.css('border-color', '#cccccc');
+         osicon.css('border-color', '#cccccc');
+      }
+      if (sc) {
+         console.log("shortbottom checked");
+         sbicon.css('border-color', $('#bottomColor').val());
+         lbicon.css('border-color', '#cccccc');
+         kbicon.css('border-color', '#cccccc');
+         olicon.css('border-color', '#cccccc');
+         osicon.css('border-color', '#cccccc');
+      }
+      if (kc) {
+         console.log("skirtbottom checked");
+         kbicon.css('border-color', $('#bottomColor').val());
+         lbicon.css('border-color', '#cccccc');
+         sbicon.css('border-color', '#cccccc');
+         olicon.css('border-color', '#cccccc');
+         osicon.css('border-color', '#cccccc');
+      }
    }
    // 색깔 정한것에 따라서 onepiece icon 색 변경
-   function onepieceChangeColor(){
-		  var lticon = $('#longtopIcon');
-		  var sticon = $('#shorttopIcon');
-		  var lbicon = $('#longbottomIcon');
-		  var sbicon = $('#shortbottomIcon');
-		  var kbicon = $('#skirtbottomIcon');
-		  var olicon = $('#longdressIcon');
-		  var osicon = $('#shortdressIcon');
-		  
-		  var lc = $('#longTopOnePieceC').is(":checked");
-		  var sc = $('#shortTopOnePieceC').is(":checked");
-	  	  if(lc){
-	  		    console.log("longtop checked");
-	  		    olicon.css('border-color',$('#onepieceColor').val());
-	  			osicon.css('border-color','#cccccc');
-	  			lticon.css('border-color','#cccccc');
-	  			sticon.css('border-color','#cccccc');
-	  			lbicon.css('border-color','#cccccc');
-	  			sbicon.css('border-color','#cccccc');
-	  			kbicon.css('border-color','#cccccc');
-		  }
-	  	  if(sc){
-	  		    console.log("shorttop checked");
-	  		    osicon.css('border-color',$('#onepieceColor').val());
-	  		    olicon.css('border-color','#cccccc');
-	  			lticon.css('border-color','#cccccc');
-	  			sticon.css('border-color','#cccccc');
-	  			lbicon.css('border-color','#cccccc');
-	  			sbicon.css('border-color','#cccccc');
-	  			kbicon.css('border-color','#cccccc');
-	  	  }
-   }
-   function zoomin(){
-      
-   }
-   function deletemarker(){
-      
-   }
-   
-   var player = videojs('test_video');
+   function onepieceChangeColor() {
+      var lticon = $('#longtopIcon');
+      var sticon = $('#shorttopIcon');
+      var lbicon = $('#longbottomIcon');
+      var sbicon = $('#shortbottomIcon');
+      var kbicon = $('#skirtbottomIcon');
+      var olicon = $('#longdressIcon');
+      var osicon = $('#shortdressIcon');
 
-   //load the marker plugin
-   player.markers({
-      markerTip:{
-         display: true,
-         text: function(marker) {
-            return "This is a break: " + marker.text;
-         }
-      },
-      breakOverlay:{
-         display: true,
-         displayTime: 3,
-         text: function(marker) {
-            return "This is an break overlay: " + marker.text;
-         }
-      },
-      onMarkerReached: function(marker) {
-         $('.event-list').append("<div>marker reached: " + marker.text + "</div>");
+      var lc = $('#longTopOnePieceC').is(":checked");
+      var sc = $('#shortTopOnePieceC').is(":checked");
+      if (lc) {
+         console.log("longtop checked");
+         olicon.css('border-color', $('#onepieceColor').val());
+         osicon.css('border-color', '#cccccc');
+         lticon.css('border-color', '#cccccc');
+         sticon.css('border-color', '#cccccc');
+         lbicon.css('border-color', '#cccccc');
+         sbicon.css('border-color', '#cccccc');
+         kbicon.css('border-color', '#cccccc');
+      }
+      if (sc) {
+         console.log("shorttop checked");
+         osicon.css('border-color', $('#onepieceColor').val());
+         olicon.css('border-color', '#cccccc');
+         lticon.css('border-color', '#cccccc');
+         sticon.css('border-color', '#cccccc');
+         lbicon.css('border-color', '#cccccc');
+         sbicon.css('border-color', '#cccccc');
+         kbicon.css('border-color', '#cccccc');
+      }
+   }
+   function zoomin() {
 
-      },
-      onMarkerClick: function(marker){
-         $('.event-list').append("<div>marker clicked: " + marker.text + "</div>");
+   }
+   function deletemarker() {
 
-      },
-      markers: [
-         {
-            time: 9.5,
-            text: "this"
-         },
-         {
-            time: 16,
-            text: "is"
-         },
-         {
-            time: 23.6,
-            text: "so",
-            duration: 4,
-         },
-         {
-            time: 28,
-            text: "cool"
-         },
-         {
-            time: 36,
-            text: ":)"
-         }
-      ]
-   });
-   
+   }
 </script>
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: rgba(0, 0, 0, 0.5)">
-  <div class="site-wrap">
-    <!-- 네비게이션 바 (팝업 호출 용) -->
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-      <div class="container-fluid">
-        <div class="d-flex align-items-center" style="padding:10px">
-           <div class="site-logo" style="margin:0 auto; 
-                                    font-size:1.7rem;">
-                <a href="" data-toggle="modal" 
-                         data-target="#myCenterModal">
+<body data-spy="scroll" data-target=".site-navbar-target"
+   data-offset="300" style="background-color: rgba(0, 0, 0, 0.5)">
+   <div class="site-wrap">
+      <!-- 네비게이션 바 (팝업 호출 용) -->
+      <header class="site-navbar py-4 js-sticky-header site-navbar-target"
+         role="banner">
+         <div class="container-fluid">
+            <div class="d-flex align-items-center" style="padding: 10px">
+               <div class="site-logo" style="margin: 0 auto; font-size: 1.7rem;">
+                  <a href="" data-toggle="modal" data-target="#myCenterModal">
                      What object do you want to find? <span>Click here</span>
-            </a>
+                  </a>
+               </div>
+            </div>
          </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- 네비게이션 바 (팝업 호출 용) -->
-    <!--팝업-->
+   </div>
+   </header>
+   <!-- 네비게이션 바 (팝업 호출 용) -->
+   <!--팝업-->
    <div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
       aria-labelledby="myCenterModalLabel">
       <div class="modal-dialog"
@@ -450,9 +452,10 @@
                                  <div class="wizard-navigaton">
                                     <ul class="wari">
                                        <li class="gari"><a href="#kind" data-toggle="tab"
-                                          style="pointer-events: none; display:none;">Kind</a></li>
+                                          style="pointer-events: none; display: none;">Kind</a></li>
                                        <li class="gari"><a id="detailLink" href=""
-                                          data-toggle="tab" style="pointer-events: none; display:none;">Details</a></li>
+                                          data-toggle="tab"
+                                          style="pointer-events: none; display: none;">Details</a></li>
                                     </ul>
                                  </div>
                                  <div class="tab-content">
@@ -461,8 +464,8 @@
                                        <div class="row">
                                           <div class="col-sm-10 col-sm-offset-1">
                                              <div class="col-sm-4">
-                                                <div class="choice"
-                                                   data-toggle="wizard-radio" rel="tooltip" title="사람">
+                                                <div class="choice" data-toggle="wizard-radio"
+                                                   rel="tooltip" title="사람">
                                                    <input type="radio" name="kind" value="human">
                                                    <div class="icon">
                                                       <i class="material-icons">accessibility</i>
@@ -495,11 +498,12 @@
                                        </div>
                                     </div>
                                     <div class="tab-pane" id="human">
-                                       <h4 class="info-text">옷의 종류와 색깔을 선택해주세요. </h4>
+                                       <h4 class="info-text">옷의 종류와 색깔을 선택해주세요.</h4>
                                        <div class="row">
                                           <div class="col-xs-6 col-md-4">
-                                             <div id = "topColorList" class="container2">
-                                                <div id ="topColorPicker" class="color-picker block-center">
+                                             <div id="topColorList" class="container2">
+                                                <div id="topColorPicker"
+                                                   class="color-picker block-center">
                                                    <ul class="color-list1" style="margin-bottom: 0;">
                                                       <li class="color1" data-color="#ff0000"></li>
                                                       <!-- 빨 -->
@@ -534,9 +538,9 @@
                                                       <li class="color1" data-color="#c9b56b"></li>
                                                       <!-- 베이지 -->
                                                    </ul>
-                                                   <div class="form-group" style="display:none;">
-                                                   <input type="text" class="form-control" id="topColor" name="topColor"
-                                                      style="display:none;" />
+                                                   <div class="form-group" style="display: none;">
+                                                      <input type="text" class="form-control" id="topColor"
+                                                         name="topColor" style="display: none;" />
                                                    </div>
                                                 </div>
                                              </div>
@@ -548,9 +552,10 @@
                                                 <input type="checkbox" name="topKind" value="longTopC"
                                                    id="longTopC">
                                                 <div id="longtopIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/longtop.svg"/>
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/longtop.svg" />
                                                 </div>
-                                             </div>                                          
+                                             </div>
                                           </div>
                                           <div class="col-xs-6 col-md-4">
                                              <div class="choice" data-toggle="wizard-checkbox"
@@ -559,15 +564,17 @@
                                                 <input type="checkbox" name="topKind" value="shortTopC"
                                                    id="shortTopC">
                                                 <div id="shorttopIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/shorttop.svg"/>
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/shorttop.svg" />
                                                 </div>
-                                             </div>                                       
+                                             </div>
                                           </div>
                                        </div>
                                        <div class="row">
                                           <div class="col-xs-4 col-md-3">
-                                             <div id = "bottomColorList" class="container2">
-                                                <div id ="bottomColorPicker" class="color-picker block-center">
+                                             <div id="bottomColorList" class="container2">
+                                                <div id="bottomColorPicker"
+                                                   class="color-picker block-center">
                                                    <ul class="color-list2" style="margin-bottom: 0;">
                                                       <li class="color2" data-color="#ff0000"></li>
                                                       <!-- 빨 -->
@@ -602,9 +609,10 @@
                                                       <li class="color2" data-color="#c9b56b"></li>
                                                       <!-- 베이지 -->
                                                    </ul>
-                                                   <div class="form-group" style="display:none;">
-                                                   <input type="text" class="form-control" id="bottomColor" name="bottomColor"
-                                                      style="display:none;" />
+                                                   <div class="form-group" style="display: none;">
+                                                      <input type="text" class="form-control"
+                                                         id="bottomColor" name="bottomColor"
+                                                         style="display: none;" />
                                                    </div>
                                                 </div>
                                              </div>
@@ -616,9 +624,10 @@
                                                 <input type="checkbox" name="bottomKind"
                                                    value="longBottomC" id="longBottomC">
                                                 <div id="longbottomIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/longbottom.svg"/>
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/longbottom.svg" />
                                                 </div>
-                                             </div>                                 
+                                             </div>
                                           </div>
                                           <div class="col-xs-4 col-md-3">
                                              <div class="choice " data-toggle="wizard-checkbox"
@@ -627,10 +636,12 @@
                                                 <input type="checkbox" name="bottomKind"
                                                    value="shortBottomC" id="shortBottomC">
                                                 <div id="shortbottomIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/shortbottomm.svg" width="108" height="108">
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/shortbottomm.svg"
+                                                      width="108" height="108">
                                                 </div>
-                                             </div>                                 
-                                          </div>                                          
+                                             </div>
+                                          </div>
                                           <div class="col-xs-4 col-md-3">
                                              <div class="choice " data-toggle="wizard-checkbox"
                                                 rel="tooltip" title="Bottom" id="skirtBottom"
@@ -638,15 +649,17 @@
                                                 <input type="checkbox" name="bottomKind"
                                                    value="skirtBottomC" id="skirtBottomC">
                                                 <div id="skirtbottomIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/skirt.svg">
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/skirt.svg">
                                                 </div>
-                                             </div>                                          
-                                          </div>                                          
+                                             </div>
+                                          </div>
                                        </div>
                                        <div class="row">
                                           <div class="col-xs-6 col-md-4">
-                                             <div id = "onepieceColorList" class="container2">
-                                                <div id ="onepieceColorPicker" class="color-picker block-center">
+                                             <div id="onepieceColorList" class="container2">
+                                                <div id="onepieceColorPicker"
+                                                   class="color-picker block-center">
                                                    <ul class="color-list3" style="margin-bottom: 0;">
                                                       <li class="color3" data-color="#ff0000"></li>
                                                       <!-- 빨 -->
@@ -681,10 +694,11 @@
                                                       <li class="color3" data-color="#c9b56b"></li>
                                                       <!-- 베이지 -->
                                                    </ul>
-                                                   <div class="form-group" style="display:none;">
-                                                   <input type="text" class="form-control" id="onepieceColor" name="onepieceColor"
-                                                      style="display:none;" />
-                                                   </div>                                                   
+                                                   <div class="form-group" style="display: none;">
+                                                      <input type="text" class="form-control"
+                                                         id="onepieceColor" name="onepieceColor"
+                                                         style="display: none;" />
+                                                   </div>
                                                 </div>
                                              </div>
                                           </div>
@@ -695,9 +709,10 @@
                                                 <input type="checkbox" name="onepieceKind"
                                                    value="longTopOnePieceC" id="longTopOnePieceC">
                                                 <div id="longdressIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/llongdress.svg"/>
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/llongdress.svg" />
                                                 </div>
-                                             </div>                                       
+                                             </div>
                                           </div>
                                           <div class="col-xs-6 col-md-4">
                                              <div class="choice" data-toggle="wizard-checkbox"
@@ -706,12 +721,14 @@
                                                 <input type="checkbox" name="onepieceKind"
                                                    value="shortTopOnePieceC" id="shortTopOnePieceC">
                                                 <div id="shortdressIcon" class="icon">
-                                                   <img src="${pageContext.request.contextPath}/resources/icon/sshortdress.svg" width="108" height="108"/>
+                                                   <img
+                                                      src="${pageContext.request.contextPath}/resources/icon/sshortdress.svg"
+                                                      width="108" height="108" />
                                                 </div>
-                                             </div>                                       
-                                          </div>                           
-                                       </div>                                    
-                                    </div> 
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
                                     <div class="tab-pane" id="thing">
                                        <h4 class="info-text">무슨 물건을 찾고 있습니까?</h4>
                                        <div class="container">
@@ -760,7 +777,9 @@
                                                    rel="tooltip" title="강아지">
                                                    <input type="checkbox" name="petKind" value="dog">
                                                    <div class="icon">
-                                                      <img src="${pageContext.request.contextPath}/resources/icon/dog1.svg" style="width:70px; height:100px;"/ >
+                                                      <img
+                                                         src="${pageContext.request.contextPath}/resources/icon/dog1.svg"
+                                                         style="width: 70px; height: 100px;"/ >
                                                    </div>
                                                    <h6>Dog</h6>
                                                 </div>
@@ -770,7 +789,9 @@
                                                    rel="tooltip" title="고양이">
                                                    <input type="checkbox" name="petKind" value="cat">
                                                    <div class="icon">
-                                                      <img src="${pageContext.request.contextPath}/resources/icon/cat2.svg" style="width:70px; height:100px;"/>
+                                                      <img
+                                                         src="${pageContext.request.contextPath}/resources/icon/cat2.svg"
+                                                         style="width: 70px; height: 100px;" />
                                                    </div>
                                                    <h6>Cat</h6>
                                                 </div>
@@ -819,175 +840,92 @@
       </div>
    </div>
    <!-- 팝업 끝 -->
-<!-- 영상 처리 부분 -->
-<div class="video-container" id="video1">
-        <div class="c-video">
-            <video class="video" src="${pageContext.request.contextPath}/resources/11.mp4"></video>
-            <div class="video-controls">
-                <div class="orange-bar">
-                    <div class="orange-juice">
-                       	<div id="current-time">
-                       	
-                       	</div>
-                    </div>
-                </div>
-                <div class="bttns">
-                    <button id="play-pause"></button>
-                </div>
+   <!-- 영상 처리 부분 -->
+   <div class="video-container" id="video1">
+      <!-- <div class="c-video">
+         <video class="video"
+            src="${pageContext.request.contextPath}/resources/11.mp4"></video>
+         <div class="video-controls">
+            <div class="orange-bar">
+               <div class="orange-juice">
+                  <div id="current-time"></div>
+               </div>
             </div>
-        </div>
-    </div>
-<script>
-/*       (function() {
-        var player = videojs("fuck");
+            <div class="bttns">
+               <button id="play-pause"></button>
+            </div>
+         </div>
+      </div> -->
+      <video id="demo" controls class="video-js"
+         data-setup='{"controls": true, "autoplay": true}'>
+         <source src="${pageContext.request.contextPath}/resources/11.mp4"
+            type="video/mp4">
+      </video>
+   </div>
 
-        player.progress({
-          timepoints: [
-              {
-                time: 9.5,
-                text: "Video.js"
-              },
-              {
-                time: 16,
-                text: "progress bar"
-              },
-              {
-                time: 23.6,
-                text: "http://video-js.zencoder.com/oceans-clip.ogv"
-              },
-              {
-                time: 28,
-                text: "already"
-              },
-              {
-                time: 47,
-                text: "evolution"
-              }
-            ]
-        });
-      })();*/
-</script>	
-<script>
-/*
-   // initialize video.js
-   var player = videojs('test_video');
-
-   //load the marker plugin
-   player.markers({
-      markerTip:{
-         display: true,
-         text: function(marker) {
-            return "This is a break: " + marker.text;
-         }
-      },
-      breakOverlay:{
-         display: true,
-         displayTime: 3,
-         text: function(marker) {
-            return "This is an break overlay: " + marker.text;
-         }
-      },
-      onMarkerReached: function(marker) {
-         $('.event-list').append("<div>marker reached: " + marker.text + "</div>");
-
-      },
-      onMarkerClick: function(marker){
-         $('.event-list').append("<div>marker clicked: " + marker.text + "</div>");
-
-      },
-      markers: [
-         {
-            time: 9.5,
-            text: "this"
-         },
-         {
-            time: 16,
-            text: "is"
-         },
-         {
-            time: 23.6,
-            text: "so",
-            duration: 4,
-         },
-         {
-            time: 28,
-            text: "cool"
-         },
-         {
-            time: 36,
-            text: ":)"
-         }
-      ]
-   });
-
-   $(".next").click(function(){
-      player.markers.next();
-   });
-   $(".prev").click(function(){
-      player.markers.prev();
-   });
-   $(".remove").click(function(){
-      player.markers.remove([0,1]);
-   })
-   $(".add").click(function(){
-      player.markers.add([{
-            time: 25,
-            text: "I'm NEW"
-         }]);
-   });
-   $(".updateTime").click(function(){
-      var markers = player.markers.getMarkers();
-      for (var i = 0; i < markers.length; i++) {
-         markers[i].time += 1;
-      }
-      player.markers.updateTime();
-   });
-
-   $(".reset").click(function(){
-      player.markers.reset([{
-            time: 40,
-            text: "I'm NEW"
-         },
-         {
-            time:20,
-            text: "Brand new"
-         }]);
-   });
-   $(".destroy").click(function(){
-      player.markers.destroy();
-   })
-   */
-</script>
-<!-- 영상 처리 부분 끝-->
-<!-- right click 팝업 구현중 -->
+   <!-- 영상 처리 부분 끝-->
+   <!-- right click 팝업 구현중 -->
    <ul class="rightclick">
-     <li><a onclick="zoomin()">인물 확대</a></li>
-     <li><a onclick="deletemarker()">마크다운 삭제</a></li>
+      <li><a onclick="zoomin()">인물 확대</a></li>
+      <li><a onclick="deletemarker()">마크다운 삭제</a></li>
    </ul>
-<!-- right click 팝업 끝 -->
+   <!-- right click 팝업 끝 -->
    <!--   Big container   -->
-<!-- js 파일들 -->
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>  
-<script src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>  
-<script src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
-<script src="${pageContext.request.contextPath}/resources/ch-custombar.js"></script>
+   <!-- js 파일들 -->
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery.stellar.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery.countdown.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery.easing.1.3.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/js/aos.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery.fancybox.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery.sticky.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+      type="text/javascript"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+      type="text/javascript"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
 
-<!-- js 파일 끝 -->
+   <!-- <script
+      src="${pageContext.request.contextPath}/resources/ch-custombar.js"></script> -->
+
+   <!-- js 파일 끝 -->
+
+   <!-- video.js base js file -->
+   <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
+   <!-- video.markers.js -->
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/videojs-markers/0.7.0/videojs-markers.js"
+      integrity="sha256-voGW6/NcAMzKg/5Gsr6qz3qMo6jzb4Cub5xSw6nuAA0="
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/videojs-markers/0.7.0/videojs-markers.js.map"
+      integrity="undefined" crossorigin="anonymous"></script>
+
 </body>
 </html>

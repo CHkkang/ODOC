@@ -1,0 +1,34 @@
+.video-js .vjs-control-bar {
+   background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.video-js .vjs-picture-in-picture-control {
+   display: none !important;
+}
+
+.video-js .vjs-big-play-button {
+   top: 50% !important;
+   left: 50% !important;
+   transform: translate(-50%, -50%) !important;
+}
+
+.vjs-marker {
+    border-radius: 0% !important;
+    
+    /* marker color */
+    background-color: red !important;
+}
+
+.video-js .vjs-progress-control .vjs-progress-holder {
+    height: 0.7em !important;
+}
+
+.video-js .vjs-play-progress:before {
+    font-size: 1.5em !important;
+    top: -50% !important;
+    right: -0.5em !important;
+}
+
+.video-js .vjs-load-progress div {
+    background: rgba(115, 133, 159, 0) !important;
+}

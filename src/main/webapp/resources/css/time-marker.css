@@ -32,3 +32,7 @@
 .video-js .vjs-load-progress div {
     background: rgba(115, 133, 159, 0) !important;
 }
+
+.vjs-tip {
+    display: none !important;
+}

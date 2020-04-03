@@ -16,7 +16,7 @@ public class Server {
    private static String serverIP;
    private static int serverPort;
    private static List <String> tfdata = new ArrayList<String>();
-   
+   private static final String dirpath = "/fpSpringMVC/src/main/webapp/resources/timetxt";
    public Server(String ip, int port) {
 	   this.serverIP = ip;
 	   this.serverPort = port;
@@ -79,9 +79,8 @@ public class Server {
                dis.read(buf);
                System.out.println(new String(buf).trim());
                str = new String(buf).trim();
-
                // 颇老 按眉 积己
-               file = new File("c://mp4//" + str);
+               file = new File(dirpath + str);
                // 颇老 静扁 按眉 货钧
                fos = new FileOutputStream(file);
 

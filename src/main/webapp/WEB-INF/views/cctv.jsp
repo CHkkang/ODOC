@@ -104,7 +104,7 @@
    // submit 이벤트
    window.onload = function() {
 	  var txt = "객체 인식";
-	  var txtArr = new Array(1,5,7,9,10);
+	  var txtArr = new Array();
 	  var txtArray = new Array();
 	  for(var i=0; i<txtArr.length;i++){
 		   txtArray[i] = {time : txtArr[i], text : txt};

@@ -46,11 +46,13 @@ public class Server {
 
          dos.write(buf);
          dos.flush();
- 	     for(int j=0;j<transferData.size();j++) {
-	    	System.out.println(transferData.get(j));
- 	        str = str.concat(transferData.get(j));
- 	        str = str.concat("&");
- 	    }
+         for (int j = 0; j < transferData.size(); j++) {
+             System.out.println(transferData.get(j));
+             str = str.concat(transferData.get(j));
+             if (j < transferData.size() - 1)
+                str = str.concat("&");
+
+          }
  	    System.out.println(str);
          buf = str.getBytes();
          dos.write(buf);
@@ -132,11 +134,13 @@ public class Server {
          i.printStackTrace();
          System.out.println("fail");
          String str = "fail";
- 	     for(int j=0;j<transferData.size();j++) {
- 	    	    System.out.println(transferData.get(j));
-    	        str = str.concat(transferData.get(j));
-    	        str = str.concat("&");
-    	    }
+         for (int j = 0; j < transferData.size(); j++) {
+             System.out.println(transferData.get(j));
+             str = str.concat(transferData.get(j));
+             if (j < transferData.size() - 1)
+                str = str.concat("&");
+
+          }
   	    System.out.println(str);
       }
    }

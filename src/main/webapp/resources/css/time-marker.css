@@ -1,4 +1,5 @@
 .video-js .vjs-control-bar {
+<<<<<<< HEAD
 	background-color: rgba(0, 0, 0, 0) !important;
 }
 
@@ -10,6 +11,19 @@
 	top: 50% !important;
 	left: 50% !important;
 	transform: translate(-50%, -50%) !important;
+=======
+   background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.video-js .vjs-picture-in-picture-control {
+   display: none !important;
+}
+
+.video-js .vjs-big-play-button {
+   top: 50% !important;
+   left: 50% !important;
+   transform: translate(-50%, -50%) !important;
+>>>>>>> 981ae1140ad71c0e9cbc6f928241f0b1cc501040
 }
 
 .vjs-marker {
@@ -35,4 +49,8 @@
 
 .vjs-tip {
     display: none !important;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 981ae1140ad71c0e9cbc6f928241f0b1cc501040

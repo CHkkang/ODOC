@@ -858,7 +858,7 @@
       </div> -->
       <video id="demo" controls class="video-js"
          data-setup='{"controls": true, "autoplay": true}'>
-         <source src="${pageContext.request.contextPath}/resources/11.mp4"
+         <source src="${pageContext.request.contextPath}/resources/aaCCTV.mp4"
             type="video/mp4">
       </video>
    </div>

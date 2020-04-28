@@ -5,13 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,37 +16,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cap.stone.design.model.Human;
-import cap.stone.design.model.Pet;
+import cap.stone.design.model.Pets;
 import cap.stone.design.model.Thing;
 import cap.stone.design.model.TimeMarker;
 import cap.stone.design.server.Server;
+import cap.stone.design.service.HumanService;
+import cap.stone.design.service.PetService;
+import cap.stone.design.service.ThingService;
 
 @Controller
 public class CCTVController {
+	private HumanService hs;
+	private ThingService ts;
+	private PetService ps;
 	private Server server = new Server("192.168.219.101", 5803);
 	private Human human;
-	private Pet pet;
+	private Pets pet;
 	private Thing thing;
+	private String str;
 
 	@RequestMapping("/cctv")
-	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, Human human, Pet pet,
+	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, Human human, Pets pet,
 			Thing thing, TimeMarker timemarker, Model model) {
 		System.out.println(kind);
+
+		hs = new HumanService(human);
+		ts = new ThingService(thing);
+		ps = new PetService(pet);
+		
 		switch (kind) {
 		case "human":
-			System.out.println(human.getBottomColor());
-			System.out.println(human.getBottomKind());
-			System.out.println(human.getTopColor());
-			System.out.println(human.getTopKind());
+			str = hs.getString();
 			break;
 		case "pet":
-			System.out.println(pet.getPetKind());
+			str = ps.getString();
 			break;
 		case "thing":
-			System.out.println(thing.getThingKind());
+			str = ts.getString();
 			break;
 		}
 
+		try {
+			server.run(str);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ArrayList<String> timeList = new ArrayList<>();
 		String line = null;
 		// 파일로 부터 읽어들인 조각들을 저장하는것

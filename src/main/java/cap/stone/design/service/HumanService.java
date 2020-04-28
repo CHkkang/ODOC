@@ -1,14 +1,17 @@
 package cap.stone.design.service;
 
-import org.springframework.stereotype.Service;
 import cap.stone.design.model.Human;
 
-@Service
 public class HumanService {
 	Human human = new Human();
 
-	public String getString() {
+	public HumanService(Human human) {
+		this.human = human;
+	}
 
+	public String getString() {
+		System.out.println("human Service");
+		System.out.println(human.getBottomColor());
 		String returnString = "person";
 
 		if (human.getOnepieceKind() != null) {

@@ -1,6 +1,8 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <title>Object Detecting on CCTV &mdash;</title>
@@ -467,7 +469,7 @@ body {
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<form id="find" action="cctv" method="">
+										<sf:form id="find" action="cctv" method="get">
 											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
@@ -843,8 +845,8 @@ body {
 												</div>
 												<div class="clearfix"></div>
 											</div>
-										</form>
-										<!-- form end -->
+											</sf:form>
+											<!-- form end -->
 									</div>
 									<!-- wizard card end -->
 								</div>

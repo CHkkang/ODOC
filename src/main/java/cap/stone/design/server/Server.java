@@ -1,4 +1,4 @@
-package cap.stone.design.service;
+package cap.stone.design.server;
 
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
@@ -144,5 +144,4 @@ public class Server {
   	    System.out.println(str);
       }
    }
-
 }

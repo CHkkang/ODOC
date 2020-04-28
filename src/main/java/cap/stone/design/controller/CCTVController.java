@@ -23,11 +23,17 @@ import cap.stone.design.model.Pets;
 import cap.stone.design.model.Thing;
 import cap.stone.design.model.TimeMarker;
 import cap.stone.design.server.Server;
+import cap.stone.design.service.HumanService;
+import cap.stone.design.service.KindService;
+import cap.stone.design.service.PetService;
+import cap.stone.design.service.ThingService;
 
 @Controller
 public class CCTVController {
 	private Server server = new Server("192.168.219.101", 5803);
-
+	private HumanService hs = new HumanService();
+	private PetService ps = new PetService();
+	private ThingService ts = new ThingService();
 	@RequestMapping("/cctv")
 	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, 
 			Human human, 
@@ -35,19 +41,6 @@ public class CCTVController {
 			Pets pet, 
 			TimeMarker timemarker,
 			Model model) {
-		/*
-		 * System.out.println(human.getTopKind());
-		 * System.out.println(human.getTopColor());
-		 * System.out.println(human.getBottomKind());
-		 * System.out.println(human.getBottomColor());
-		 * System.out.println(human.getOnepieceKind());
-		 * System.out.println(human.getOnepieceColor()); System.out.println();
-		 * 
-		 * System.out.println(thing.getThingKind()); System.out.println();
-		 * 
-		 * System.out.println(pet.getPetKind()); System.out.println();
-		 */
-		
 		if(kind.equals("human")) {
 			 System.out.println(human.getTopKind());
 			 System.out.println(human.getTopColor());
@@ -55,6 +48,7 @@ public class CCTVController {
 			 System.out.println(human.getBottomColor());
 			 System.out.println(human.getOnepieceKind());
 			 System.out.println(human.getOnepieceColor()); System.out.println();
+			 
 		}
 		else if(kind.equals("thing")) {
 			 System.out.println(thing.getThingKind());

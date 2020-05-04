@@ -1,5 +1,7 @@
 package cap.stone.design.model;
 
+import java.util.ArrayList;
+
 import lombok.Getter;
 import lombok.Setter;
 

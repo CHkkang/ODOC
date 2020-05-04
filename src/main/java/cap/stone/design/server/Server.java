@@ -12,15 +12,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import cap.stone.design.model.Human;
-import cap.stone.design.model.Pets;
-import cap.stone.design.model.Thing;
-
 public class Server {
-	private Human human = new Human();
-	private Pets pet = new Pets();
-	private Thing thing = new Thing();
-	
 	private static String serverIP;
 	private static int serverPort;
 	private static List<String> tfdata = new ArrayList<String>();
@@ -31,13 +23,13 @@ public class Server {
 		this.serverPort = port;
 	}
 
-	static public void run() throws InterruptedException {
+	static public void run(String s) throws InterruptedException {
 		DataOutputStream dos = null;
 		DataInputStream dis = null;
 		try (Socket socket = new Socket(serverIP, serverPort)) {
-
+			
 			System.out.println("여기부터는 server로 넘어온것");
-
+			System.out.println(s);
 			// 출력스트림
 			OutputStream out = socket.getOutputStream();
 			dos = new DataOutputStream(out);

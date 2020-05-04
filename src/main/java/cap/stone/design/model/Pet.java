@@ -8,6 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Thing {
-	private List<String> thingKind;
+public class Pet {
+	private List<String> petKind;
 }

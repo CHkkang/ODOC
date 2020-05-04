@@ -4,9 +4,14 @@ import cap.stone.design.model.Pets;
 
 public class PetService {
 	private Pets pet = new Pets();
-	private String s ="";
+	private String returnString = "";
+
+	public PetService(Pets pet) {
+		this.pet = pet;
+	}
+
 	public String getString() {
-		s = pet.getPetKind() + "&";
-		return s;
+		returnString = pet.getPetKind() + "&";
+		return returnString;
 	}
 }

@@ -1,5 +1,4 @@
 package cap.stone.design.service;
-
 import cap.stone.design.model.Human;
 
 public class HumanService {

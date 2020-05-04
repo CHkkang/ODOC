@@ -1,6 +1,7 @@
 package cap.stone.design.model;
 
 import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,4 +9,5 @@ import lombok.Setter;
 @Setter
 public class Pets {
 	private List<String> petKind;
+
 }

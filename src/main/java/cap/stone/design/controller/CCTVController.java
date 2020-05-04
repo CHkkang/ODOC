@@ -36,8 +36,12 @@ public class CCTVController {
 	private String str;
 
 	@RequestMapping("/cctv")
-	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, Human human, Pets pet,
-			Thing thing, TimeMarker timemarker, Model model) {
+	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, 
+							  Human human, 
+							  Pets pet, 
+							  Thing thing, 
+							  TimeMarker timemarker, 
+							  Model model) {
 		System.out.println(kind);
 
 		hs = new HumanService(human);
@@ -55,7 +59,7 @@ public class CCTVController {
 			str = ts.getString();
 			break;
 		}
-
+		System.out.println(str);
 		try {
 			server.run(str);
 		} catch (InterruptedException e1) {

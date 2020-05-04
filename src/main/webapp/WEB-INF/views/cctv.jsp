@@ -55,40 +55,9 @@
 
 
 <!-- CSS 끝 -->
-
-<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/video-js/video-js.css">
-<script src="${pageContext.request.contextPath}/resources/video-js/video.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/videojs-progress.css">
-<script src="${pageContext.request.contextPath}/resources/videojs-progress.js"></script>
-<script>videojs.options.flash.swf = "${pageContext.request.contextPath}/resources/video-js.swf";</script>
--->
-
-<!-- <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
-<link
-   href="${pageContext.request.contextPath}/resources/videojs-marker/videojs.markers.css"
-   rel="stylesheet">
-<script src="http://vjs.zencdn.net/4.2/video.js"></script>
-<script
-   src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
- -->
-
-<!-- <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
-<link
-   href="${pageContext.request.contextPath}/resources/videojs.markers.css"
-   rel="stylesheet">
-<script src="http://vjs.zencdn.net/4.2/video.js"></script>
-<script
-   src='${pageContext.request.contextPath}/resources/videojs.markers.js'></script>
- -->
-
 <!-- Video.js base CSS -->
 <link href="https://unpkg.com/video.js@7/dist/video-js.min.css"
 	rel="stylesheet" />
-
-<!-- Sea 
-<link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css"
-   rel="stylesheet">-->
-
 
 <!-- video.markers.css -->
 <link rel="stylesheet"
@@ -99,31 +68,54 @@
 	href="${pageContext.request.contextPath}/resources/css/time-marker.css"
 	rel="stylesheet">
 
-<!-- <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/ch-custombar.css"> -->
-
 <script type="text/javascript">
 	// submit 이벤트
 	window.onload = function() {
 		var txt = "객체 인식";
-		var txtArr = new Array();
-		var txtArray = new Array();
-		for (var i = 0; i < txtArr.length; i++) {
-			txtArray[i] = {
-				time : txtArr[i],
+		var txtA = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+		var txtB = [ 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
+		var txtC = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ];
+		var txtArrayA = new Array();
+		var txtArrayB = new Array();
+		var txtArrayC = new Array();
+		for (var i = 0; i < txtA.length; i++) {
+			txtArrayA[i] = {
+				time : txtA[i],
 				text : txt
 			};
 		}
-
-		console.log(txtArray);
-		var player = videojs('demo');
-		console.log(player);
+		for (var i = 0; i < txtB.length; i++) {
+			txtArrayB[i] = {
+				time : txtB[i],
+				text : txt
+			};
+		}
+		for (var i = 0; i < txtC.length; i++) {
+			txtArrayC[i] = {
+				time : txtC[i],
+				text : txt
+			};
+		}
+		console.log(txtArrayA);
+		console.log(txtArrayB);
+		console.log(txtArrayC);
+		var aVideo = videojs('a');
+		var bVideo = videojs('b');
+		var cVideo = videojs('c');
 		//load the marker plugin
 
-		player.markers({
-			markers : txtArray
+		aVideo.markers({
+			markers : txtArrayA
 		});
-
+		bVideo.markers({
+			markers : txtArrayB
+		});
+		cVideo.markers({
+			markers : txtArrayC
+		});
+		console.log(aVideo);
+		console.log(bVideo);
+		console.log(cVideo);
 		// marker 추가
 		//player.markers.add([{ time: 40, text: "I'm added"}]);
 
@@ -134,278 +126,6 @@
 
 		};
 	};
-
-	// checkbox 제대로 하기 위한 함수
-	function isChecked(inputid) {
-		var c = $('#' + inputid).attr('class');
-		var icon = $('#' + inputid).children('.icon');
-		var id = "";
-		if (c == "choice") {
-			if (inputid.includes("OnePiece")) {
-				if (inputid.includes("Top")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					id = inputid.includes("short") ? "longTopOnePiece"
-							: "shortTopOnePiece";
-					$("#" + id).attr("class", "choice");
-
-					$("#" + id + "C").prop("checked", false);
-				}
-
-				$("div[id$='Top']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("div[id$='Bottom']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("input[id$='TopC']").each(function() {
-					$(this).prop("checked", false);
-				});
-				$("input[id$='BottomC']").each(function() {
-					$(this).prop("checked", false);
-				});
-			} else {
-				if (inputid.includes("Top")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					id = inputid.includes("short") ? "longTop" : "shortTop";
-					$("#" + id).attr("class", "choice");
-
-					$("#" + id + "C").prop("checked", false);
-				}
-				if (inputid.includes("Bottom")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					if (inputid.includes("short")) {
-						id = "longBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "skirtBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-					if (inputid.includes("long")) {
-						id = "shortBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "skirtBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-					if (inputid.includes("skirt")) {
-						id = "longBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "shortBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-
-				}
-				$("div[id$='OnePiece']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("input[id$='OnePieceC']").each(function() {
-					$(this).prop("checked", false);
-				});
-				//$("[id$='OnePiece']").attr("class","choice");
-			}
-		} else {
-			if (inputid.includes("OnePiece")) {
-				if (inputid.includes("Top")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					id = inputid.includes("short") ? "longTopOnePiece"
-							: "shortTopOnePiece";
-					$("#" + id).attr("class", "choice");
-
-					$("#" + id + "C").prop("checked", false);
-				}
-				$("div[id$='Top']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("div[id$='Bottom']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("input[id$='TopC']").each(function() {
-					$(this).prop("checked", false);
-				});
-				$("input[id$='BottomC']").each(function() {
-					$(this).prop("checked", false);
-				});
-			} else {
-				if (inputid.includes("Top")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					id = inputid.includes("short") ? "longTop" : "shortTop";
-					$("#" + id).attr("class", "choice");
-
-					$("#" + id + "C").prop("checked", false);
-				}
-				if (inputid.includes("Bottom")) {
-					$("#" + inputid + "C").prop("checked", true);
-
-					//id = inputid.includes("short") ? "longBottom"
-					//      : "shortBottom";
-					if (inputid.includes("short")) {
-						id = "longBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "skirtBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-					if (inputid.includes("long")) {
-						id = "shortBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "skirtBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-					if (inputid.includes("skirt")) {
-						id = "longBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-						id = "shortBottom";
-						$("#" + id).attr("class", "choice");
-						$("#" + id + "C").prop("checked", false);
-					}
-
-				}
-
-				$("div[id$='OnePiece']").each(function() {
-					$(this).attr("class", "choice");
-				});
-				$("input[id$='OnePieceC']").each(function() {
-					$(this).prop("checked", false);
-				});
-			}
-		}
-	}
-
-	var page = 0;
-	//페이지 이동 함수
-	function pageCtrl(vvalue) {
-		if (vvalue == "Finish")
-			page = 1;
-		if (vvalue == "Previous")
-			page--;
-		if (vvalue == "Next")
-			page++;
-	}
-	function pageMove(vvalue) {
-		console.log(page + "페이지");
-		pageCtrl(vvalue);
-		if (page == 1) {
-			console.log("1페이지");
-			var v = $('input:radio[name=kind]').is(":checked"); // check == true
-			if (v) {
-				value = $('input:radio[name=kind]:checked').val();
-				console.log(value);
-				$("#detailLink").attr("href", "#" + value);
-			}
-		}
-		if (page == 2) {
-		}
-	}
-	// 색깔 정한것에 따라서 top icon 색 변경
-	function topChangeColor() {
-		var lticon = $('#longtopIcon');
-		var sticon = $('#shorttopIcon');
-		var olicon = $('#longdressIcon');
-		var osicon = $('#shortdressIcon');
-		var lc = $('#longTopC').is(":checked");
-		var sc = $('#shortTopC').is(":checked");
-		if (lc) {
-			console.log("longtop checked");
-			lticon.css('border-color', $('#topColor').val());
-			sticon.css('border-color', '#cccccc');
-			olicon.css('border-color', '#cccccc');
-			osicon.css('border-color', '#cccccc');
-		}
-		if (sc) {
-			console.log("shorttop checked");
-			sticon.css('border-color', $('#topColor').val());
-			lticon.css('border-color', '#cccccc');
-			olicon.css('border-color', '#cccccc');
-			osicon.css('border-color', '#cccccc');
-		}
-	}
-	// 색깔 정한것에 따라서 bottom icon 색 변경
-	function bottomChangeColor() {
-		var lbicon = $('#longbottomIcon');
-		var sbicon = $('#shortbottomIcon');
-		var kbicon = $('#skirtbottomIcon');
-		var olicon = $('#longdressIcon');
-		var osicon = $('#shortdressIcon');
-		var lc = $('#longBottomC').is(":checked");
-		var sc = $('#shortBottomC').is(":checked");
-		var kc = $('#skirtBottomC').is(":checked");
-		if (lc) {
-			console.log("longbottom checked");
-			lbicon.css('border-color', $('#bottomColor').val());
-			kbicon.css('border-color', '#cccccc');
-			sbicon.css('border-color', '#cccccc');
-			olicon.css('border-color', '#cccccc');
-			osicon.css('border-color', '#cccccc');
-		}
-		if (sc) {
-			console.log("shortbottom checked");
-			sbicon.css('border-color', $('#bottomColor').val());
-			lbicon.css('border-color', '#cccccc');
-			kbicon.css('border-color', '#cccccc');
-			olicon.css('border-color', '#cccccc');
-			osicon.css('border-color', '#cccccc');
-		}
-		if (kc) {
-			console.log("skirtbottom checked");
-			kbicon.css('border-color', $('#bottomColor').val());
-			lbicon.css('border-color', '#cccccc');
-			sbicon.css('border-color', '#cccccc');
-			olicon.css('border-color', '#cccccc');
-			osicon.css('border-color', '#cccccc');
-		}
-	}
-	// 색깔 정한것에 따라서 onepiece icon 색 변경
-	function onepieceChangeColor() {
-		var lticon = $('#longtopIcon');
-		var sticon = $('#shorttopIcon');
-		var lbicon = $('#longbottomIcon');
-		var sbicon = $('#shortbottomIcon');
-		var kbicon = $('#skirtbottomIcon');
-		var olicon = $('#longdressIcon');
-		var osicon = $('#shortdressIcon');
-
-		var lc = $('#longTopOnePieceC').is(":checked");
-		var sc = $('#shortTopOnePieceC').is(":checked");
-		if (lc) {
-			console.log("longtop checked");
-			olicon.css('border-color', $('#onepieceColor').val());
-			osicon.css('border-color', '#cccccc');
-			lticon.css('border-color', '#cccccc');
-			sticon.css('border-color', '#cccccc');
-			lbicon.css('border-color', '#cccccc');
-			sbicon.css('border-color', '#cccccc');
-			kbicon.css('border-color', '#cccccc');
-		}
-		if (sc) {
-			console.log("shorttop checked");
-			osicon.css('border-color', $('#onepieceColor').val());
-			olicon.css('border-color', '#cccccc');
-			lticon.css('border-color', '#cccccc');
-			sticon.css('border-color', '#cccccc');
-			lbicon.css('border-color', '#cccccc');
-			sbicon.css('border-color', '#cccccc');
-			kbicon.css('border-color', '#cccccc');
-		}
-	}
-	function zoomin() {
-
-	}
-	function deletemarker() {
-
-	}
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -845,8 +565,8 @@ body {
 												</div>
 												<div class="clearfix"></div>
 											</div>
-											</sf:form>
-											<!-- form end -->
+										</sf:form>
+										<!-- form end -->
 									</div>
 									<!-- wizard card end -->
 								</div>
@@ -883,32 +603,33 @@ body {
 			</div>
 		</div> -->
 		<div style="float: left; width: 50%;">
-			<video id="demo" controls class="video-js"
-				data-setup='{"fluid": true}'>
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
+			<video id="a" controls class="video-js" data-setup='{"fluid": true}'>
+				<source
+					src="${pageContext.request.contextPath}/resources/aaCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
-			<video id="demo" controls class="video-js"
-				data-setup='{"fluid": true}'>
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
+			<video id="b" controls class="video-js" data-setup='{"fluid": true}'>
+				<source
+					src="${pageContext.request.contextPath}/resources/bbCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 	</div>
 	<div class="video-container" id="video1">
 		<div style="float: left; width: 50%;">
-			<video id="demo" controls class="video-js"
-				data-setup='{"fluid": true}'>
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
+			<video id="c" controls class="video-js" data-setup='{"fluid": true}'>
+				<source
+					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
 			<video id="demo" controls class="video-js"
 				data-setup='{"fluid": true}'>
-				<source src="${pageContext.request.contextPath}/resources/11.mp4"
+				<source
+					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -960,9 +681,8 @@ body {
 		src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
-
-	<!-- <script
-      src="${pageContext.request.contextPath}/resources/ch-custombar.js"></script> -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/firstPenguin.js"></script>
 
 	<!-- js 파일 끝 -->
 

@@ -12,10 +12,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import cap.stone.design.service.HumanService;
-import cap.stone.design.service.PetService;
-import cap.stone.design.service.ThingService;
-
 public class Server {
 	private static String serverIP;
 	private static int serverPort;
@@ -130,7 +126,7 @@ public class Server {
 			i.printStackTrace();
 			System.out.println("fail");
 			String str = "fail";
-			System.out.println(s);
+			System.out.println(str);
 		}
 	}
 }

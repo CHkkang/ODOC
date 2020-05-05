@@ -15,7 +15,6 @@ import java.util.List;
 public class Server {
 	private static String serverIP;
 	private static int serverPort;
-	private static List<String> tfdata = new ArrayList<String>();
 	private static final String dirpath = "/fpSpringMVC/src/main/webapp/resources/timetxt";
 
 	public Server(String ip, int port) {

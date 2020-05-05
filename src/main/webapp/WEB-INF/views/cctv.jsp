@@ -70,14 +70,38 @@
 
 <script type="text/javascript">
 	// submit 이벤트
+	function readTextFile(file)
+	{
+	    var rawFile = new XMLHttpRequest();
+	    rawFile.open("GET", file, false);
+	    rawFile.onreadystatechange = function ()
+	    {
+	        if(rawFile.readyState === 4)
+	        {
+	            if(rawFile.status === 200 || rawFile.status == 0)
+	            {
+	                var allText = rawFile.responseText;
+	                console.log(allText);
+	                return allText;
+	            }
+	        }
+	    }
+	    rawFile.send(null);
+	}
+	
 	window.onload = function() {
+		console.log("windowonlod");
 		var txt = "객체 인식";
 		var txtA = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 		var txtB = [ 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
 		var txtC = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ];
+		var txtD = [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ];
+		var txtF = readTextFile("${pageContext.request.contextPath}/resources/txtfile/airport.txt");
+		console.log(txtF);
 		var txtArrayA = new Array();
 		var txtArrayB = new Array();
 		var txtArrayC = new Array();
+		var txtArrayD = new Array();
 		for (var i = 0; i < txtA.length; i++) {
 			txtArrayA[i] = {
 				time : txtA[i],
@@ -102,8 +126,8 @@
 		var aVideo = videojs('a');
 		var bVideo = videojs('b');
 		var cVideo = videojs('c');
+		var cVideo = videojs('d');
 		//load the marker plugin
-
 		aVideo.markers({
 			markers : txtArrayA
 		});
@@ -113,12 +137,19 @@
 		cVideo.markers({
 			markers : txtArrayC
 		});
+		dVideo.markers({
+			markers : txtArrayD
+		});
 		console.log(aVideo);
 		console.log(bVideo);
 		console.log(cVideo);
 		// marker 추가
 		//player.markers.add([{ time: 40, text: "I'm added"}]);
-
+		
+		//video 동적으로 변경하는 함수
+		aVideo.ready(function(){
+			aVideo.src({type : "video/mp4", src : "${pageContext.request.contextPath}/resources/ccCCTV.mp4"});
+		});
 		document.getElementById('finishBtn').onclick = function() {
 			document.getElementById('find').submit();
 			console.log("submit");
@@ -126,6 +157,8 @@
 
 		};
 	};
+	
+
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -603,14 +636,14 @@ body {
 			</div>
 		</div> -->
 		<div style="float: left; width: 50%;">
-			<video id="a" controls class="video-js" data-setup='{"fluid": true}'>
+			<video id="a" controls class="video-js" data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
 					src="${pageContext.request.contextPath}/resources/aaCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
-			<video id="b" controls class="video-js" data-setup='{"fluid": true}'>
+			<video id="b" controls class="video-js" data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
 					src="${pageContext.request.contextPath}/resources/bbCCTV.mp4"
 					type="video/mp4">
@@ -619,15 +652,14 @@ body {
 	</div>
 	<div class="video-container" id="video1">
 		<div style="float: left; width: 50%;">
-			<video id="c" controls class="video-js" data-setup='{"fluid": true}'>
+			<video id="c" controls class="video-js" data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
 					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
-			<video id="demo" controls class="video-js"
-				data-setup='{"fluid": true}'>
+			<video id="demo" controls class="video-js" data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
 					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
 					type="video/mp4">

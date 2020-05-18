@@ -1,7 +1,4 @@
 package cap.stone.design.service;
-
-import org.springframework.stereotype.Service;
-
 import cap.stone.design.model.Thing;
 
 public class ThingService {

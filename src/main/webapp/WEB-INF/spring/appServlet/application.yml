@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    gcp:
+      credentials:
+        location: detectingvideo-2ce7cd962c44.json

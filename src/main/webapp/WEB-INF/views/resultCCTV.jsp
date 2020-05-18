@@ -69,7 +69,77 @@
 
 <script type="text/javascript">
 	// submit 이벤트
+	function txtName(aviName, num, extension){
+		txt = "${pageContext.request.contextPath}/resources/python/";
+		txt = txt + aviName + "_" + num + extension;
+		console.log("txtNameFunction : ", txt);
+		return txt;
+	}
+	function readTextFile(file, callback)
+	{	
+		console.log("readTextFileFunction : ", file);
+	    var rawFile = new XMLHttpRequest();
+	    
+	    rawFile.open("GET", file, false);
+	    rawFile.onreadystatechange = function ()
+	    {
+	        if(rawFile.readyState === 4)
+	        {
+	            if(rawFile.status === 200 || rawFile.status == 0)
+	            {
+	                var allText = rawFile.responseText;
+	                console.log("readText : " + allText);
+	                console.log(typeof(allText));
+	                callback(allText);
+	            }
+	      
+	        }
+	    }
+	    rawFile.send(null);
+	}
+	function stringProcess(txt){
+		txt = txt.replace("]","");
+		txt = txt.replace("[","");
+		txt = txt.split(",");
+		console.log(txt);
+		return txt;
+	}
+
 	window.onload = function() {
+		
+		var txtArrayA = new Array();
+		var txtArrayB = new Array();
+		var txtArrayC = new Array();
+		var txtArrayD = new Array();
+		
+		console.log("windowonlod");
+		
+		var aaCCTV;
+		var txt = "객체 인식";
+		
+		readTextFile(txtName("a",1,".txt"),function(result){
+			aaCCTV = stringProcess(result);
+		});
+		
+		console.log("Z : " + aaCCTV);
+
+		for (var i = 0; i < aaCCTV.length; i++) {
+			txtArrayA[i] = {
+				time : aaCCTV[i],
+				text : txt
+			};
+		}
+		var aVideo = videojs('a');
+		//load the marker plugin
+		aVideo.markers({
+			markers : txtArrayA
+		});
+		
+		aVideo.ready(function(){
+			aVideo.src({type : "video/mp4", src : txtName("a",1,".mp4")});
+			console.log(aVideo.src);
+		});
+		
 		document.getElementById('finishBtn').onclick = function() {
 			document.getElementById('find').submit();
 			console.log("submit");
@@ -115,9 +185,8 @@ body {
 					</div>
 				</div>
 			</div>
-		</header>
 	</div>
-
+	</header>
 	<!-- 네비게이션 바 (팝업 호출 용) -->
 	<!--팝업-->
 	<div class="modal fade" id="myCenterModal" tabindex="-1" role="dialog"
@@ -141,7 +210,7 @@ body {
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<sf:form id="find" action="resultcctv" method="get">
+										<sf:form id="find" action="cctv" method="get">
 											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
@@ -583,7 +652,8 @@ body {
 		<div style="float: left; width: 50%">
 			<video id="d" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source src="${pageContext.request.contextPath}/resources/test.mp4"
+				<source
+					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>

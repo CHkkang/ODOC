@@ -15,6 +15,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -122,8 +123,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage -->
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-storage</artifactId>
+			<version>1.107.0</version>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -132,7 +137,24 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv -->
+		<dependency>
+			<groupId>org.bytedeco.javacpp-presets</groupId>
+			<artifactId>opencv</artifactId>
+			<version>4.0.1-1.4.4</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.googlecode.mp4parser/isoparser -->
+		<dependency>
+			<groupId>com.googlecode.mp4parser</groupId>
+			<artifactId>isoparser</artifactId>
+			<version>1.1.18</version>
+		</dependency>
+
+
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

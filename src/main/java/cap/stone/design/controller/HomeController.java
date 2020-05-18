@@ -17,12 +17,8 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		return "home";
 	}
-	@RequestMapping(value = "/movecctv")
+	@RequestMapping(value = "/cctv")
 	public String cctv() {
 		return "cctv";
-	}
-	@RequestMapping(value = "/test")
-	public String test() {
-		return "sibal";
 	}
 }

@@ -1,6 +1,6 @@
 <h1>Hansung Univ CapStoneDesign</h1>
 
-<h2>프로젝트 명</br>Object Detecting on CCTV</h2>
+<h2>   프로젝트 명</br>Object Detecting on CCTV</h2>
 
 <h2>Team : FirstPenguin</h2>
 <h3>교수: 장재영</h3>

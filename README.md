@@ -6,13 +6,15 @@
 
 <h2>CCTV</h2>
 
-
+<h3>시스템 구조</h3>
+![SystemStructure](./images/SystemStructure.png)
 
 
 -------------------------------------------------------------------------
 "# capstone-design-Recognition-in-CCTV" 
 use   https://github.com/videojs/video.js
       
+
 
 <h4>icon license</h4>
 

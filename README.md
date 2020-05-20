@@ -7,8 +7,7 @@
 <h2>Object Detecting on CCTV</h2>
 
 <h3>시스템 구조</h3>
-![SystemStructure](https://user-images.githubusercontent.com/52271770/82485862-ffb72580-9b16-11ea-918c-6756c3619ed1.png)
-
+<img src="https://user-images.githubusercontent.com/52271770/82485862-ffb72580-9b16-11ea-918c-6756c3619ed1.png" width="90%"></img>
 
 -------------------------------------------------------------------------
 "# capstone-design-Recognition-in-CCTV" 

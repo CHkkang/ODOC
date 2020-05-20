@@ -52,7 +52,7 @@ public class CCTVController {
 		String directoryPath =  request.getServletContext().getRealPath("/resource/video/");
 		System.out.println(directoryPath);
 		System.out.println(str);
-		mvs.mergeVideo(directoryPath, "aaCCTV_", videoNum);
+		mvs.mergeVideo(request, "aaCCTV_", videoNum);
 		server.setMsg(str + "aaCCTV_" + Integer.toString(videoNum));
 		server.run();
 		

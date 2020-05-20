@@ -69,58 +69,79 @@
 
 <script type="text/javascript">
 	// submit 이벤트
-	function txtName(aviName, num, extension){
+
+	function test() {
+		var num = 2;
+		$.ajax({
+			type : "POST",
+			data : {
+				num : num
+			},
+			url : 'resultCCTV',
+			error : function(error){
+				console.log("error");
+			}
+			success : function(data) {
+				console.log("success");
+				var result = data;
+				return result;
+			}
+		});
+		
+		num = num +1;
+	}
+	function showRequest(){
+		
+	}
+
+	function txtName(aviName, num, extension) {
 		txt = "${pageContext.request.contextPath}/resources/python/";
 		txt = txt + aviName + "_" + num + extension;
 		console.log("txtNameFunction : ", txt);
 		return txt;
 	}
-	function readTextFile(file, callback)
-	{	
+	function readTextFile(file, callback) {
 		console.log("readTextFileFunction : ", file);
-	    var rawFile = new XMLHttpRequest();
-	    
-	    rawFile.open("GET", file, false);
-	    rawFile.onreadystatechange = function ()
-	    {
-	        if(rawFile.readyState === 4)
-	        {
-	            if(rawFile.status === 200 || rawFile.status == 0)
-	            {
-	                var allText = rawFile.responseText;
-	                console.log("readText : " + allText);
-	                console.log(typeof(allText));
-	                callback(allText);
-	            }
-	      
-	        }
-	    }
-	    rawFile.send(null);
+		var rawFile = new XMLHttpRequest();
+
+		rawFile.open("GET", file, false);
+		rawFile.onreadystatechange = function() {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					var allText = rawFile.responseText;
+					console.log("readText : " + allText);
+					console.log(typeof (allText));
+					callback(allText);
+				}
+
+			}
+		}
+		rawFile.send(null);
 	}
-	function stringProcess(txt){
-		txt = txt.replace("]","");
-		txt = txt.replace("[","");
+	function stringProcess(txt) {
+		txt = txt.replace("]", "");
+		txt = txt.replace("[", "");
 		txt = txt.split(",");
 		console.log(txt);
 		return txt;
 	}
 
 	window.onload = function() {
-		
+		test();
 		var txtArrayA = new Array();
 		var txtArrayB = new Array();
 		var txtArrayC = new Array();
 		var txtArrayD = new Array();
-		
+
 		console.log("windowonlod");
-		
+
 		var aaCCTV;
 		var txt = "객체 인식";
-		
-		readTextFile(txtName("a",1,".txt"),function(result){
+
+		readTextFile(txtName("a", 1, ".txt"), function(result) {
 			aaCCTV = stringProcess(result);
 		});
-		
+
 		console.log("Z : " + aaCCTV);
 
 		for (var i = 0; i < aaCCTV.length; i++) {
@@ -134,12 +155,15 @@
 		aVideo.markers({
 			markers : txtArrayA
 		});
-		
-		aVideo.ready(function(){
-			aVideo.src({type : "video/mp4", src : txtName("a",1,".mp4")});
+
+		aVideo.ready(function() {
+			aVideo.src({
+				type : "video/mp4",
+				src : txtName("a", 1, ".mp4")
+			});
 			console.log(aVideo.src);
 		});
-		
+
 		document.getElementById('finishBtn').onclick = function() {
 			document.getElementById('find').submit();
 			console.log("submit");

@@ -4,15 +4,17 @@
 <h3>팀장: 강찬혁</h3>
 <h3>팀원: 윤재민 정지성 조재원</h3>
 
-<h2>CCTV</h2>
+<h2>Object Detecting on CCTV</h2>
 
-
+<h3>시스템 구조</h3>
+![SystemStructure](./images/SystemStructure.png)
 
 
 -------------------------------------------------------------------------
 "# capstone-design-Recognition-in-CCTV" 
 use   https://github.com/videojs/video.js
       
+
 
 <h4>icon license</h4>
 

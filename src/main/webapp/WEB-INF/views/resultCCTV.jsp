@@ -68,38 +68,7 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
-	// submit 이벤트
-
-	function test() {
-		var num = 2;
-		$.ajax({
-			type : "POST",
-			data : {
-				num : num
-			},
-			url : 'resultCCTV',
-			error : function(error){
-				console.log("error");
-			}
-			success : function(data) {
-				console.log("success");
-				var result = data;
-				return result;
-			}
-		});
-		
-		num = num +1;
-	}
-	function showRequest(){
-		
-	}
-
-	function txtName(aviName, num, extension) {
-		txt = "${pageContext.request.contextPath}/resources/python/";
-		txt = txt + aviName + "_" + num + extension;
-		console.log("txtNameFunction : ", txt);
-		return txt;
-	}
+var localPath = "${pageContext.request.contextPath}";
 	function readTextFile(file, callback) {
 		console.log("readTextFileFunction : ", file);
 		var rawFile = new XMLHttpRequest();
@@ -125,9 +94,17 @@
 		console.log(txt);
 		return txt;
 	}
-
 	window.onload = function() {
-		test();
+		var aVideo = videojs('a');
+		var bVideo = videojs('b');
+		var cVideo = videojs('c');
+		var dVideo = videojs('d');
+		
+		videoChange(aVideo, "test", localPath);
+		videoChange(bVideo, "test", localPath);
+		videoChange(cVideo, "test", localPath);
+		videoChange(dVideo, "test", localPath);
+		
 		var txtArrayA = new Array();
 		var txtArrayB = new Array();
 		var txtArrayC = new Array();
@@ -150,26 +127,11 @@
 				text : txt
 			};
 		}
-		var aVideo = videojs('a');
+
 		//load the marker plugin
 		aVideo.markers({
 			markers : txtArrayA
 		});
-
-		aVideo.ready(function() {
-			aVideo.src({
-				type : "video/mp4",
-				src : txtName("a", 1, ".mp4")
-			});
-			console.log(aVideo.src);
-		});
-
-		document.getElementById('finishBtn').onclick = function() {
-			document.getElementById('find').submit();
-			console.log("submit");
-			console.log(document.getElementById('find'));
-
-		};
 	};
 </script>
 <style type="text/css">
@@ -600,7 +562,7 @@ body {
 														onclick="pageMove(this.value)" /> <input type='button'
 														class='btn btn-finish btn-fill btn-danger btn-wd'
 														id='finishBtn' name='finish' value='Finish'
-														onclick="pageMove(this.value)" />
+														onclick="document.getElementById('find').submit()" />
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -633,25 +595,11 @@ body {
 	<!-- 팝업 끝 -->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
-		<!-- <div class="c-video">
-			<video class="video"
-				src="${pageContext.request.contextPath}/resources/11.mp4"></video>
-			<div class="video-controls">
-				<div class="orange-bar">
-					<div class="orange-juice">
-						<div id="current-time"></div>
-					</div>
-				</div>
-				<div class="bttns">
-					<button id="play-pause"></button>
-				</div>
-			</div>
-		</div> -->
 		<div style="float: left; width: 50%;">
 			<video id="a" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/aaCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/test_1.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -659,7 +607,7 @@ body {
 			<video id="b" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/bbCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -669,7 +617,7 @@ body {
 			<video id="c" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -677,7 +625,7 @@ body {
 			<video id="d" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -731,6 +679,8 @@ body {
 		src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/firstPenguin.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/changeVideo.js"></script>
 
 	<!-- js 파일 끝 -->
 

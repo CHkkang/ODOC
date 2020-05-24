@@ -1,4 +1,7 @@
 <h1>Hansung Univ CapStoneDesign</h1>
+
+<h2>Object Detecting on CCTV</h2>
+
 <br>
 <h2>프로젝트 명</br></br>Object Detecting on CCTV</h2>
 <br>
@@ -11,7 +14,7 @@
 <img src="https://user-images.githubusercontent.com/52271770/82485862-ffb72580-9b16-11ea-918c-6756c3619ed1.png" width="90%"></img>
 
 
--------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
 "# capstone-design-Recognition-in-CCTV" 
 use   https://github.com/videojs/video.js
       

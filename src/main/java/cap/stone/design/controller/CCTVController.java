@@ -1,17 +1,19 @@
 package cap.stone.design.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cap.stone.design.model.Human;
 import cap.stone.design.model.Pets;
 import cap.stone.design.model.Thing;
-import cap.stone.design.model.TimeMarker;
 import cap.stone.design.server.Server;
 import cap.stone.design.service.HumanService;
 import cap.stone.design.service.MergeVideoService;
@@ -27,11 +29,10 @@ public class CCTVController {
 	private Server server = new Server("172.20.10.4", 8069);
 	private String str;
 	private int videoNum;
-	
 
-	@RequestMapping("/resultcctv")
+	@RequestMapping("/resultCCTV")
 	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, Human human, Pets pet,
-			Thing thing, TimeMarker timemarker, Model model, HttpServletRequest request) throws Exception {
+			Thing thing, Model model, HttpServletRequest request) throws Exception {
 		System.out.println(kind);
 		hs = new HumanService(human);
 		ts = new ThingService(thing);
@@ -49,15 +50,32 @@ public class CCTVController {
 			break;
 		}
 		videoNum = 1;
-		String directoryPath =  request.getServletContext().getRealPath("/resource/video/");
+		String directoryPath = request.getServletContext().getRealPath("/resource/video/");
 		System.out.println(directoryPath);
 		System.out.println(str);
 		mvs.mergeVideo(request, "aaCCTV_", videoNum);
-		server.setMsg(str + "aaCCTV_" + Integer.toString(videoNum));
-		server.run();
-		
+		System.out.println("non-changeCCTV : " + videoNum);
+		// server.setMsg(str + "aaCCTV_" + Integer.toString(videoNum));
+		// server.run();
 
 		return "resultCCTV";
 
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/changeCCTV", method = RequestMethod.POST)
+	public HashMap<String, Object> changeRequest(HttpServletRequest request, @RequestParam int num,
+			@RequestParam String videoName, Model model) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		videoNum = num;
+		mvs.mergeVideo(request, videoName, videoNum);
+		System.out.println("changeCCTV : " + videoName + "_" + videoNum);
+		// server.setMsg(str + "aaCCTV_" + Integer.toString(videoNum));
+		// server.run();
+		map.put("num", ++videoNum);
+		// return "resultCCTV";
+		return map;
+	}
+
 }

@@ -68,15 +68,6 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
-	// submit 이벤트
-	window.onload = function() {
-		document.getElementById('finishBtn').onclick = function() {
-			document.getElementById('find').submit();
-			console.log("submit");
-			console.log(document.getElementById('find'));
-
-		};
-	};
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -141,7 +132,7 @@ body {
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<sf:form id="find" action="resultcctv" method="get">
+										<sf:form id="find" action="resultCCTV" method="get">
 											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
@@ -507,7 +498,7 @@ body {
 														onclick="pageMove(this.value)" /> <input type='button'
 														class='btn btn-finish btn-fill btn-danger btn-wd'
 														id='finishBtn' name='finish' value='Finish'
-														onclick="pageMove(this.value)" />
+														onclick="document.getElementById('find').submit()" />
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -558,7 +549,7 @@ body {
 			<video id="a" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/aaCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/aaCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -566,7 +557,7 @@ body {
 			<video id="b" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/bbCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -576,14 +567,14 @@ body {
 			<video id="c" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/ccCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
 			<video id="d" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source src="${pageContext.request.contextPath}/resources/test.mp4"
+				<source src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>

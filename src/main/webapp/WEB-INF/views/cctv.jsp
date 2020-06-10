@@ -574,7 +574,8 @@ body {
 		<div style="float: left; width: 50%">
 			<video id="d" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
+				<source 
+					src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4"
 					type="video/mp4">
 			</video>
 		</div>

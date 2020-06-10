@@ -28,10 +28,9 @@ public class MergeVideoService {
 	public void mergeVideo(HttpServletRequest request, String fileName, int fileNum) throws Exception {
 		// 영상 길이가 너무 짧으면 안되는 오류가 있음
 		String directoryPath = request.getServletContext().getRealPath("resources/video/");
-		String f1 = directoryPath + fileName + Integer.toString(fileNum) + ".mp4";
-		String f2 = directoryPath + fileName + Integer.toString(++fileNum) + ".mp4";
+		String f1 = directoryPath + fileName + "_" + Integer.toString(fileNum-1) + ".mp4";
+		String f2 = directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4";
 		Movie[] inMovies;
-
 		inMovies = new Movie[] { MovieCreator.build(f1), MovieCreator.build(f2) };
 		System.out.println(f1);
 		System.out.println(f2);
@@ -59,30 +58,35 @@ public class MergeVideoService {
 		}
 
 		Container out = new DefaultMp4Builder().build(result);
-
+		System.out.println("new file : " + directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4");
 		RandomAccessFile ram = new RandomAccessFile(
-				String.format(directoryPath + fileName + Integer.toString(++fileNum) + ".mp4"), "rw");
+				String.format(directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4"), "rw");
 		FileChannel fc = ram.getChannel();
 		out.writeContainer(fc);
 
 		ram.close();
 		fc.close();
+		System.out.println("deleteFile : " + f1);
 		filesBeforeMergeDelete(f1);
+		
 	}
 
-	private void filesBeforeMergeDelete(String filePath) throws IOException {
+	public void filesBeforeMergeDelete(String filePath) throws IOException {
 		File deletefile = new File(filePath);
-		System.out.println("실행권한 : " + deletefile.canExecute());
-		System.out.println("읽기권한 : " + deletefile.canRead());
-		System.out.println("쓰기권한 : " + deletefile.canWrite());
-
+		boolean delYn = true;
 		if (deletefile.exists()) {
-			System.gc();
-			System.out.println("삭제 여부 : " + deletefile.delete());
-			System.out.println("delete Success");
+			delYn = deletefile.delete();
+			if (delYn) {
+				System.out.println("File Delete Success"); // 성공
+			} else {
+				System.out.println("File Delete Fail"); // 실패
+			}
 		} else {
-			System.out.println("delete fail");
+
+			System.out.println("File Not Found"); // 미존재
+
 		}
+
 	}
 
 }

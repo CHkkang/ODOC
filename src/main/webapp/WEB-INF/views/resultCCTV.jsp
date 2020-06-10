@@ -68,70 +68,14 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
-var localPath = "${pageContext.request.contextPath}";
-	function readTextFile(file, callback) {
-		console.log("readTextFileFunction : ", file);
-		var rawFile = new XMLHttpRequest();
-
-		rawFile.open("GET", file, false);
-		rawFile.onreadystatechange = function() {
-			if (rawFile.readyState === 4) {
-				if (rawFile.status === 200 || rawFile.status == 0) {
-					var allText = rawFile.responseText;
-					console.log("readText : " + allText);
-					console.log(typeof (allText));
-					callback(allText);
-				}
-
-			}
-		}
-		rawFile.send(null);
-	}
-	function stringProcess(txt) {
-		txt = txt.replace("]", "");
-		txt = txt.replace("[", "");
-		txt = txt.split(",");
-		console.log(txt);
-		return txt;
-	}
+	var localPath = "${pageContext.request.contextPath}";
 	window.onload = function() {
 		var aVideo = videojs('a');
 		var bVideo = videojs('b');
 		var cVideo = videojs('c');
 		var dVideo = videojs('d');
-		
-		videoChange(aVideo, "test", localPath);
-		videoChange(bVideo, "test", localPath);
-		videoChange(cVideo, "test", localPath);
-		videoChange(dVideo, "test", localPath);
-		
-		var txtArrayA = new Array();
-		var txtArrayB = new Array();
-		var txtArrayC = new Array();
-		var txtArrayD = new Array();
+		videoChange(aVideo,bVideo,cVideo,dVideo, "aaCCTV","bbCCTV","ccCCTV","ddCCTV", localPath);
 
-		console.log("windowonlod");
-
-		var aaCCTV;
-		var txt = "객체 인식";
-
-		readTextFile(txtName("a", 1, ".txt"), function(result) {
-			aaCCTV = stringProcess(result);
-		});
-
-		console.log("Z : " + aaCCTV);
-
-		for (var i = 0; i < aaCCTV.length; i++) {
-			txtArrayA[i] = {
-				time : aaCCTV[i],
-				text : txt
-			};
-		}
-
-		//load the marker plugin
-		aVideo.markers({
-			markers : txtArrayA
-		});
 	};
 </script>
 <style type="text/css">
@@ -599,7 +543,7 @@ body {
 			<video id="a" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/video/test_1.mp4"
+					src="${pageContext.request.contextPath}/resources/video/aaCCTV_1.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -607,7 +551,7 @@ body {
 			<video id="b" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/bbCCTV_1.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -617,7 +561,7 @@ body {
 			<video id="c" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/ccCCTV_1.mp4"
 					type="video/mp4">
 			</video>
 		</div>
@@ -625,7 +569,7 @@ body {
 			<video id="d" controls class="video-js"
 				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
 				<source
-					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
+					src="${pageContext.request.contextPath}/resources/video/ddCCTV_1.mp4"
 					type="video/mp4">
 			</video>
 		</div>

@@ -68,6 +68,15 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
+window.onload = function() {
+	var localPath = "${pageContext.request.contextPath}";
+    var aVideo = videojs('a');
+    
+    aVideo.src({
+    			type : 'video/avi',
+    			src : localPath+"/resources/video/long1.avi"
+    		});
+ };
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -531,52 +540,26 @@ body {
 	<!-- 팝업 끝 -->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
-		<!-- <div class="c-video">
-			<video class="video"
-				src="${pageContext.request.contextPath}/resources/11.mp4"></video>
-			<div class="video-controls">
-				<div class="orange-bar">
-					<div class="orange-juice">
-						<div id="current-time"></div>
-					</div>
-				</div>
-				<div class="bttns">
-					<button id="play-pause"></button>
-				</div>
-			</div>
-		</div> -->
 		<div style="float: left; width: 50%;">
 			<video id="a" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source
-					src="${pageContext.request.contextPath}/resources/video/aaCCTV.mp4"
-					type="video/mp4">
+				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/long1.mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
 			<video id="b" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source
-					src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4"
-					type="video/mp4">
+				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4">
 			</video>
 		</div>
 	</div>
 	<div class="video-container" id="video1">
 		<div style="float: left; width: 50%;">
 			<video id="c" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source
-					src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4"
-					type="video/mp4">
+				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4">
 			</video>
 		</div>
 		<div style="float: left; width: 50%">
 			<video id="d" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-				<source 
-					src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4"
-					type="video/mp4">
+				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4">
 			</video>
 		</div>
 	</div>

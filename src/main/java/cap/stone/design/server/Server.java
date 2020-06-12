@@ -74,8 +74,7 @@ public class Server implements Runnable {
 				fileName = str;
 				System.out.println(str);
 				// test1 = filename -> test1_1.mp4
-				String str1 = fileName + "_1";
-
+				String str1 = fileName + "1";
 				buf = str1.getBytes();
 				dos.write(buf);
 				dos.flush();

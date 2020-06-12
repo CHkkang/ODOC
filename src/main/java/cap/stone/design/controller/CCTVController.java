@@ -27,12 +27,16 @@ public class CCTVController {
 	private ThingService ts;
 	private PetService ps;
 	private MergeVideoService mvs;
-	private String serverIP = "192.168.25.8";
+	private String serverIP = "192.168.20.17";
 	private int serverPort = 5804;
 	private String str;
 	private int videoNum = 0;
 	private String videoDirectoryPath = "C:\\dev\\fpSpringMVC\\src\\main\\webapp\\resources\\video\\";
 	private String txtDirectoryPath = "C:\\dev\\fpSpringMVC\\src\\main\\webapp\\resources\\txtfile\\";
+	private String firstVideo = "aaCCTV";
+	private String secondVideo = "";
+	private String thirdVideo = "";
+	private String forthVideo = "";
 
 	@RequestMapping("/resultCCTV")
 	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind, Human human, Pets pet,
@@ -54,55 +58,59 @@ public class CCTVController {
 			break;
 		}
 		videoNum = 1;
-		//String directoryPath = request.getServletContext().getRealPath("resources/video/");
+
 		Server server = new Server(serverIP, serverPort, videoDirectoryPath);
-		server.setMsg(str + "aaCCTV");
+		server.setMsg(str + firstVideo);
 		server.run();
-	    Server2 sv1_txt = new Server2(serverIP, serverPort, "aaCCTV_1", ".txt",txtDirectoryPath);
-	   //sv1_txt.run();
-	    
-	    System.out.println("server1 path : " + videoDirectoryPath + "aaCCTV" + "_" + videoNum);
-
-
+		Server2 sv1_txt = new Server2(serverIP, serverPort, firstVideo + Integer.toString(videoNum), ".txt", txtDirectoryPath);
+		sv1_txt.run();
+		Thread.sleep(5000);
 		return "resultCCTV";
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/changeCCTV", method = RequestMethod.POST)
-	public HashMap<String, Object> changeRequest(HttpServletRequest request, @RequestParam int num, Model model)
+	public HashMap<String, Object> changeRequest(HttpServletRequest request, @RequestParam int num,
+			@RequestParam int aCurrentTime,
+			@RequestParam int bCurrentTime,
+			@RequestParam int cCurrentTime,
+			@RequestParam int dCurrentTime,Model model)
 			throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		videoNum = num;
-		String directoryPath = request.getServletContext().getRealPath("resources/video/");
-		Server2 Asv2 = new Server2(serverIP, serverPort, "aaCCTV_" + Integer.toString(num), ".mp4", videoDirectoryPath);
+
+		Server2 Asv2 = new Server2(serverIP, serverPort, firstVideo + Integer.toString(videoNum), ".mp4",
+				videoDirectoryPath);
 		Asv2.run();
-		Server2 Asv2_txt = new Server2(serverIP, serverPort, "aaCCTV_" + Integer.toString(num), ".txt", txtDirectoryPath);
+		Server2 Asv2_txt = new Server2(serverIP, serverPort, firstVideo + Integer.toString(videoNum), ".txt",
+				txtDirectoryPath);
 		Asv2_txt.run();
-		
-		System.out.println("server2 path : " + directoryPath + "aaCCTV_" + videoNum);
 		/*
-		 * Server2 Bsv2 = new Server2(serverIP, serverPort, "bbCCTV_" +
+		 * Server2 Bsv2 = new Server2(serverIP, serverPort, secondVideo +
 		 * Integer.toString(num), ".mp4"); Bsv2.run(); Server2 Bsv2_txt = new
-		 * Server2(serverIP, serverPort, "bbCCTV_" + Integer.toString(num), ".txt");
-		 * Bsv2_txt.run(); Server2 Csv2 = new Server2(serverIP, serverPort, "ccCCTV_" +
+		 * Server2(serverIP, serverPort, secondVideo + Integer.toString(num), ".txt");
+		 * Bsv2_txt.run(); Server2 Csv2 = new Server2(serverIP, serverPort, thirdVideo +
 		 * Integer.toString(num), ".mp4"); Csv2.run(); Server2 Csv2_txt = new
-		 * Server2(serverIP, serverPort, "ccCCTV_" + Integer.toString(num), ".txt");
-		 * Csv2_txt.run(); Server2 Dsv2 = new Server2(serverIP, serverPort, "ddCCTV_" +
+		 * Server2(serverIP, serverPort, thirdVideo + Integer.toString(num), ".txt");
+		 * Csv2_txt.run(); Server2 Dsv2 = new Server2(serverIP, serverPort, forthVideo +
 		 * Integer.toString(num), ".mp4"); Dsv2.run(); Server2 Dsv2_txt = new
-		 * Server2(serverIP, serverPort, "ddCCTV_" + Integer.toString(num), ".txt");
+		 * Server2(serverIP, serverPort, forthVideo + Integer.toString(num), ".txt");
 		 * Dsv2_txt.run();
 		 */
-		
-		//mvs.mergeVideo(request, "aaCCTV_", videoNum);
-		//mvs.mergeVideo(request, "bbCCTV_", videoNum);
-		//mvs.mergeVideo(request, "ccCCTV_", videoNum);
-		//mvs.mergeVideo(request, "ddCCTV_", videoNum);
-		
-		
-		map.put("num", videoNum);
 
+		mvs.mergeVideo(videoDirectoryPath, firstVideo, videoNum);
+		// mvs.mergeVideo(request, secondVideo, videoNum);
+		// mvs.mergeVideo(request, thirdVideo, videoNum);
+		// mvs.mergeVideo(request, forthVideo, videoNum);
+
+		map.put("num", videoNum);
+		map.put("aCurrentTime", aCurrentTime);
+		map.put("bCurrentTime", bCurrentTime);
+		map.put("cCurrentTime", cCurrentTime);
+		map.put("dCurrentTime", dCurrentTime);
+		Thread.sleep(5000);
 		return map;
 	}
 

@@ -1,39 +1,47 @@
 package cap.stone.design.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import com.coremedia.iso.boxes.Container;
+import com.googlecode.mp4parser.BasicContainer;
+import com.googlecode.mp4parser.FileDataSourceImpl;
 import com.googlecode.mp4parser.authoring.Movie;
 import com.googlecode.mp4parser.authoring.Track;
 import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
 import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
 import com.googlecode.mp4parser.authoring.tracks.AppendTrack;
+import com.googlecode.mp4parser.authoring.tracks.h264.H264TrackImpl;
 
 @Service
 public class MergeVideoService {
-	public void mergeVideo(HttpServletRequest request, String fileName, int fileNum) throws Exception {
+	public void mergeVideo(String path, String fileName, int fileNum) throws Exception {
 		// 영상 길이가 너무 짧으면 안되는 오류가 있음
-		String directoryPath = request.getServletContext().getRealPath("resources/video/");
-		String f1 = directoryPath + fileName + "_" + Integer.toString(fileNum-1) + ".mp4";
-		String f2 = directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4";
-		Movie[] inMovies;
+		// 덮어 씌우면 오류나네 시발
+		String f1;
+		String f2;
+		String f3;
+		String directoryPath = path;
+		if (fileNum == 2) {
+			f1 = directoryPath + fileName + Integer.toString(fileNum - 1) + ".mp4";
+			f2 = directoryPath + fileName + Integer.toString(fileNum) + ".mp4";
+			f3 = directoryPath + "new" + fileName + Integer.toString(fileNum) + ".mp4";
+		} else {
+			f1 = directoryPath + "new" + fileName + Integer.toString(fileNum - 1) + ".mp4";
+			f2 = directoryPath + fileName + Integer.toString(fileNum) + ".mp4";
+			f3 = directoryPath + "new" + fileName + Integer.toString(fileNum) + ".mp4";
+		}
+		Movie[] inMovies = new Movie[2];
 		inMovies = new Movie[] { MovieCreator.build(f1), MovieCreator.build(f2) };
-		System.out.println(f1);
-		System.out.println(f2);
 		List<Track> videoTracks = new LinkedList<Track>();
 		List<Track> audioTracks = new LinkedList<Track>();
 
@@ -57,18 +65,17 @@ public class MergeVideoService {
 			result.addTrack(new AppendTrack(audioTracks.toArray(new Track[audioTracks.size()])));
 		}
 
-		Container out = new DefaultMp4Builder().build(result);
-		System.out.println("new file : " + directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4");
-		RandomAccessFile ram = new RandomAccessFile(
-				String.format(directoryPath + fileName + "_" + Integer.toString(fileNum) + ".mp4"), "rw");
-		FileChannel fc = ram.getChannel();
-		out.writeContainer(fc);
+		BasicContainer out = (BasicContainer) new DefaultMp4Builder().build(result);
 
-		ram.close();
-		fc.close();
-		System.out.println("deleteFile : " + f1);
-		filesBeforeMergeDelete(f1);
+		@SuppressWarnings("resource")
+		FileChannel fc = new RandomAccessFile(String.format(f3), "rw").getChannel();
+
+		out.writeContainer(fc);
 		
+		System.out.println("file1 : " + f1);
+		System.out.println("file2 : " + f2);
+		System.out.println("Mergefile : " + f3);
+
 	}
 
 	public void filesBeforeMergeDelete(String filePath) throws IOException {

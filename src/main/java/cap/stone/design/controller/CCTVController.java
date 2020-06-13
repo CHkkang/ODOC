@@ -27,7 +27,7 @@ public class CCTVController {
 	private ThingService ts;
 	private PetService ps;
 	private MergeVideoService mvs;
-	private String serverIP = "192.168.20.17";
+	private String serverIP = "172.30.1.12";
 	private int serverPort = 5804;
 	private String str;
 	private int videoNum = 0;

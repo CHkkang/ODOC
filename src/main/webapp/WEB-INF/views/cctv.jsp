@@ -68,15 +68,6 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
-window.onload = function() {
-	var localPath = "${pageContext.request.contextPath}";
-    var aVideo = videojs('a');
-    
-    aVideo.src({
-    			type : 'video/avi',
-    			src : localPath+"/resources/video/long1.avi"
-    		});
- };
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -540,29 +531,49 @@ body {
 	<!-- 팝업 끝 -->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
-		<div style="float: left; width: 50%;">
-			<video id="a" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/long1.mp4">
-			</video>
-		</div>
-		<div style="float: left; width: 50%">
-			<video id="b" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4">
-			</video>
-		</div>
-	</div>
-	<div class="video-container" id="video1">
-		<div style="float: left; width: 50%;">
-			<video id="c" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4">
-			</video>
-		</div>
-		<div style="float: left; width: 50%">
-			<video id="d" controls class="video-js"
-				data-setup='{"fluid": true, "autoplay" : true, "muted" : true}' src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4">
-			</video>
+		<div class="row h-100">
+			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
+				<video id="a" controls class="video-js" style="witdh:100%; height:100%"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source src="${pageContext.request.contextPath}/resources/video/aaCCTV.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+	        		<source id="videoWebm" src="" type="video/webm">
+	        		<source id="videoOgg" src="" type="video/ogg">
+				</video>
+			</div>
+			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
+				<video id="b" controls class="video-js" style="witdh:100%; height:100%;"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+	        		<source id="videoWebm" src="" type="video/webm">
+	        		<source id="videoOgg" src="" type="video/ogg">
+				</video>
+			</div>
 		</div>
 	</div>
+		<div class="video-container" id="video1">
+			<div class="row h-100" >
+				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
+					<video id="c" controls class="video-js" style="witdh:100%; height:100%;"
+						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+						<source src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4">
+						<source id="videoMp4" src="" type="video/mp4">
+		        		<source id="videoWebm" src="" type="video/webm">
+		        		<source id="videoOgg" src="" type="video/ogg">
+					</video>
+				</div>
+				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
+					<video id="d" controls class="video-js" style="witdh:100%; height:100%;"
+						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+						<source src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4">
+						<source id="videoMp4" src="" type="video/mp4">
+		        		<source id="videoWebm" src="" type="video/webm">
+		        		<source id="videoOgg" src="" type="video/ogg">
+					</video>
+				</div>
+			</div>
+		</div>
 	<!-- 영상 처리 부분 끝-->
 	<!-- right click 팝업 구현중 -->
 	<ul class="rightclick">
@@ -608,8 +619,6 @@ body {
 		src="${pageContext.request.contextPath}/resources/js/wizard-op.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/colorpicker.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/rightclick.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/firstPenguin.js"></script>
 

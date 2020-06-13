@@ -206,7 +206,7 @@ function videoChange(AvideojsName,BvideojsName,CvideojsName,DvideojsName, Avideo
       dCurrentTime = DvideojsName.currentTime();
       num = num + 1
       if(num<6){
-         videoChange(AvideojsName,BvideojsName,CvideojsName,DvideojsName, AvideoName,BvideoName,CvideoName,DvideoName, local, num)
+         videoChange(AvideojsName,BvideojsName,CvideojsName,DvideojsName, AvideoName,BvideoName,CvideoName,DvideoName, local, num, aCurrentTime,bCurrentTime,cCurrentTime,dCurrentTime )
       }
       
    })

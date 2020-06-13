@@ -68,6 +68,11 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
+	function gotoFileOpen() {
+		console.log("gotoFile");
+		$('#fileButton').click();
+		document.getElementById('find').submit();
+	}
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -145,6 +150,10 @@ body {
 													<li class="gari"><a id="detailLink" href=""
 														data-toggle="tab"
 														style="pointer-events: none; display: none;">Details</a></li>
+													<li class="gari"><a id="humanDetailLink" href=""
+														data-toggle="tab"
+														style="pointer-events: none; display: none;">HumanDetail</a>
+													</li>
 												</ul>
 											</div>
 											<div class="tab-content">
@@ -187,6 +196,37 @@ body {
 													</div>
 												</div>
 												<div class="tab-pane" id="human">
+													<h4 class="info-text">어떤 방식으로 사람을 찾고 있습니까?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-6">
+																<div id="nClick" class="choice"
+																	data-toggle="wizard-checkbox" rel="tooltip"
+																	title="인상착의">
+																	<input type="checkbox" name="humanKind"
+																		value="humanText">
+																	<div class="icon">
+																		<i class="material-icons">search</i>
+																	</div>
+																	<h6>Choice</h6>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div id="nClick" class="choice"
+																	data-toggle="wizard-checkbox" rel="tooltip"
+																	title="인상착의">
+																	<input type="checkbox" name="humanKind"
+																		value="humanImgFile">
+																	<div class="icon">
+																		<i class="material-icons">camera</i>
+																	</div>
+																	<h6>Photo</h6>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane" id="humanText">
 													<h4 class="info-text">옷의 종류와 색깔을 선택해주세요.</h4>
 													<div class="row">
 														<div class="col-xs-6 col-md-4">
@@ -418,6 +458,10 @@ body {
 														</div>
 													</div>
 												</div>
+												<div class="tab-pane" id="humanImgFile">
+													<h4 class="info-text">찾으려는 사람의 이미지 파일을 넣어주세요.</h4>
+
+												</div>
 												<div class="tab-pane" id="thing">
 													<h4 class="info-text">무슨 물건을 찾고 있습니까?</h4>
 													<div class="container">
@@ -532,48 +576,56 @@ body {
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
 		<div class="row h-100">
-			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-				<video id="a" controls class="video-js" style="witdh:100%; height:100%"
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="a" controls class="video-js"
+					style="witdh: 100%; height: 100%"
 					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-					<source src="${pageContext.request.contextPath}/resources/video/aaCCTV.mp4">
+					<source
+						src="${pageContext.request.contextPath}/resources/video/aaCCTV.mp4">
 					<source id="videoMp4" src="" type="video/mp4">
-	        		<source id="videoWebm" src="" type="video/webm">
-	        		<source id="videoOgg" src="" type="video/ogg">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
 				</video>
 			</div>
-			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-				<video id="b" controls class="video-js" style="witdh:100%; height:100%;"
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="b" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
 					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-					<source src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4">
+					<source
+						src="${pageContext.request.contextPath}/resources/video/bbCCTV.mp4">
 					<source id="videoMp4" src="" type="video/mp4">
-	        		<source id="videoWebm" src="" type="video/webm">
-	        		<source id="videoOgg" src="" type="video/ogg">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
 				</video>
 			</div>
 		</div>
 	</div>
-		<div class="video-container" id="video1">
-			<div class="row h-100" >
-				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-					<video id="c" controls class="video-js" style="witdh:100%; height:100%;"
-						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-						<source src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4">
-						<source id="videoMp4" src="" type="video/mp4">
-		        		<source id="videoWebm" src="" type="video/webm">
-		        		<source id="videoOgg" src="" type="video/ogg">
-					</video>
-				</div>
-				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-					<video id="d" controls class="video-js" style="witdh:100%; height:100%;"
-						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-						<source src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4">
-						<source id="videoMp4" src="" type="video/mp4">
-		        		<source id="videoWebm" src="" type="video/webm">
-		        		<source id="videoOgg" src="" type="video/ogg">
-					</video>
-				</div>
+	<div class="video-container" id="video1">
+		<div class="row h-100">
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="c" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source
+						src="${pageContext.request.contextPath}/resources/video/ccCCTV.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
+				</video>
+			</div>
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="d" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source
+						src="${pageContext.request.contextPath}/resources/video/ddCCTV.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
+				</video>
 			</div>
 		</div>
+	</div>
 	<!-- 영상 처리 부분 끝-->
 	<!-- right click 팝업 구현중 -->
 	<ul class="rightclick">

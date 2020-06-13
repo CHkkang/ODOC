@@ -152,10 +152,12 @@
 	function pageCtrl(vvalue) {
 		if (vvalue == "Finish")
 			page = 1;
-		if (vvalue == "Previous")
-			page--;
-		if (vvalue == "Next")
+		if (vvalue == "Previous"){
+			page--;	
+		}
+		if (vvalue == "Next"){
 			page++;
+		}
 	}
 	function pageMove(vvalue) {
 		console.log(page + "페이지");
@@ -170,6 +172,17 @@
 			}
 		}
 		if (page == 2) {
+			console.log("2페이지");
+			var v = $('input:checkbox[name=humanKind]').is(":checked"); // check == true
+			console.log(v);
+			if (v) {
+				value = $('input:checkbox[name=humanKind]').val();
+				console.log(value);
+				$("#humanDetailLink").attr("href", "#" + value);
+			}
+		}
+		if(page == 3){
+			
 		}
 	}
 	// 색깔 정한것에 따라서 top icon 색 변경

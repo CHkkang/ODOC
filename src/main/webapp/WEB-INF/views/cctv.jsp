@@ -35,8 +35,14 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
 	rel="stylesheet">
+<!--  
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">-->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 <link rel="stylesheet"
@@ -68,11 +74,7 @@
 	rel="stylesheet">
 
 <script type="text/javascript">
-	function gotoFileOpen() {
-		console.log("gotoFile");
-		$('#fileButton').click();
-		document.getElementById('find').submit();
-	}
+	
 </script>
 <style type="text/css">
 /* padding-right: 17px; 수정하는 방법(강제적용 방법)*/
@@ -137,7 +139,8 @@ body {
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<sf:form id="find" action="resultCCTV" method="get">
+										<form id="find" action="resultCCTV" method="post"
+											enctype="multipart/form-data">
 											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
@@ -200,11 +203,11 @@ body {
 													<div class="row">
 														<div class="col-sm-10 col-sm-offset-1">
 															<div class="col-sm-6">
-																<div id="nClick" class="choice"
-																	data-toggle="wizard-checkbox" rel="tooltip"
-																	title="인상착의">
-																	<input type="checkbox" name="humanKind"
-																		value="humanText">
+																<div id="humanTextC" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="인상착의"
+																	onclick="isChecked2(this.id)">
+																	<input type="radio" name="humanKind" value="humanText"
+																		id="humanTextCC">
 																	<div class="icon">
 																		<i class="material-icons">search</i>
 																	</div>
@@ -212,11 +215,11 @@ body {
 																</div>
 															</div>
 															<div class="col-sm-6">
-																<div id="nClick" class="choice"
-																	data-toggle="wizard-checkbox" rel="tooltip"
-																	title="인상착의">
-																	<input type="checkbox" name="humanKind"
-																		value="humanImgFile">
+																<div id="humanImgFileC" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="사진"
+																	onclick="isChecked2(this.id)">
+																	<input type="radio" name="humanKind"
+																		value="humanImgFile" id="humanImgFileCC">
 																	<div class="icon">
 																		<i class="material-icons">camera</i>
 																	</div>
@@ -460,7 +463,14 @@ body {
 												</div>
 												<div class="tab-pane" id="humanImgFile">
 													<h4 class="info-text">찾으려는 사람의 이미지 파일을 넣어주세요.</h4>
-
+														<h2 style="margin: 0 auto; display: table;">Upload
+															Picture</h2>
+														<br>
+														<br>
+														<br>
+														<br>
+														<br> 
+														<input type="file" name="file" id="uploadfile" style="marin : 0 auto;" />
 												</div>
 												<div class="tab-pane" id="thing">
 													<h4 class="info-text">무슨 물건을 찾고 있습니까?</h4>
@@ -539,10 +549,12 @@ body {
 													<input type='button'
 														class='btn btn-next btn-fill btn-danger btn-wd'
 														name='next' id="nextBtn" value='Next'
-														onclick="pageMove(this.value)" /> <input type='button'
+														onclick="pageMove(this.value)" /> 
+														<input type='button'
 														class='btn btn-finish btn-fill btn-danger btn-wd'
 														id='finishBtn' name='finish' value='Finish'
-														onclick="document.getElementById('find').submit()" />
+														data-toggle="modal" data-target="#SearchingModal"
+														onclick="swapModal()" />
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -552,7 +564,7 @@ body {
 												</div>
 												<div class="clearfix"></div>
 											</div>
-										</sf:form>
+										</form>
 										<!-- form end -->
 									</div>
 									<!-- wizard card end -->
@@ -573,6 +585,48 @@ body {
 		</div>
 	</div>
 	<!-- 팝업 끝 -->
+	<!-- loading(spinner) modal -->
+	<div id="SearchingModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h3>LOADING..</h3>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+						<video autoplay muted loop>
+							<source
+								src="${pageContext.request.contextPath}/resources/penguin2.mp4"
+								type="video/mp4">
+						</video>
+						<div class="spinner-grow text-primary" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div class="modal-footer" style="text-align: center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- loading(spinner) modal end-->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
 		<div class="row h-100">
@@ -635,16 +689,33 @@ body {
 	<!-- right click 팝업 끝 -->
 	<!--   Big container   -->
 	<!-- js 파일들 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+   <!-- js 파일들 -->
+
+   <!-- 
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+   -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 	<script

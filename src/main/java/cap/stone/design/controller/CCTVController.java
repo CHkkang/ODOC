@@ -1,15 +1,18 @@
 package cap.stone.design.controller;
 
+import java.io.File;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import cap.stone.design.model.Human;
 import cap.stone.design.model.Pets;
@@ -28,7 +31,10 @@ public class CCTVController {
 	private ThingService ts;
 	private PetService ps;
 	private MergeVideoService mvs;
-	private String serverIP = "172.30.1.12";
+	private String serverIP1 = "192.168.1.85";
+	private String serverIP2 = "172.30.1.12";
+	private String serverIP3 = "172.30.1.12";
+	private String serverIP4 = "172.30.1.3";
 	private int serverPort1 = 5801;
 	private int serverPort2 = 5802;
 	private int serverPort3 = 5803;
@@ -37,69 +43,85 @@ public class CCTVController {
 	private int videoNum = 0;
 	private String videoDirectoryPath = "C:\\dev\\fpSpringMVC\\src\\main\\webapp\\resources\\video\\";
 	private String txtDirectoryPath = "C:\\dev\\fpSpringMVC\\src\\main\\webapp\\resources\\txtfile\\";
+	private String imgDirectoryPath = "C:\\dev\\fpSpringMVC\\src\\main\\webapp\\resources\\img\\";
 	private String firstVideo = "aaCCTV";
 	private String secondVideo = "bbCCTV";
 	private String thirdVideo = "ccCCTV";
 	private String forthVideo = "ddCCTV";
 
 	@RequestMapping("/resultCCTV")
-	public String HumanRequest(@RequestParam(value = "kind", required = true) String kind,
+	public String CCTVRequest(@RequestParam(value = "kind", required = false) String kind,
 			@RequestParam(value = "humanKind", required = false) String humanKind, Human human, Pets pet, Thing thing,
-			Model model, HttpServletRequest request) throws Exception {
+			@RequestParam(value = "file", required = false)MultipartFile file, Model model, HttpServletRequest request) throws Exception {
 		System.out.println(kind);
+		System.out.println(human);
 		hs = new HumanService(human);
 		ts = new ThingService(thing);
 		ps = new PetService(pet);
-		mvs = new MergeVideoService();
-		switch (kind) {
-		case "human":
-			str = hs.getString();
-			break;
-		case "pet":
+		if(kind == "pet")
 			str = ps.getString();
-			break;
-		case "thing":
+		else if(kind == "thing")
 			str = ts.getString();
-			break;
-		}
+		else
+			System.out.println("human");
 		videoNum = 1;
 		switch (humanKind) {
 		case "humanImgFile":
+			String strFileName = imgDirectoryPath + file.getOriginalFilename();
+			File f = new File(strFileName);
+			FileCopyUtils.copy(file.getBytes(), f);
 			System.out.println("humanImgFile");
-			ImgServer imgServer = new ImgServer(serverIP, serverPort1, "사진이름", firstVideo);
-			imgServer.run();
+			ImgServer imgServer1 = new ImgServer(serverIP1, serverPort1, strFileName, firstVideo);
+			imgServer1.run();
+			/*
+			 * ImgServer imgServer2 = new ImgServer(serverIP2, serverPort2, strFileName,
+			 * secondVideo); imgServer2.run(); ImgServer imgServer3 = new
+			 * ImgServer(serverIP3, serverPort3, strFileName, thirdVideo); imgServer3.run();
+			 * ImgServer imgServer4 = new ImgServer(serverIP4, serverPort4, strFileName,
+			 * forthVideo); imgServer4.run();
+			 */
 			break;
 		case "humanText":
+			str = hs.getString();
 			System.out.println("humanText");
-			Server sv1 = new Server(serverIP, serverPort1);
+			System.out.println(str);
+			Server sv1 = new Server(serverIP1, serverPort1);
 			sv1.setMsg(str + firstVideo);
 			sv1.run();
-			Server sv2 = new Server(serverIP, serverPort2);
-			sv2.setMsg(str + secondVideo);
-			sv2.run();
-			Server sv4 = new Server(serverIP, serverPort4);
+			/*
+			 * Server sv2 = new Server(serverIP2, serverPort2); sv2.setMsg(str +
+			 * secondVideo); sv2.run(); Server sv3 = new Server(serverIP3, serverPort3);
+			 * sv3.setMsg(str + thirdVideo); sv3.run();
+			 */
+			Server sv4 = new Server(serverIP4, serverPort4);
 			sv4.setMsg(str + forthVideo);
 			sv4.run();
 			break;
 		}
-		Server2 Asv1 = new Server2(serverIP, serverPort1, firstVideo + Integer.toString(videoNum), ".mp4",
+		Server2 Asv1 = new Server2(serverIP1, serverPort1, firstVideo + Integer.toString(videoNum), ".mp4",
 				videoDirectoryPath);
 		Asv1.run();
-		Server2 sv1_txt = new Server2(serverIP, serverPort1, firstVideo + Integer.toString(videoNum), ".txt",
+		Server2 sv1_txt = new Server2(serverIP1, serverPort1, firstVideo + Integer.toString(videoNum), ".txt",
 				txtDirectoryPath);
 		sv1_txt.run();
-		Server2 Asv2 = new Server2(serverIP, serverPort2, secondVideo + Integer.toString(videoNum), ".mp4",
-				videoDirectoryPath);
-		Asv2.run();
-		Server2 sv2_txt = new Server2(serverIP, serverPort2, secondVideo + Integer.toString(videoNum), ".txt",
-				txtDirectoryPath);
-		sv2_txt.run();
-		Server2 Asv4 = new Server2(serverIP, serverPort4, forthVideo + Integer.toString(videoNum), ".mp4",
-				videoDirectoryPath);
-		Asv4.run();
-		Server2 sv4_txt = new Server2(serverIP, serverPort4, forthVideo + Integer.toString(videoNum), ".txt",
-				txtDirectoryPath);
-		sv4_txt.run();
+		/*
+		 * Server2 Asv2 = new Server2(serverIP2, serverPort2, secondVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath);
+		 */
+		/*
+		 * Asv2.run(); Server2 sv2_txt = new Server2(serverIP2, serverPort2, secondVideo
+		 * + Integer.toString(videoNum), ".txt", txtDirectoryPath); sv2_txt.run();
+		 * Server2 Asv3 = new Server2(serverIP3, serverPort3, forthVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath); Asv3.run(); Server2
+		 * sv3_txt = new Server2(serverIP3, serverPort3, forthVideo +
+		 * Integer.toString(videoNum), ".txt", txtDirectoryPath); sv3_txt.run();
+		 */
+		/*
+		 * Server2 Asv4 = new Server2(serverIP4, serverPort4, forthVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath); Asv4.run(); Server2
+		 * sv4_txt = new Server2(serverIP4, serverPort4, forthVideo +
+		 * Integer.toString(videoNum), ".txt", txtDirectoryPath); sv4_txt.run();
+		 */
 
 		Thread.sleep(5000);
 		return "resultCCTV";
@@ -115,29 +137,39 @@ public class CCTVController {
 
 		videoNum = num;
 
-		Server2 Asv1 = new Server2(serverIP, serverPort1, firstVideo + Integer.toString(videoNum), ".mp4",
+		Server2 Asv1 = new Server2(serverIP1, serverPort1, firstVideo + Integer.toString(videoNum), ".mp4",
 				videoDirectoryPath);
+		System.out.println("run Start!");
 		Asv1.run();
-		Server2 sv1_txt = new Server2(serverIP, serverPort1, firstVideo + Integer.toString(videoNum), ".txt",
+		Server2 sv1_txt = new Server2(serverIP1, serverPort1, firstVideo + Integer.toString(videoNum), ".txt",
 				txtDirectoryPath);
 		sv1_txt.run();
-		Server2 Asv2 = new Server2(serverIP, serverPort2, secondVideo + Integer.toString(videoNum), ".mp4",
-				videoDirectoryPath);
-		Asv2.run();
-		Server2 sv2_txt = new Server2(serverIP, serverPort2, secondVideo + Integer.toString(videoNum), ".txt",
-				txtDirectoryPath);
-		sv2_txt.run();
-		Server2 Asv4 = new Server2(serverIP, serverPort4, forthVideo + Integer.toString(videoNum), ".mp4",
-				videoDirectoryPath);
-		Asv4.run();
-		Server2 sv4_txt = new Server2(serverIP, serverPort4, forthVideo + Integer.toString(videoNum), ".txt",
-				txtDirectoryPath);
-		sv4_txt.run();
-
+		System.out.println("run end!");
+		
+		/*
+		 * Server2 Asv2 = new Server2(serverIP2, serverPort2, secondVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath); Asv2.run(); Server2
+		 * sv2_txt = new Server2(serverIP2, serverPort2, secondVideo +
+		 * Integer.toString(videoNum), ".txt", txtDirectoryPath); sv2_txt.run(); Server2
+		 * Asv3 = new Server2(serverIP3, serverPort3, forthVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath); Asv3.run(); Server2
+		 * sv3_txt = new Server2(serverIP3, serverPort3, forthVideo +
+		 * Integer.toString(videoNum), ".txt", txtDirectoryPath); sv3_txt.run();
+		 */
+		/*
+		 * Server2 Asv4 = new Server2(serverIP4, serverPort4, forthVideo +
+		 * Integer.toString(videoNum), ".mp4", videoDirectoryPath); Asv4.run();
+		 * System.out.println("조재원 병신"); Server2 sv4_txt = new Server2(serverIP4,
+		 * serverPort4, forthVideo + Integer.toString(videoNum), ".txt",
+		 * txtDirectoryPath); sv4_txt.run();
+		 */
+		mvs = new MergeVideoService();
 		mvs.mergeVideo(videoDirectoryPath, firstVideo, videoNum);
-		mvs.mergeVideo(videoDirectoryPath, secondVideo, videoNum);
-		// mvs.mergeVideo(request, thirdVideo, videoNum);
-		mvs.mergeVideo(videoDirectoryPath, forthVideo, videoNum);
+		/*
+		 * mvs.mergeVideo(videoDirectoryPath, secondVideo, videoNum);
+		 * mvs.mergeVideo(videoDirectoryPath, thirdVideo, videoNum);
+		 */
+		//mvs.mergeVideo(videoDirectoryPath, forthVideo, videoNum);
 
 		map.put("num", videoNum);
 		map.put("aCurrentTime", aCurrentTime);

@@ -35,8 +35,16 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
 	rel="stylesheet">
+<!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+   crossorigin="anonymous">
+
+<!--       
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+ -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 <link rel="stylesheet"
@@ -147,7 +155,8 @@ body {
 								<!-- Wizard container -->
 								<div class="wizard-container" style="padding-top: 20px">
 									<div class="card wizard-card" data-color="red" id="wizard">
-										<sf:form id="find" action="cctv" method="get">
+										<form id="find" action="resultCCTV" method="post"
+											enctype="multipart/form-data">
 											<!-- one of the next bright colors: "green", "orange", "red", "purple", "blue" -->
 											<div class="wizard-header">
 												<h3 class="wizard-title">무엇을 찾고 싶습니까?</h3>
@@ -160,6 +169,10 @@ body {
 													<li class="gari"><a id="detailLink" href=""
 														data-toggle="tab"
 														style="pointer-events: none; display: none;">Details</a></li>
+													<li class="gari"><a id="humanDetailLink" href=""
+														data-toggle="tab"
+														style="pointer-events: none; display: none;">HumanDetail</a>
+													</li>
 												</ul>
 											</div>
 											<div class="tab-content">
@@ -202,6 +215,37 @@ body {
 													</div>
 												</div>
 												<div class="tab-pane" id="human">
+													<h4 class="info-text">어떤 방식으로 사람을 찾고 있습니까?</h4>
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-1">
+															<div class="col-sm-6">
+																<div id="humanTextC" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="인상착의"
+																	onclick="isChecked2(this.id)">
+																	<input type="radio" name="humanKind" value="humanText"
+																		id="humanTextCC">
+																	<div class="icon">
+																		<i class="material-icons">search</i>
+																	</div>
+																	<h6>Choice</h6>
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div id="humanImgFileC" class="choice"
+																	data-toggle="wizard-radio" rel="tooltip" title="사진"
+																	onclick="isChecked2(this.id)">
+																	<input type="radio" name="humanKind"
+																		value="humanImgFile" id="humanImgFileCC">
+																	<div class="icon">
+																		<i class="material-icons">camera</i>
+																	</div>
+																	<h6>Photo</h6>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane" id="humanText">
 													<h4 class="info-text">옷의 종류와 색깔을 선택해주세요.</h4>
 													<div class="row">
 														<div class="col-xs-6 col-md-4">
@@ -433,6 +477,17 @@ body {
 														</div>
 													</div>
 												</div>
+												<div class="tab-pane" id="humanImgFile">
+													<h4 class="info-text">찾으려는 사람의 이미지 파일을 넣어주세요.</h4>
+														<h2 style="margin: 0 auto; display: table;">Upload
+															Picture</h2>
+														<br>
+														<br>
+														<br>
+														<br>
+														<br> 
+														<input type="file" name="file" id="uploadfile" style="marin : 0 auto;" />
+												</div>
 												<div class="tab-pane" id="thing">
 													<h4 class="info-text">무슨 물건을 찾고 있습니까?</h4>
 													<div class="container">
@@ -510,10 +565,13 @@ body {
 													<input type='button'
 														class='btn btn-next btn-fill btn-danger btn-wd'
 														name='next' id="nextBtn" value='Next'
-														onclick="pageMove(this.value)" /> <input type='button'
-														class='btn btn-finish btn-fill btn-danger btn-wd'
-														id='finishBtn' name='finish' value='Finish'
-														onclick="document.getElementById('find').submit()" />
+														onclick="pageMove(this.value)" /> 
+													<input type='button'
+				                                          class='btn btn-finish btn-fill btn-danger btn-wd'
+				                                          id='finishBtn' name='finish' value='Finish'
+				                                          data-toggle="modal" data-target="#SearchingModal"
+				                                          onclick="swapModal()" />
+                                         
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -523,7 +581,7 @@ body {
 												</div>
 												<div class="clearfix"></div>
 											</div>
-										</sf:form>
+										</form>
 										<!-- form end -->
 									</div>
 									<!-- wizard card end -->
@@ -544,51 +602,100 @@ body {
 		</div>
 	</div>
 	<!-- 팝업 끝 -->
+	<!-- loading(spinner) modal -->
+   <div id="SearchingModal" class="modal fade" tabindex="-1"
+      role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-header" style="text-align: center">
+               <h3>LOADING...</h3>
+            </div>
+            <div class="modal-body">
+               <div class="text-center">
+                  <video autoplay muted loop>
+                     <source src="${pageContext.request.contextPath}/resources/penguin2.mp4" type="video/mp4">
+                  </video>
+                  <div class="spinner-grow text-primary" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-secondary" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-success" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-danger" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-warning" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-info" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+                  <div class="spinner-grow text-dark" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div>
+               </div>
+               <div class="modal-footer" style="text-align: center"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- loading(spinner) modal end-->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
 		<div class="row h-100">
-			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-				<video id="a" controls class="video-js" style="witdh:100%; height:100%"
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="a" controls class="video-js"
+					style="witdh: 100%; height: 100%"
 					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-					<source src="${pageContext.request.contextPath}/resources/video/aaCCTV1.mp4">
+					<source
+						src="${pageContext.request.contextPath}/resources/video/aaCCTV1.mp4">
 					<source id="videoMp4" src="" type="video/mp4">
-	        		<source id="videoWebm" src="" type="video/webm">
-	        		<source id="videoOgg" src="" type="video/ogg">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
 				</video>
 			</div>
-			<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-				<video id="b" controls class="video-js" style="witdh:100%; height:100%;"
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="b" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
 					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-					<source src="${pageContext.request.contextPath}/resources/video/bbCCTV2.mp4">
+					<source
+						src="${pageContext.request.contextPath}/resources/video/bbCCTV1.mp4">
 					<source id="videoMp4" src="" type="video/mp4">
-	        		<source id="videoWebm" src="" type="video/webm">
-	        		<source id="videoOgg" src="" type="video/ogg">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
 				</video>
 			</div>
 		</div>
 	</div>
-		<div class="video-container" id="video1">
-			<div class="row h-100" >
-				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-					<video id="c" controls class="video-js" style="witdh:100%; height:100%;"
-						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-						<source src="${pageContext.request.contextPath}/resources/video/ccCCTV3.mp4">
-						<source id="videoMp4" src="" type="video/mp4">
-		        		<source id="videoWebm" src="" type="video/webm">
-		        		<source id="videoOgg" src="" type="video/ogg">
-					</video>
-				</div>
-				<div class="col-sm-6" style="padding-right:0px; padding-left:0px;">
-					<video id="d" controls class="video-js" style="witdh:100%; height:100%;"
-						data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
-						<source src="${pageContext.request.contextPath}/resources/video/ddCCTV4.mp4">
-						<source id="videoMp4" src="" type="video/mp4">
-		        		<source id="videoWebm" src="" type="video/webm">
-		        		<source id="videoOgg" src="" type="video/ogg">
-					</video>
-				</div>
+	<div class="video-container" id="video1">
+		<div class="row h-100">
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="c" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source
+						src="${pageContext.request.contextPath}/resources/video/ccCCTV1.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
+				</video>
+			</div>
+			<div class="col-sm-6" style="padding-right: 0px; padding-left: 0px;">
+				<video id="d" controls class="video-js"
+					style="witdh: 100%; height: 100%;"
+					data-setup='{"fluid": true, "autoplay" : true, "muted" : true}'>
+					<source
+						src="${pageContext.request.contextPath}/resources/video/ddCCTV1.mp4">
+					<source id="videoMp4" src="" type="video/mp4">
+					<source id="videoWebm" src="" type="video/webm">
+					<source id="videoOgg" src="" type="video/ogg">
+				</video>
 			</div>
 		</div>
+	</div>
 	<!-- 영상 처리 부분 끝-->
 	<!-- right click 팝업 구현중 -->
 	<ul class="rightclick">
@@ -598,16 +705,31 @@ body {
 	<!-- right click 팝업 끝 -->
 	<!--   Big container   -->
 	<!-- js 파일들 -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+   <!-- 
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/popper.min.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+   -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/owl.carousel.min.js"></script>
 	<script

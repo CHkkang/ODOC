@@ -26,7 +26,12 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
+	<beans:bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<beans:property name="maxUploadSizePerFile"
+			value="10240000"></beans:property>
+	</beans:bean>
 	<context:component-scan
 		base-package="cap.stone.design" />
 </beans:beans>

@@ -54,7 +54,6 @@ public class CCTVController {
 			@RequestParam(value = "humanKind", required = false) String humanKind, Human human, Pets pet, Thing thing,
 			@RequestParam(value = "file", required = false)MultipartFile file, Model model, HttpServletRequest request) throws Exception {
 		System.out.println(kind);
-		System.out.println(human);
 		hs = new HumanService(human);
 		ts = new ThingService(thing);
 		ps = new PetService(pet);

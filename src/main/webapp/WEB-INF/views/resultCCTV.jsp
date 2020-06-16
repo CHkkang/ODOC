@@ -107,6 +107,7 @@ body {
 
 .modal {
 	padding-right: 0px !important;
+	z-index:2000 !important;
 }
 /* unset bs3 setting */
 .modal-open {

@@ -10,11 +10,7 @@
 <h3>팀장: 강찬혁</h3>
 <h3>팀원: 윤재민 정지성 조재원</h3>
 <br>
-<h2>시스템 구조</h2><br>
-<img src="https://user-images.githubusercontent.com/52271770/82485862-ffb72580-9b16-11ea-918c-6756c3619ed1.png" width="90%"></img>
-
-
-<h3>시스템 구조</h3>
+<h3>시스템 구조</h3></br>
 ![SystemStructure](./images/SystemStructure.png)
 -------------------------------------------------------------------------
 <h3>프로젝트 정의</h3></br>

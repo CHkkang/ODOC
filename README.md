@@ -11,7 +11,7 @@
 <h3>팀원: 윤재민 정지성 조재원</h3>
 <br>
 <h3>시스템 구조</h3></br>
-![projectSR](https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png)
+<img src="https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png" width="90%"></img>
 
 <h3>프로젝트 정의</h3></br>
 <p>사용자 입력 정보를 반영한 CCTV 영상의 특정 물체 인식 프로그램</p>

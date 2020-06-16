@@ -2,11 +2,16 @@
 
 <h2>Object Detecting on CCTV</h2>
 
+<br>
+<h2>프로젝트 명</br></br>Object Detecting on CCTV</h2>
+<br>
 <h2>Team : FirstPenguin</h2>
 <h3>교수: 장재영</h3>
 <h3>팀장: 강찬혁</h3>
 <h3>팀원: 윤재민 정지성 조재원</h3>
-
+<br>
+<h2>시스템 구조</h2><br>
+<img src="https://user-images.githubusercontent.com/52271770/82485862-ffb72580-9b16-11ea-918c-6756c3619ed1.png" width="90%"></img>
 
 
 <h3>시스템 구조</h3>
@@ -28,7 +33,6 @@
 신고 접수 시 받은 특징이 적용된 객체를 찾는 자동화된 프로그램을 만들었다.<br>
  
 -------------------------------------------------------------------------
-
 "# capstone-design-Recognition-in-CCTV" 
 use   https://github.com/videojs/video.js
       

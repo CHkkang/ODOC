@@ -37,9 +37,9 @@
 	rel="stylesheet">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-   crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 
 <!--       
 <link rel="stylesheet"
@@ -107,7 +107,7 @@ body {
 
 .modal {
 	padding-right: 0px !important;
-	z-index:2000 !important;
+	z-index: 2000 !important;
 }
 /* unset bs3 setting */
 .modal-open {
@@ -480,14 +480,11 @@ body {
 												</div>
 												<div class="tab-pane" id="humanImgFile">
 													<h4 class="info-text">찾으려는 사람의 이미지 파일을 넣어주세요.</h4>
-														<h2 style="margin: 0 auto; display: table;">Upload
-															Picture</h2>
-														<br>
-														<br>
-														<br>
-														<br>
-														<br> 
-														<input type="file" name="file" id="uploadfile" style="marin : 0 auto;" />
+													<h2 style="margin: 0 auto; display: table;">Upload
+														Picture</h2>
+													<br> <br> <br> <br> <br> <input
+														type="file" name="file" id="uploadfile"
+														style="marin: 0 auto;" />
 												</div>
 												<div class="tab-pane" id="thing">
 													<h4 class="info-text">무슨 물건을 찾고 있습니까?</h4>
@@ -566,13 +563,12 @@ body {
 													<input type='button'
 														class='btn btn-next btn-fill btn-danger btn-wd'
 														name='next' id="nextBtn" value='Next'
-														onclick="pageMove(this.value)" /> 
-													<input type='button'
-				                                          class='btn btn-finish btn-fill btn-danger btn-wd'
-				                                          id='finishBtn' name='finish' value='Finish'
-				                                          data-toggle="modal" data-target="#SearchingModal"
-				                                          onclick="swapModal()" />
-                                         
+														onclick="pageMove(this.value)" /> <input type='button'
+														class='btn btn-finish btn-fill btn-danger btn-wd'
+														id='finishBtn' name='finish' value='Finish'
+														data-toggle="modal" data-target="#SearchingModal"
+														onclick="swapModal()" />
+
 												</div>
 												<div class="pull-left">
 													<input type='button'
@@ -604,46 +600,47 @@ body {
 	</div>
 	<!-- 팝업 끝 -->
 	<!-- loading(spinner) modal -->
-   <div id="SearchingModal" class="modal fade" tabindex="-1"
-      role="dialog">
-      <div class="modal-dialog modal-dialog-centered">
-         <div class="modal-content">
-            <div class="modal-header" style="text-align: center">
-               <h3>LOADING...</h3>
-            </div>
-            <div class="modal-body">
-               <div class="text-center">
-                  <video autoplay muted loop>
-                     <source src="${pageContext.request.contextPath}/resources/penguin2.mp4" type="video/mp4">
-                  </video>
-                  <div class="spinner-grow text-primary" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-secondary" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-success" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-danger" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-warning" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-info" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-                  <div class="spinner-grow text-dark" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-               </div>
-               <div class="modal-footer" style="text-align: center"></div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- loading(spinner) modal end-->
+	<div id="SearchingModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center">
+					<h3>LOADING...</h3>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+						<video autoplay muted loop>
+							<source
+								src="${pageContext.request.contextPath}/resources/penguin2.mp4"
+								type="video/mp4">
+						</video>
+						<div class="spinner-grow text-primary" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-success" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-danger" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-warning" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-info" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-dark" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+					<div class="modal-footer" style="text-align: center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- loading(spinner) modal end-->
 	<!-- 영상 처리 부분 -->
 	<div class="video-container" id="video1">
 		<div class="row h-100">
@@ -706,20 +703,20 @@ body {
 	<!-- right click 팝업 끝 -->
 	<!--   Big container   -->
 	<!-- js 파일들 -->
-<!-- Optional JavaScript -->
-   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"></script>
-   <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"></script>
-   <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"></script>
-   <!-- 
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<!-- 
    <script
       src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.min.js"></script>
    <script

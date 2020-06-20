@@ -11,6 +11,7 @@
 <h3>팀원: 윤재민 정지성 조재원</h3>
 <br>
 <h3>시스템 구조</h3></br>
+
 <img src="https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png" width="90%"></img>
 
 <h3>프로젝트 정의</h3></br>
@@ -37,6 +38,7 @@
 <p>USE  
        https://github.com/videojs/video.js</p>
 ----------------------------------------------------------------------------------------------------------------------------------------
+
 <h4>icon license</h4>
 
 <p>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/ultimatearm" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon"> www.flaticon.com</a>

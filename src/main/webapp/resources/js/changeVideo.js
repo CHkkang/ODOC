@@ -50,12 +50,6 @@ function firstMarker(AvideojsName,BvideojsName,CvideojsName,DvideojsName, Avideo
       });
 
      
-     for (var i = 0; i < aaCCTV.length; i++) {
-        txtArrayA[i] = {
-           time : aaCCTV[i],
-           text : txt
-        };
-     }
      for (var i = 0; i < bbCCTV.length; i++) {
          txtArrayB[i] = {
             time : bbCCTV[i],

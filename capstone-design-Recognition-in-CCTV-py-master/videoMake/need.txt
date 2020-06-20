@@ -1,0 +1,8 @@
+----yolov3 cfg, weight file link -> into cfg----
+
+https://pjreddie.com/media/files/yolov3.weights
+https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg
+
+---- Top Bottom weight file link -> into top & bottom ----
+
+https://drive.google.com/drive/folders/1LdirMeuIQiKPYFpPxW_8h6Bll81cEcf8?usp=sharing

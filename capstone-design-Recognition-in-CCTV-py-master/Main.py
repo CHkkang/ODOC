@@ -154,7 +154,7 @@ def main():
 
             ## 재원
             #img = cv2.imread("./inputvideo/inputimg.jpg")
-            imgstr = "person&short&long&#ffe600&aa&"
+            imgstr = "person&short&long&#0022ff&aa&"
             imgstr += fileData
 
             ## bottom_model 도 줘야하는데 임시로 안줌

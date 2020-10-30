@@ -5,6 +5,7 @@
 <br>
 <h2>프로젝트 명</br></br>Object Detecting on CCTV</h2>
 <br>
+<h2>한성대 캡스톤 디자인 최우수상 수상작</h2>
 <h2>Team : FirstPenguin</h2>
 <h3>교수: 장재영</h3>
 <h3>팀장: 강찬혁</h3>

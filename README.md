@@ -1,7 +1,8 @@
 # Object Detecting on CCTV
 
 ## Awards and Honors
-한성대 캡스톤 디자인 최우수상 수상 및 공학경진대회 은상 수상작
+* 한성대 캡스톤 디자인 최우수상
+* 공학경진대회 은상
 
 ## Team
 FirstPenguin
@@ -32,10 +33,10 @@ FirstPenguin
   * YOLO
   * SpringFramework 4.1.4
 
-### USE https://github.com/videojs/video.js
+## USE https://github.com/videojs/video.js
 
 
-### icon license
+## icon license
 
 * 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/ultimatearm" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon"> www.flaticon.com</a>
 * 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>

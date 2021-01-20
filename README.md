@@ -5,7 +5,7 @@
 * 공학경진대회 은상
 
 ## Team
-* FirstPenguin
+* FirstPenguin([강찬혁](https://github.com/CHkkang) [윤재민](https://github.com/JaeMinYooon) [정지성](https://github.com/Jeongjibsa) [조재원](https://github.com/jaaaewon))
  
 ## System Architecture
 <img src="https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png" width="90%"></img>

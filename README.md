@@ -5,7 +5,7 @@
 * 공학경진대회 은상
 
 ## Team
-FirstPenguin
+* FirstPenguin
  
 ## System architecture
 <img src="https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png" width="90%"></img>

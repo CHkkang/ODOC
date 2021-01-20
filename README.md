@@ -5,12 +5,14 @@
 <br>
 <h2>프로젝트 명</br></br>Object Detecting on CCTV</h2>
 <br>
-<h2>한성대 캡스톤 디자인 최우수상 수상작</h2>
+<h2>한성대 캡스톤 디자인 최우수상 수상 및 공학경진대회 은상 수상작</h2>
 <h2>Team : FirstPenguin</h2>
 <h3>교수: 장재영</h3>
 <h3>팀장: 강찬혁</h3>
 <h3>팀원: 윤재민 정지성 조재원</h3>
-<br>
+ 
+------
+
 <h3>시스템 구조</h3></br>
 
 <img src="https://user-images.githubusercontent.com/52271770/84804416-b4bcff00-b03d-11ea-82e4-04a161743b3c.png" width="90%"></img>

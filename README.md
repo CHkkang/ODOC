@@ -15,7 +15,7 @@
 
 ## Overview of the project
 <p>우리나라의 실종 및 분실물 신고 접수 사례를 살펴보면 하루 평균 미아 신고 61회, 대중교통 분실물 신고 300건이 접수되고 있다.
-우리는 미아와 분실물 신고 사례를 살펴봤다. 그 결과 미아의 경우 인상착의를, 분실물의 경우 색상과 종류를 기재하는 것을 알아냈다.
+우리는 미아와 분실물 신고 사례를 살펴봤다. 그 결과 미아의 경우 인상착의를 기재한다는 것을 알아냈다.
 '한국인의 경우 하루 평균 83회 CCTV에 노출된다'라는 통계를 확인한 결과, 미아와 분실물 또한 CCTV에 상당히 많이 노출될 것이다.
 그래서 우리는 CCTV을 통해 특정 객체(미아, 분실물 등)을 찾는 방안을 고려했다.
 현재 CCTV의 수는 점차 늘어가고 있으며, CCTV을 확인하는 사람의 수는 한정적이다. 
@@ -47,3 +47,6 @@
 * 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 * 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 * 아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div></p>
+
+<img width="400" alt="SystemArchitecture" src="https://user-images.githubusercontent.com/52397398/105131585-8ef45d00-5b2c-11eb-926d-23a8d21662cd.jpg">
+
